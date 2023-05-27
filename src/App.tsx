@@ -1,7 +1,18 @@
+import { Routes, Route } from "react-router-dom";
+import AdminLogin from "./pages/admin/login";
+import AdminDashboard from "./pages/admin/dashboard";
+import Error404 from "./components/error404";
+Error404;
+
 const App = () => {
   return (
-    <div className="text-center text-7xl font-bold mt-3">Hello World!</div>
-  )
-}
+    <Routes>
+      <Route path="/" element={<AdminLogin />} />
+      <Route path="/admin/home" element={<AdminDashboard />} />
 
-export default App
+      <Route path="*" element={<Error404 />} />
+    </Routes>
+  );
+};
+
+export default App;
