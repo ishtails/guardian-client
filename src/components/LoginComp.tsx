@@ -2,7 +2,7 @@ import logo from "../assets/icons/logo.svg"
 import { useState } from "react";
 import React from 'react'
 
-const LoginComp = () => {
+const LoginComp = (props) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   function togglePasswordVisibility() {
@@ -16,7 +16,7 @@ const LoginComp = () => {
           </div>
           <div className="flex flex-row h-[650px] justify-center items-center">
             <div className="bg-white rounded-xl shadow-card-shadow space-y-4 p-5 h-[450px] w-[400px]">
-              <span className="font-lexend font-bold text-h36">Admin Login</span>
+              <span className="font-lexend font-bold text-h36">{props.name} Login</span>
               <p className="text-[#667085] text-h16">Please fill your detail to access your account.</p>
               <div>
                 <h1 className="text-[#344054] text-h14">Institute Email</h1>
