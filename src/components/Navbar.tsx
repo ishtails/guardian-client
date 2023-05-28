@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="flex flex-row h-[96px] max-w-[1366px] lg:px-8 px-6 items-center bg-white shadow-card-shadow rounded-bl-2xl rounded-br-2xl justify-between xl:m-auto mx-5">
+    <div className="flex flex-row h-[96px] lg:px-8 px-6 items-center bg-white shadow-card-shadow rounded-bl-2xl rounded-br-2xl justify-between">
       <div className="flex space-x-6">
         <div className="flex space-x-4">
           <img src={logo} className="w-[32px]" />
-          <div className="flex flex-row font-lexend text-h28 text-primary">
+          <div className="hidden lg:flex flex-row font-lexend text-h28 text-primary">
             Guar <div className="font-lexend font-bold text-h28">dian</div>
           </div>
 
