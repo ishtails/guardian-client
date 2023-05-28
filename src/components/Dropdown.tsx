@@ -1,12 +1,13 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import dropdown from "../assets/icons/dropdown.svg";
+import dropdown_blue from "../assets/icons/dropdown_blue.svg";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-type Props = {title:string}
+type Props = { title: string; isHeading: boolean };
 
 const links = [
   { href: "/account-settings", label: "Account settings" },
@@ -19,7 +20,24 @@ const Dropdown = (props: Props) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-44 justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+        <Menu.Button
+          className={`${
+            props.isHeading ? "inline-flex" : "hidden"
+          } items-center gap-x-1.5 bg-white px-4 py-2 text-primary font-lexend font-bold`}
+        >
+          {props.title}
+          <img
+            src={dropdown_blue}
+            className="w-[12px] 
+                -mr-1 h-6"
+          />
+        </Menu.Button>
+
+        <Menu.Button
+          className={`${
+            props.isHeading ? "hidden" : "inline-flex"
+          } w-44 justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50`}
+        >
           {props.title}
           <img
             src={dropdown}
@@ -38,15 +56,18 @@ const Dropdown = (props: Props) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute left-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items
+          className={`absolute ${
+            props.isHeading ? "right-0 bg-[#FCFFFF]" : "left-0 bg-white"
+          } z-10 mt-2 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+        >
           {links.map((link) => (
-            /* Use the `active` state to conditionally style the active item. */
             <Menu.Item key={link.href} as={Fragment}>
               {({ active }) => (
                 <a
                   href={link.href}
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    active ? "bg-slate-100 text-slate-900" : "text-slate-700",
                     "block w-full px-4 py-2 text-left text-sm"
                   )}
                 >

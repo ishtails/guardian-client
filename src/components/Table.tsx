@@ -3,8 +3,8 @@ type Props = {};
 const Table = (props: Props) => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left text-gray-500">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+      <table className="w-full text-sm text-left text-slate-500">
+        <thead className="text-xs text-slate-700 uppercase bg-slate-50">
           <tr>
             <th scope="col" className="px-6 py-3">
               Date
@@ -36,7 +36,7 @@ const Table = (props: Props) => {
           <tr className="bg-white border-b">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              className="px-6 py-4 font-medium text-slate-900 whitespace-nowrap"
             >
               28/05/2023
             </th>

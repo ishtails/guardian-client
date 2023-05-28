@@ -1,9 +1,9 @@
 import logo from "../assets/icons/logo.svg";
 import line from "../assets/icons/line.svg";
 import home from "../assets/icons/home.svg";
-import dropdown_blue from "../assets/icons/dropdown_blue.svg";
 import Searchbar from "./Searchbar";
 import { Link } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 const Navbar = () => {
   return (
@@ -22,17 +22,11 @@ const Navbar = () => {
         </div>
         <Searchbar />
       </div>
-      <div className="flex space-x-4 items-center">
+      <div className="flex items-center">
         <Link to={"/admin/home"}>
           <img src={home} className="bg-slate-100 p-2 rounded-lg" />
         </Link>
-        <div className="flex relative">
-          <div className="font-lexend font-bold text-primary mr-4">admin</div>
-          <img
-            src={dropdown_blue}
-            className="w-[14px] absolute inset-x-14 inset-y-[0.6rem]"
-          />
-        </div>
+        <Dropdown title="admin" isHeading={true}/>
       </div>
     </div>
   );
