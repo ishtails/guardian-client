@@ -11,7 +11,7 @@ const PasswordInput = () => {
       <input
         type={isPasswordVisible ? "text" : "password"}
         placeholder="Password"
-        className="border-2 rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-500"
+        className="border-2 rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50"
       />
       <button
         className="absolute inset-y-0 right-0 flex items-center mr-4 text-gray-600"
