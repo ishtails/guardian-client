@@ -22,25 +22,12 @@ const Dropdown = (props: Props) => {
       <div>
         <Menu.Button
           className={`${
-            props.isHeading ? "inline-flex" : "hidden"
-          } items-center gap-x-1.5 bg-white px-4 py-2 text-primary font-lexend font-bold`}
+            props.isHeading ? "inline-flex items-center gap-x-1.5 bg-transparent px-3 py-1 rounded-md text-primary font-lexend font-bold" : "inline-flex w-32 sm:w-44 justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
+          }`}
         >
           {props.title}
           <img
-            src={dropdown_blue}
-            className="w-[12px] 
-                -mr-1 h-6"
-          />
-        </Menu.Button>
-
-        <Menu.Button
-          className={`${
-            props.isHeading ? "hidden" : "inline-flex"
-          } w-44 justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50`}
-        >
-          {props.title}
-          <img
-            src={dropdown}
+            src={props.isHeading ? dropdown_blue : dropdown}
             className="w-[12px] 
                 -mr-1 h-5"
           />
@@ -58,7 +45,7 @@ const Dropdown = (props: Props) => {
       >
         <Menu.Items
           className={`absolute ${
-            props.isHeading ? "right-0 bg-[#FCFFFF]" : "left-0 bg-white"
+            props.isHeading ? "right-0 bg-[#FCFFFF]" : "right-0 sm:left-0 bg-white"
           } z-10 mt-2 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {links.map((link) => (
