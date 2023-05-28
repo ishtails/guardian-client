@@ -1,5 +1,5 @@
 import logo from "../../assets/icons/logo.svg"
-import login from "../../assets/illustrations/login.png"
+import login from "../../assets/illustrations/login.svg"
 import { useState } from "react";
 
 const adminLogin = () => {
