@@ -4,11 +4,6 @@ import React from 'react'
 import PasswordInput from "./PasswordInput";
 
 const LoginInput = (props) => {
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-  function togglePasswordVisibility() {
-    setIsPasswordVisible((prevState) => !prevState);
-  }
   return (
     <div className="flex flex-col">
           {/* <div className="flex flex-row h-[650px] justify-center items-center">
