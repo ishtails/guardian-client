@@ -48,11 +48,11 @@ const LoginInput = (props: { title: string }) => {
           Sign In
         </button>
       </div>
-      <div className="flex flex-col items-center text-decoration-line: underline py-2 space-y-2">
-        <a href="" className="text-[#104A70] text-sm font-medium">
+      <div className="flex flex-col items-center text-decoration-line: underline py-4 space-y-2">
+        <a href="" className="text-[#104A70] font-medium hover:text-sky-600 transition">
           Student? Click Here
         </a>
-        <a href="" className="text-[#104A70] text-sm font-medium">
+        <a href="" className="text-[#104A70] font-medium hover:text-sky-600 transition">
           Security Guard? Click Here
         </a>
       </div>

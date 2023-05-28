@@ -35,7 +35,7 @@ const ChangePassInput = (props: { title: string }) => {
         </button>
       </div>
       <div className="flex flex-col items-center text-decoration-line: underline mt-2">
-        <a href="" className="text-[#104A70] hover:text-sky-600 transition">
+        <a href="" className="text-[#104A70] hover:text-sky-600 transition font-medium">
           Back to Login
         </a>
       </div>

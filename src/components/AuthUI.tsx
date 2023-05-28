@@ -13,7 +13,7 @@ const LoginUI = (props:{title:string, InputField:any, illustration_1:any, illust
         </div>
       </div>
 
-      <div className="px-6 xl:mt-5 h-screen hidden md:flex flex-col relative justify-center xl:justify-normal">
+      <div className="px-6 h-screen hidden md:flex flex-col relative justify-center">
         <img
           src={blur_cyan}
           alt=""
@@ -31,7 +31,7 @@ const LoginUI = (props:{title:string, InputField:any, illustration_1:any, illust
 
             {/* Illustration */}
             <div className=" z-10 grid justify-center backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 m-5 p-5 items-center">
-              <img src={props.illustration_1} alt="" className="py-14" />
+              <img src={props.illustration_1} alt="" className="py-14 max-h-[720px]" />
             </div>
           </div>
         </div>
