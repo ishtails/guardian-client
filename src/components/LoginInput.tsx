@@ -44,7 +44,7 @@ const LoginInput = (props: { title: string }) => {
         </div>
       </div>
       <div className="py-2">
-        <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all">
+        <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
           Sign In
         </button>
       </div>

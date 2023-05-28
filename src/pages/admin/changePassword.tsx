@@ -1,7 +1,7 @@
 import changepass from "../../assets/illustrations/changepass.svg";
 import changepass2 from "../../assets/illustrations/changepass2.svg";
 import ChangePassInput from "../../components/ChangePassInput";
-import LoginUI from "../../components/LoginUI";
+import LoginUI from "../../components/AuthUI";
 
 const AdminChangePassword = () => {
   return (
