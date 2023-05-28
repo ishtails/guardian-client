@@ -2,7 +2,7 @@ import logo from "../../assets/icons/logo.svg"
 import login from "../../assets/illustrations/login.svg"
 import login2 from "../../assets/illustrations/login2.svg"
 import { useState } from "react";
-import LoginComp from "../../components/LoginComp";
+import LoginInput from "../../components/LoginInput";
 
 const adminLogin = () => {
   
@@ -18,7 +18,7 @@ const adminLogin = () => {
           </div>
           <div className="flex flex-row h-[650px] justify-center items-center">
             <div className="bg-white rounded-xl shadow-card-shadow space-y-4 p-5 h-[450px] w-[400px]">
-          <LoginComp name="Admin"/>  
+          <LoginInput name="Admin"/>  
           </div>
           </div>
         </div>
@@ -31,7 +31,7 @@ const adminLogin = () => {
     <div className="bg-[#FCFFFF] m-6 space-y-8 h-[100vh] w-[375px] flex flex-col sm:hidden">
       <div className="flex flex-col space-x-6">
         <img src={login2} alt=""/>
-        <LoginComp name="Admin"/>
+        <LoginInput name="Admin"/>
         <hr className="h-0.5 mx-auto my-4 border-0 rounded bg-[#E0E0E0] justify-center items-center"/>
         <div className="flex flex-col justify-center items-center">
           <img src={logo} className="w-[32px] " />
