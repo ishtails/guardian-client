@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import PasswordInput from "./PasswordInput";
 
-const LoginInput = (props: { name: string }) => {
+const LoginInput = (props: { title: string }) => {
   return (
     <div className="flex flex-col">
       <div className="py-2">
         <span className="font-lexend font-bold text-h36 sm:text-h32">
-          {props.name} Login
+          {props.title}
         </span>
         <p className="text-[#667085] text-h16 sm:text-h14">
           Please fill your detail to access your account.
