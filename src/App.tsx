@@ -11,6 +11,7 @@ const App = () => {
       <Route path="/" element={<AdminLogin />} />
       <Route path="/change" element={<ChangePass/>} />
       <Route path="/admin/home" element={<AdminDashboard />} />
+      <Route path="/admin/changepass" element={<ChangePass />} />
 
       <Route path="*" element={<Error404 />} />
     </Routes>
