@@ -35,7 +35,7 @@ const ForgotPassInput_3 = (props: { title: string }) => {
       </div>
       <div className="flex flex-col items-center text-decoration-line: underline mt-2">
         <Link
-          to="/admin"
+          to="/"
           className="text-[#0EA5E9] transition font-medium hover:text-sky-600"
         >
           Back to Login

@@ -3,10 +3,10 @@ import login2 from "../../assets/illustrations/login2.svg";
 import LoginInput from "../../components/LoginInput";
 import LoginUI from "../../components/AuthUI";
 
-const adminLogin = () => {
+const Login = () => {
   return (
     <LoginUI
-      title="Admin Login"
+      title="Login"
       InputField={LoginInput}
       illustration_1={login}
       illustration_2={login2}
@@ -14,4 +14,4 @@ const adminLogin = () => {
   );
 };
 
-export default adminLogin;
+export default Login;

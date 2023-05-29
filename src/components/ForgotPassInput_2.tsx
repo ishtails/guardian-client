@@ -25,7 +25,7 @@ const ForgotPassInput_1 = (props: { title: string }) => {
         </button>
       </div>
       <div className="flex flex-col items-center text-decoration-line: underline mt-2">
-        <Link to="/admin" className="text-[#0EA5E9] transition font-medium hover:text-sky-600">
+        <Link to="/" className="text-[#0EA5E9] transition font-medium hover:text-sky-600">
           Back to Login
         </Link>
       </div>

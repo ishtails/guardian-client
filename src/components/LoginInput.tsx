@@ -4,7 +4,7 @@ import PasswordInput from "./PasswordInput";
 const LoginInput = (props: { title: string }) => {
   return (
     <div className="flex flex-col">
-      <div className="py-2">
+      <div className="py-2 space-y-1">
         <span className="font-lexend font-bold text-h36 sm:text-h32">
           {props.title}
         </span>
@@ -16,7 +16,7 @@ const LoginInput = (props: { title: string }) => {
         <h1 className="text-[#344054] text-h14 font-medium">Institute Email</h1>
         <input
           type="text"
-          placeholder="admin@iiitm.ac.in"
+          placeholder="example@iiitm.ac.in"
           className="border-2 rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50"
         />
       </div>
@@ -54,18 +54,12 @@ const LoginInput = (props: { title: string }) => {
           Sign In
         </button>
       </div>
-      <div className="flex flex-col items-center text-decoration-line: underline py-4 space-y-2">
+      <div className="flex flex-col items-center py-4 space-y-2">
         <Link
-          to="/"
-          className="text-[#0EA5E9] font-medium hover:text-sky-600 transition"
+          to="/help"
+          className="text-[#0EA5E9] font-medium hover:text-sky-600 transition underline underline-offset-1"
         >
-          Student? Click Here
-        </Link>
-        <Link
-          to="/security"
-          className="text-[#0EA5E9] font-medium hover:text-sky-600 transition"
-        >
-          Security Guard? Click Here
+          Something Wrong? Click Here
         </Link>
       </div>
     </div>
