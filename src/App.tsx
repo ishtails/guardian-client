@@ -6,6 +6,7 @@ import ForgotPassword_1 from "./pages/common/forgotPassword_1";
 import ForgotPassword_2 from "./pages/common/forgotPassword_2";
 import ForgotPassword_3 from "./pages/common/forgotPassword_3";
 import AdminDashboard from "./pages/admin/dashboard";
+import Support from "./pages/common/support";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Route path="/forgotpass_2" element={<ForgotPassword_2/>} />
       <Route path="/forgotpass_3" element={<ForgotPassword_3/>} />
       <Route path="/changepass" element={<ChangePassword/>} />
+      <Route path="/help" element={<Support/>} />
       
       <Route path="/admin/home" element={<AdminDashboard />} />
       <Route path="/security/home" element={<div>Security Dashboard</div>} />

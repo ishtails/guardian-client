@@ -1,11 +1,11 @@
 import login from "../../assets/illustrations/login.svg";
 import login2 from "../../assets/illustrations/login2.svg";
 import LoginInput from "../../components/LoginInput";
-import LoginUI from "../../components/AuthUI";
+import AuthUI from "../../components/AuthUI";
 
 const Login = () => {
   return (
-    <LoginUI
+    <AuthUI
       title="Login"
       InputField={LoginInput}
       illustration_1={login}

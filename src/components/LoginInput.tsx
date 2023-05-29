@@ -42,7 +42,7 @@ const LoginInput = (props: { title: string }) => {
           </label>
 
           <Link
-            to="/admin/forgotpass_1"
+            to="/forgotpass"
             className="text-[#0EA5E9] transition font-medium hover:text-sky-700"
           >
             Forgot Password?
@@ -57,7 +57,7 @@ const LoginInput = (props: { title: string }) => {
       <div className="flex flex-col items-center py-4 space-y-2">
         <Link
           to="/help"
-          className="text-[#0EA5E9] font-medium hover:text-sky-600 transition underline underline-offset-1"
+          className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1"
         >
           Something Wrong? Click Here
         </Link>
