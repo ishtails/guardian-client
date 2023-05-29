@@ -42,7 +42,7 @@ const LoginInput = (props: { title: string }) => {
           </label>
 
           <Link
-            to="/admin/forgotpass"
+            to="/admin/forgotpass_1"
             className="text-[#0EA5E9] transition font-medium hover:text-sky-700"
           >
             Forgot Password?

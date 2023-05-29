@@ -24,7 +24,7 @@ const LoginUI = (props:{title:string, InputField:any, illustration_1:any, illust
           <div className="grid grid-cols-2 items-center m-auto w-full">
             {/* Login Component */}
             <div className="grid justify-center items-center h-full w-full">
-              <div className="scale-75 xl:scale-100 z-10 backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 p-5 h-[500px] w-[400px]">
+              <div className="scale-75 xl:scale-100 z-10 backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 p-6 w-[400px]">
                 <props.InputField title={props.title}/>
               </div>
             </div>
