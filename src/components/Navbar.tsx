@@ -2,7 +2,7 @@ import logo from "../assets/icons/logo.svg";
 import line from "../assets/icons/line.svg";
 import home from "../assets/icons/home.svg";
 import Searchbar from "./Searchbar";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 
 const Navbar = () => {
@@ -11,17 +11,18 @@ const Navbar = () => {
       <div className="flex space-x-6">
         <Link to={'/admin/home'} className="flex space-x-4">
           <img src={logo} className="w-[32px]" />
-          <div className="hidden lg:flex flex-row font-lexend text-h28 text-primary">
-            Guar <div className="font-lexend font-bold text-h28">dian</div>
-          </div>
+          <h1 className="hidden lg:flex flex-row font-lexend text-h28 text-primary">
+            Guar <span className="font-lexend font-bold text-h28">dian</span>
+          </h1>
 
           <img src={line} className="" />
-          <span className="font-lexend font-bold text-h28 text-primary">
+          <h1 className="font-lexend font-bold text-h28 text-primary">
             Dashboard
-          </span>
+          </h1>
         </Link>
         <Searchbar isMobile={false}/>
       </div>
+      
       <div className="flex items-center">
         <Link to={"/admin/home"}>
           <img src={home} className="bg-slate-100 p-2 rounded-lg" />
