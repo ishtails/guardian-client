@@ -3,18 +3,7 @@ import { Menu, Transition } from "@headlessui/react";
 import filter from "./../assets/icons/filter.svg";
 import Dropdown from "./Dropdown";
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 type Props = {};
-
-const links = [
-  { href: "/account-settings", label: "Account settings" },
-  { href: "/support", label: "Support" },
-  { href: "/license", label: "License" },
-  { href: "/sign-out", label: "Sign out" },
-];
 
 const Filter = (props: Props) => {
   return (

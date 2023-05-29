@@ -12,19 +12,19 @@ const ChangePassInput = (props: { title: string }) => {
         </p>
       </div>
       <div className="py-2 mt-2">
-        <h1 className="text-[#344054] text-h14 font-medium">Enter Current Password</h1>
+        <h1 className="text-[#344054] text-h14 font-medium pb-1">Enter Current Password</h1>
         <div className="relative">
           <PasswordInput />
         </div>
       </div>
       <div className="py-2">
-        <h1 className="text-[#344054] text-h14 font-medium">Enter New Password</h1>
+        <h1 className="text-[#344054] text-h14 font-medium pb-1">Enter New Password</h1>
         <div className="relative">
           <PasswordInput />
         </div>
       </div>
       <div className="py-2">
-        <h1 className="text-[#344054] text-h14 font-medium">Confirm New Password</h1>
+        <h1 className="text-[#344054] text-h14 font-medium pb-1">Confirm New Password</h1>
         <div className="relative">
           <PasswordInput />
         </div>
