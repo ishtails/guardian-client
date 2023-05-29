@@ -3,6 +3,9 @@ import AdminLogin from "./pages/admin/login";
 import AdminDashboard from "./pages/admin/dashboard";
 import Error404 from "./pages/common/error404";
 import AdminChangePassword from "./pages/admin/changePassword";
+import AdminForgotPassword_1 from "./pages/admin/forgotPassword_1";
+import AdminForgotPassword_2 from "./pages/admin/forgotPassword_2";
+import AdminForgotPassword_3 from "./pages/admin/forgotPassword_3";
 
 const App = () => {
   return (
@@ -20,7 +23,9 @@ const App = () => {
       <Route path="/admin" element={<AdminLogin />} />
       <Route path="/admin/home" element={<AdminDashboard />} />
       <Route path="/admin/changepass" element={<AdminChangePassword />} />
-      <Route path="/admin/forgotpass" element={<div>Admin Forgot Password</div>} />
+      <Route path="/admin/forgotpass_1" element={<AdminForgotPassword_1/>} />
+      <Route path="/admin/forgotpass_2" element={<AdminForgotPassword_2/>} />
+      <Route path="/admin/forgotpass_3" element={<AdminForgotPassword_3/>} />
 
       <Route path="*" element={<Error404 />} />
     </Routes>
