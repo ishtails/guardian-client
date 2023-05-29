@@ -34,6 +34,7 @@ const Filter = (props: Props) => {
                 <h2 className="font-lexend font-bold text-p20">Filters</h2>
                 <Dropdown title="Hostel" isHeading={false} />
                 <Dropdown title="Deadline" isHeading={false} />
+                
               </div>
             )}
           </Menu.Item>
