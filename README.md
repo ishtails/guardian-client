@@ -10,7 +10,7 @@ Backend Repo: [Click Here](https://github.com/ishtails/Guardian-Backend)<br/>
 
 # Installation Guide
 
-This is a guide for setting up the project locally!
+This is a guide for setting up the project locally!!
 
 ## Prerequisites
 
