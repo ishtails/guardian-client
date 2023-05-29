@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PasswordInput from "./PasswordInput";
 
 const ChangePassInput = (props: { title: string }) => {
@@ -14,19 +15,19 @@ const ChangePassInput = (props: { title: string }) => {
       <div className="py-2 mt-2">
         <h1 className="text-[#344054] text-h14 font-medium pb-1">Enter Current Password</h1>
         <div className="relative">
-          <PasswordInput />
+          <PasswordInput placeholder="Current Password"/>
         </div>
       </div>
       <div className="py-2">
         <h1 className="text-[#344054] text-h14 font-medium pb-1">Enter New Password</h1>
         <div className="relative">
-          <PasswordInput />
+          <PasswordInput placeholder="New Password"/>
         </div>
       </div>
       <div className="py-2">
         <h1 className="text-[#344054] text-h14 font-medium pb-1">Confirm New Password</h1>
         <div className="relative">
-          <PasswordInput />
+          <PasswordInput placeholder="Confirm Password"/>
         </div>
       </div>
       <div className="mt-4">
@@ -35,9 +36,9 @@ const ChangePassInput = (props: { title: string }) => {
         </button>
       </div>
       <div className="flex flex-col items-center text-decoration-line: underline mt-2">
-        <a href="" className="text-[#104A70] hover:text-sky-600 transition font-medium">
+        <Link to="/admin" className="text-[#0EA5E9] transition font-medium hover:text-sky-600">
           Back to Login
-        </a>
+        </Link>
       </div>
     </div>
     //   </div>

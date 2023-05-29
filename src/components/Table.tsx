@@ -2,7 +2,7 @@ type Props = {};
 
 const Table = (props: Props) => {
   return (
-    <div className="relative overflow-x-auto min-h-screen">
+    <div className="relative overflow-x-auto h-[72vh]">
       <table className="w-full text-sm text-left text-slate-500 ">
         <thead className="text-xs text-slate-700 uppercase border-b-2">
           <tr>

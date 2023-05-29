@@ -17,28 +17,34 @@ const LoginInput = (props: { title: string }) => {
         <input
           type="text"
           placeholder="admin@iiitm.ac.in"
-          className="border-2 rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50"
+          className="border-2 rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50"
         />
       </div>
       <div className="py-2 space-y-1">
         <h1 className="text-[#344054] text-h14 font-medium">Password</h1>
         <div className="relative">
-          <PasswordInput />
+          <PasswordInput placeholder="Password"/>
         </div>
       </div>
       <div className="text-h14 flex lg:space-x-24 py-2 md:space-x-16 sm:space-x-12">
         <div className="flex flex-row items-center justify-between w-screen py-1">
-          <label className="flex space-x-1.5 text-slate-500 font-semibold cursor-pointer" htmlFor="remember">
+          <label
+            className="flex space-x-1.5 text-slate-500 font-semibold cursor-pointer"
+            htmlFor="remember"
+          >
             <input
-              className="w-[16px]"
+              className="w-[16px] cursor-pointer"
               type="checkbox"
               id="remember"
               name="remember"
             />
-            <span className="">Remember me</span>
+            <span className="hover:text-slate-600 transition">Remember me</span>
           </label>
 
-          <Link to="" className="text-[#0EA5E9] font-medium">
+          <Link
+            to="/admin/forgotpass"
+            className="text-[#0EA5E9] transition font-medium hover:text-sky-700"
+          >
             Forgot Password?
           </Link>
         </div>
@@ -49,16 +55,20 @@ const LoginInput = (props: { title: string }) => {
         </button>
       </div>
       <div className="flex flex-col items-center text-decoration-line: underline py-4 space-y-2">
-        <a href="" className="text-[#104A70] font-medium hover:text-sky-600 transition">
+        <Link
+          to="/"
+          className="text-[#0EA5E9] font-medium hover:text-sky-600 transition"
+        >
           Student? Click Here
-        </a>
-        <a href="" className="text-[#104A70] font-medium hover:text-sky-600 transition">
+        </Link>
+        <Link
+          to="/security"
+          className="text-[#0EA5E9] font-medium hover:text-sky-600 transition"
+        >
           Security Guard? Click Here
-        </a>
+        </Link>
       </div>
     </div>
-    //   </div>
-    // </div>
   );
 };
 

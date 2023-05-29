@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const PasswordInput = () => {
+const PasswordInput = (props:{placeholder:string}) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   function togglePasswordVisibility() {
@@ -10,8 +10,8 @@ const PasswordInput = () => {
     <div>
       <input
         type={isPasswordVisible ? "text" : "password"}
-        placeholder="Password"
-        className="border-2 rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50"
+        placeholder={props.placeholder}
+        className="border-2 rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50 transition"
       />
       <button
         className="absolute inset-y-0 right-0 flex items-center mr-4 text-gray-600"
