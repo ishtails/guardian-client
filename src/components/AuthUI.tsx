@@ -1,7 +1,7 @@
 import logo from "./../assets/icons/logo.svg";
 import blur_cyan from "./../assets/blur-cyan.svg";
 
-const LoginUI = (props:{title:string, InputField:any, illustration_1:any, illustration_2:any}) => {
+const LoginUI = (props:{InputField:any, illustration_1:any, illustration_2:any}) => {
   return (
     <div className="bg-[#FCFFFF] relative">
       {/* Logo */}
@@ -25,7 +25,7 @@ const LoginUI = (props:{title:string, InputField:any, illustration_1:any, illust
             {/* Login Component */}
             <div className="grid justify-center items-center h-full w-full">
               <div className="scale-75 xl:scale-100 z-10 backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 p-6 w-[400px]">
-                <props.InputField title={props.title}/>
+                <props.InputField />
               </div>
             </div>
 
@@ -41,7 +41,7 @@ const LoginUI = (props:{title:string, InputField:any, illustration_1:any, illust
       <div className="flex flex-col md:hidden px-5 h-screen">
         <img src={props.illustration_2} />
 
-        <props.InputField title={props.title}/>
+        <props.InputField />
 
         <footer className="flex flex-col bottom-0">
           <hr className="my-2" />
