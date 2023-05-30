@@ -1,7 +1,7 @@
 import logo from "./../assets/icons/logo.svg";
 import blur_cyan from "./../assets/blur-cyan.svg";
 
-const LoginUI = (props:{InputField:any, illustration_1:any, illustration_2:any}) => {
+const authUI = (props:{InputField:any, illustration_1:any, illustration_2:any}) => {
   return (
     <div className="bg-[#FCFFFF] relative">
       {/* Logo */}
@@ -43,7 +43,7 @@ const LoginUI = (props:{InputField:any, illustration_1:any, illustration_2:any})
 
         <props.InputField />
 
-        <footer className="flex flex-col bottom-0">
+        <footer className="mt-auto bottom-0">
           <hr className="my-2" />
           <div className="flex flex-col justify-center items-center mb-2">
             <img src={logo} className="w-[32px] " />
@@ -54,4 +54,4 @@ const LoginUI = (props:{InputField:any, illustration_1:any, illustration_2:any})
   );
 };
 
-export default LoginUI;
+export default authUI;

@@ -32,7 +32,7 @@ const changePasswordForm = () => (
     />
 
     {/* Submit Button */}
-    <div className="pt-2">
+    <div className="pt-1">
       <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
         Submit
       </button>
