@@ -7,10 +7,12 @@ import ForgotPassword_2 from "./pages/common/forgotPassword_2";
 import ForgotPassword_3 from "./pages/common/forgotPassword_3";
 import AdminDashboard from "./pages/admin/dashboard";
 import Support from "./pages/common/support";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
-    <Routes>
+    <body>
+      <Routes>
       <Route path="/" element={<LoginScreen />} />
       <Route path="/forgotpass" element={<ForgotPassword_1/>} />
       <Route path="/forgotpass_2" element={<ForgotPassword_2/>} />
@@ -23,7 +25,10 @@ const App = () => {
       <Route path="/student/home" element={<div>Student Dashboard</div>} />
 
       <Route path="*" element={<Error404 />} />
-    </Routes>
+      </Routes>
+
+      <Toaster/>
+    </body>
   );
 };
 
