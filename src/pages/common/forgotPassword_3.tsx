@@ -1,17 +1,50 @@
 import forgotpass from "../../assets/illustrations/forgotpass.svg";
 import forgotpass2 from "../../assets/illustrations/forgotpass2.svg";
-import ForgotPassInput_3 from "../../components/ForgotPassInput_3";
-import LoginUI from "../../components/AuthUI";
+import AuthUI from "../../components/AuthUI";
+import { Link } from "react-router-dom";
+import InputField from "../../components/InputField";
 
-const AdminForgotPassword_3 = () => {
+const forgotPassForm_1 = () => (
+  <div className="flex flex-col space-y-4">
+    {/* Header */}
+    <div className="">
+      <h1 className="font-lexend font-bold text-h36 sm:text-h32">
+        Forgot Password?
+      </h1>
+      <p className="text-[#667085] text-h16 sm:text-h14">Reset your password</p>
+    </div>
+
+    {/* Input Fields */}
+    <InputField label="Enter New Password" placeholder="New Password" isPassword={true} />
+    <InputField label="Confirm New Password" placeholder="Confirm Password" isPassword={true} />
+
+    {/* Submit Button */}
+    <div className="pt-1">
+      <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition font-semibold">
+        Submit
+      </button>
+    </div>
+
+    {/* Footer */}
+    <div className="flex flex-col items-center space-y-2">
+      <Link
+        to="/"
+        className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1"
+      >
+        Back to Login
+      </Link>
+    </div>
+  </div>
+);
+
+const forgotPassword_3 = () => {
   return (
-    <LoginUI
-      title="Forgot Password?"
-      InputField={ForgotPassInput_3}
+    <AuthUI
+      InputField={forgotPassForm_1}
       illustration_1={forgotpass}
       illustration_2={forgotpass2}
     />
   );
 };
 
-export default AdminForgotPassword_3;
+export default forgotPassword_3;
