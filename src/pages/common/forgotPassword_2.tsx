@@ -44,7 +44,7 @@ const forgotPassForm_1 = () => (
   </div>
 );
 
-const adminForgotPassword = () => {
+const forgotPassword_2 = () => {
   return (
     <AuthUI
       InputField={forgotPassForm_1}
@@ -54,4 +54,4 @@ const adminForgotPassword = () => {
   );
 };
 
-export default adminForgotPassword;
+export default forgotPassword_2;

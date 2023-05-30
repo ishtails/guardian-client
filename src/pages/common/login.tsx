@@ -65,7 +65,7 @@ const loginForm = () => (
   </div>
 );
 
-const Login = () => {
+const loginScreen = () => {
   return (
     <AuthUI
       InputField={loginForm}
@@ -75,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default loginScreen;

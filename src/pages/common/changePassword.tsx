@@ -48,7 +48,7 @@ const changePasswordForm = () => (
   </div>
 );
 
-const AdminChangePassword = () => {
+const changePassword = () => {
   return (
     <ChangePassUI
       InputField={changePasswordForm}
@@ -58,4 +58,4 @@ const AdminChangePassword = () => {
   );
 };
 
-export default AdminChangePassword;
+export default changePassword;

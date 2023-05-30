@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./pages/common/login";
+import LoginScreen from "./pages/common/login";
 import Error404 from "./pages/common/error404";
 import ChangePassword from "./pages/common/changePassword";
 import ForgotPassword_1 from "./pages/common/forgotPassword_1";
@@ -11,7 +11,7 @@ import Support from "./pages/common/support";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<LoginScreen />} />
       <Route path="/forgotpass" element={<ForgotPassword_1/>} />
       <Route path="/forgotpass_2" element={<ForgotPassword_2/>} />
       <Route path="/forgotpass_3" element={<ForgotPassword_3/>} />
