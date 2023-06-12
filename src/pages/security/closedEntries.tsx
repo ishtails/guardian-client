@@ -20,7 +20,7 @@ const closedEntries: React.FC  = () => {
         <div className="flex space-x-6">
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between">
-              <h1 className="font-lexend font-bold text-h24">Open Entries</h1>
+              <h1 className="font-lexend font-bold text-h24">Closed Entries</h1>
               {/* todays date */}
             </span>
             <Table columns={columns} data={data}/>
