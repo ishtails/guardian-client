@@ -4,18 +4,38 @@ import Searchbar from "../../components/Searchbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import Filter from "../../components/Filter";
-import React from 'react';
+import React from "react";
 // import { TableColumn } from "../../data/db.json";
 // import { TableRow } from "../../data/db.json";
 
-const adminDashboard: React.FC  = () => {
-  const columns: TableColumn[] = ['Date', 'Roll No', 'Name', 'Hostel', 'Room', 'Out Time', 'In Time', 'Reason'];
+const adminDashboard: React.FC = () => {
+  const columns: TableColumn[] = [
+    "Date",
+    "Roll No",
+    "Name",
+    "Hostel",
+    "Room",
+    "Out Time",
+    "In Time",
+    "Reason",
+  ];
   console.log(columns);
   const data: TableRow[] = [
     // Sample data rows
-    { Date: '13.06.23', 'Roll No': '2021BCS012', Name: 'Aneeka Mangal', Hostel: 'GH', Room: '126', 'Out Time': '10:00 AM', 'In Time': '5:00 PM', Reason: 'Market', Status: 'Approved' },
+    {
+      Date: "28/05/2023",
+      "Roll No": "2021BCS012",
+      Name: "Aneeka Mangal",
+      Hostel: "GH",
+      Room: "126",
+      "Out Time": "10:00 AM",
+      "In Time": "5:00 PM",
+      Reason: "Going to Market for fruits",
+      Status: "Approved",
+    },
   ];
-    return (
+  
+  return (
     <div className="bg-[#FCFFFF] h-screen">
       <div className="hidden md:flex flex-col px-5 space-y-8">
         <nav>
@@ -33,7 +53,7 @@ const adminDashboard: React.FC  = () => {
               <h1 className="font-lexend font-bold text-h24">Overview</h1>
               <Dropdown title="Today" isHeading={false} />
             </span>
-            <Table columns={columns} data={data}/>
+            <Table columns={columns} data={data} />
           </div>
         </div>
       </div>
@@ -55,7 +75,7 @@ const adminDashboard: React.FC  = () => {
         </div>
 
         <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
-          <Table  columns={columns} data={data}/>
+          <Table columns={columns} data={data} />
         </div>
 
         <hr />
