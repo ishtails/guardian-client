@@ -4,12 +4,14 @@ import Searchbar from "../../components/Searchbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from 'react';
+import Toggle from "../../components/Toggle";
+
 
 const securityDashboard: React.FC  = () => {
     const columns: TableColumn[] = ['Date', 'Roll No', 'Name', 'Hostel', 'Room', 'Out Time', 'In Time', 'Reason', 'Status'];
     const data: TableRow[] = [
         // Sample data rows abhi ke liye, baadme we'll fetch from data.json
-        { Date: '13.06.23', 'Roll No': '2021BCS012', Name: 'Aneeka Mangal', Hostel: 'GH', Room: '126', 'Out Time': '10:00 AM', 'In Time': '5:00 PM', Reason: 'Market', Status: 'Approved' },
+        { Date: '13.06.23', 'Roll No': '2021BCS012', Name: 'Aneeka Mangal', Hostel: 'GH', Room: '126', 'Out Time': '10:00 AM', 'In Time': '5:00 PM', Reason: 'Market', Status: <Toggle/>},
     ];
   return (
     <div className="bg-[#FCFFFF] h-screen">
