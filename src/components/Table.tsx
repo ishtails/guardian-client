@@ -17,15 +17,15 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
         <thead className="text-xs text-slate-700 uppercase border-b-2">
         <tr>
           {columns.map((column) => (
-            <th key={column}>{column}</th>
+            <th key={column} scope="col" className="pr-6 py-3">{column}</th>
           ))}
         </tr>
       </thead>
       <tbody>
         {data.map((row, index) => (
-          <tr key={index}>
+          <tr key={index} className="border-b">
             {columns.map((column) => (
-              <td key={column}>{row[column]}</td>
+              <td scope="row" key={column} className="pr-6 py-4 whitespace-nowrap">{row[column]}</td>
             ))}
           </tr>
         ))}
