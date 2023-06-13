@@ -39,7 +39,7 @@ const adminDashboard: React.FC = () => {
     <div className="bg-[#FCFFFF] h-screen">
       <div className="hidden md:flex flex-col px-5 space-y-8">
         <nav>
-          <Navbar />
+          <Navbar role="admin" />
         </nav>
         <div className="flex space-x-6">
           <div className="flex flex-col bg-white rounded-xl shadow-card-shadow w-[230px] space-y-4 p-5 pb-6 items-center h-full">

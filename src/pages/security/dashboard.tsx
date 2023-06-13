@@ -49,7 +49,7 @@ const securityDashboard: React.FC = () => {
     <div className="bg-[#FCFFFF] h-screen">
       <div className="hidden md:flex flex-col px-5 space-y-8">
         <nav>
-          <Navbar />
+          <Navbar role="security" />
         </nav>
         <div className="flex space-x-6">
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
