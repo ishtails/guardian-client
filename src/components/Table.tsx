@@ -13,11 +13,11 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({ columns, data }) => {
   return (
     <div className="relative overflow-x-auto h-[72vh]">
-      <table className="w-full text-sm text-left text-slate-500 ">
+      <table className="w-full text-sm text-left text-slate-500">
         <thead className="text-xs text-slate-700 uppercase border-b-2">
         <tr>
           {columns.map((column) => (
-            <th key={column} scope="col" className="pr-6 py-3">{column}</th>
+            <th key={column} scope="col" className="px-6 py-3">{column}</th>
           ))}
         </tr>
       </thead>
@@ -25,7 +25,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
         {data.map((row, index) => (
           <tr key={index} className="border-b">
             {columns.map((column) => (
-              <td scope="row" key={column} className="pr-6 py-4 whitespace-nowrap">{row[column]}</td>
+              <td scope="row" key={column} className="px-6 py-4 whitespace-nowrap">{row[column]}</td>
             ))}
           </tr>
         ))}

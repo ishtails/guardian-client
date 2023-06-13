@@ -13,7 +13,7 @@ const adminDashboard: React.FC  = () => {
   console.log(columns);
   const data: TableRow[] = [
     // Sample data rows
-    { Date: '13.06.23', 'Roll No': '2021BCS012', Name: 'Aneeka Mangal', Hostel: 'GH', Room: '126', 'Out Time': '10:00 AM', 'In Time': '5:00 PM', Reason: 'Market', Status: 'Approved' },
+    { Date: '28/05/2023', 'Roll No': '2021BCS012', Name: 'Aneeka Mangal', Hostel: 'GH', Room: '126', 'Out Time': '10:00 AM', 'In Time': '5:00 PM', Reason: 'Market', Status: 'Approved' },
   ];
     return (
     <div className="bg-[#FCFFFF] h-screen">
