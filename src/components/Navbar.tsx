@@ -4,7 +4,8 @@ import home from "../assets/icons/home.svg";
 import Searchbar from "./Searchbar";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
-import { BsFillStickiesFill } from 'react-icons/bs';
+import { BsClipboard2Check } from 'react-icons/bs';
+import { BsHouse } from 'react-icons/bs';
 
 const Navbar = ({role}) => {
   return (
@@ -26,7 +27,8 @@ const Navbar = ({role}) => {
       {role === 'admin' && (
         <div className="flex items-center">
         <Link to={"/admin/home"}>
-          <img src={home} className="bg-slate-100 p-2 rounded-lg" />
+          {/* <img src={home} className="bg-slate-100 p-2 rounded-lg" /> */}
+          <BsHouse style={{color: '#0EA5E9', fontSize: '20px'}}/>
         </Link>
         <Dropdown title="admin" isHeading={true}/>
       </div>
@@ -35,7 +37,7 @@ const Navbar = ({role}) => {
         <div className="flex items-center">
         <Link to={"/security/closed"}>
           {/* <img src={home} className="bg-slate-100 p-2 rounded-lg" />/ */}
-          <BsFillStickiesFill style={{color: '#0EA5E9', fontSize: '20px'}}/>
+          <BsClipboard2Check style={{color: '#0EA5E9', fontSize: '20px'}}/>
         </Link>
         <Dropdown title="admin" isHeading={true}/>
       </div>
