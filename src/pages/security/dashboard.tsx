@@ -4,6 +4,7 @@ import Searchbar from "../../components/Searchbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
+import Toggle from "../../components/Toggle";
 
 const securityDashboard: React.FC = () => {
   const columns: TableColumn[] = [
@@ -28,7 +29,7 @@ const securityDashboard: React.FC = () => {
       "Out Time": "10:00 AM",
       "In Time": "5:00 PM",
       Reason: "Market",
-      Status: "Approved",
+      Status: <Toggle/>,
     },
     {
       Date: "13/06/2023",
@@ -39,7 +40,7 @@ const securityDashboard: React.FC = () => {
       "Out Time": "11:00 AM",
       "In Time": "9:00 PM",
       Reason: "Medical Shop",
-      Status: "Approved",
+      Status: <Toggle/>,
     },
     
   ];
