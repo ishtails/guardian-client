@@ -29,7 +29,7 @@ const studentDashboard: React.FC = () => {
   return (
     <div className="h-screen ">
       {/* Desktop */}
-      <div className="hidden md:flex flex-col px-5 space-y-8 bg-[#FCFFFF]">
+      <div className="hidden lg:flex flex-col px-5 space-y-8 bg-[#FCFFFF]">
         <nav>
           <Navbar role="student" />
         </nav>
@@ -86,7 +86,7 @@ const studentDashboard: React.FC = () => {
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden flex flex-col space-y-4 px-4 pb-3 relative">
+      <div className="lg:hidden flex flex-col space-y-4 px-4 pb-3 relative">
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <Link to={"/student/update"}>
             <img src={profile} className="" />

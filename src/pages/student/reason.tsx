@@ -13,19 +13,21 @@ const reason = ({}: Props) => {
       <img src={bgbluegradient} className="absolute -z-10 scale-[300%]" />
       <div className="flex flex-col space-y-4 px-4 pb-3">
         {/* Navbar */}
-        <nav className="flex pt-4 items-center justify-between ">
-          <Link to={"/student/home"} className="flex items-center space-x-2">
-            <img src={goback} className="w-[24px] self-center" />
-            <p className="text-white">Go Back</p>
-          </Link>
+        <nav className="space-y-2">
+          <div className="flex pt-4 items-center justify-between ">
+            <Link to={"/student/home"} className="flex items-center space-x-2">
+              <img src={goback} className="w-[24px] self-center" />
+              <p className="text-white">Go Back</p>
+            </Link>
+          </div>
+          <hr className="w-full" />
         </nav>
-        <hr />
 
         {/* Reason Box */}
-        <div className="bg-white w-[40vh] shadow-card-shadow rounded-xl p-5 space-y-10 self-center flex flex-col items-center absolute top-[10vh] justify-center">
-          <img src={reason_illustration} />
+        <div className="bg-white w-[80%] shadow-card-shadow rounded-xl p-5 space-y-10 self-center flex flex-col items-center justify-center">
+          <img src={reason_illustration} className="w-full"/>
 
-          <form className="flex flex-col items-center space-y-5 pb-1">
+          <form className="flex flex-col w-full items-center space-y-5 pb-1">
             <InputField
               label="Reason"
               placeholder="Market"
@@ -39,9 +41,9 @@ const reason = ({}: Props) => {
         </div>
 
         {/* Footer */}
-        <div className="-z-10 flex flex-col space-y-2 fixed w-screen bottom-2 left-0">
+        <div className="z-10 bg-white flex flex-col space-y-2 fixed w-screen bottom-0 left-0">
           <hr />
-          <img src={logo} className="w-[32px] self-center" />
+          <img src={logo} className="w-[32px] self-center py-1" />
         </div>
       </div>
     </div>
