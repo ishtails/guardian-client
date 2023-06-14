@@ -5,6 +5,7 @@ import ChangePassword from "../pages/common/changePassword";
 import ForgotPassword_1 from "../pages/common/forgotPassword_1";
 import ForgotPassword_2 from "../pages/common/forgotPassword_2";
 import ForgotPassword_3 from "../pages/common/forgotPassword_3";
+import Register from "../pages/common/register";
 import AdminDashboard from "../pages/admin/dashboard";
 import SecurityDashboard from "../pages/security/dashboard";
 import ClosedEntries from "../pages/security/closedEntries";
@@ -38,6 +39,7 @@ const mainRouter = ({}: Props) => {
       <Route path="/security/sure?" element={<ClosingDialogue />}/> 
 
       {/* Student Routes */}
+      <Route path="/student/register" element={<Register/>} />
       <Route path="/student/home" element={<StudentDashboard/>} />
       <Route path="/student/report" element={<StudentReport/>} />
       <Route path="/student/reason" element={<StudentReason/>} />
