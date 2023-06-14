@@ -5,7 +5,8 @@ import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
 
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { LuClipboardCheck } from "react-icons/lu";
 
 const closedEntries: React.FC = () => {
 
@@ -61,8 +62,13 @@ const closedEntries: React.FC = () => {
         <hr />
 
         <div className="flex flex-row justify-between items-center">
-          <h1 className="font-lexend text-p18 font-bold">Open Entries</h1>
-          <span className="flex space-x-4 items-center"></span>
+          <h1 className="font-lexend text-p18 font-bold">Closed Entries</h1>
+          <Link
+            to={`/security/home`}
+            className="bg-slate-100 p-2 rounded-lg mx-1"
+          >
+            <LuClipboardCheck style={{ fontSize: "24px" }} />
+          </Link>
         </div>
 
         <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
