@@ -13,6 +13,8 @@ import Support from "../pages/common/support";
 import StudentDashboard from "../pages/student/dashboard";
 import StudentReport from "../pages/student/reports";
 import StudentReason from "../pages/student/reason";
+import SuccessfulExit from "../pages/student/success";
+import FailedExit from "../pages/student/failure";
 
 type Props = {};
 
@@ -38,6 +40,8 @@ const mainRouter = ({}: Props) => {
       <Route path="/student/home" element={<StudentDashboard/>} />
       <Route path="/student/report" element={<StudentReport/>} />
       <Route path="/student/reason" element={<StudentReason/>} />
+      <Route path="/student/success" element={<SuccessfulExit/>} />
+      <Route path="/student/failure" element={<FailedExit/>} />
 
       <Route path="*" element={<Error404 />} />
     </Routes>
