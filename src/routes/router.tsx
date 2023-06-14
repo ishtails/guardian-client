@@ -15,6 +15,7 @@ import StudentReport from "../pages/student/reports";
 import StudentReason from "../pages/student/reason";
 import SuccessfulExit from "../pages/student/success";
 import FailedExit from "../pages/student/failure";
+import StudentUpdateInfo from "../pages/student/updateInfo";
 
 type Props = {};
 
@@ -42,6 +43,7 @@ const mainRouter = ({}: Props) => {
       <Route path="/student/reason" element={<StudentReason/>} />
       <Route path="/student/success" element={<SuccessfulExit/>} />
       <Route path="/student/failure" element={<FailedExit/>} />
+      <Route path="/student/update" element={<StudentUpdateInfo/>} />
 
       <Route path="*" element={<Error404 />} />
     </Routes>
