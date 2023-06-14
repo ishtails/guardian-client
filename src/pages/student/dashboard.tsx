@@ -111,9 +111,9 @@ const studentDashboard: React.FC = () => {
           </div>
 
           <div className="flex flex-col items-center space-y-2">
-            <button className="text-white text-p16 bg-[#0EA5E9]  py-4 px-16 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 ">
+            <Link to={"/student/reason"} className="text-white text-p16 bg-[#0EA5E9]  py-4 px-16 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 ">
               Request Exit
-            </button>
+            </Link>
 
             <Link to={`/student/report`} className="underline text-p14">View Reports</Link>
           </div>

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import profile from "../../assets/icons/profile.svg";
 import logo from "../../assets/icons/logo.svg";
 import Dropdown from "../../components/Dropdown";
 import Table from "../../components/Table";
