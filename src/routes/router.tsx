@@ -6,6 +6,9 @@ import ForgotPassword_1 from "../pages/common/forgotPassword_1";
 import ForgotPassword_2 from "../pages/common/forgotPassword_2";
 import ForgotPassword_3 from "../pages/common/forgotPassword_3";
 import AdminDashboard from "../pages/admin/dashboard";
+import SecurityDashboard from "../pages/security/dashboard";
+import ClosedEntries from "../pages/security/closedEntries";
+import ClosingDialogue from "../pages/security/closingDialogue";
 import Support from "../pages/common/support";
 
 type Props = {};
@@ -24,7 +27,9 @@ const mainRouter = ({}: Props) => {
       <Route path="/admin/home" element={<AdminDashboard />} />
 
       {/* Security Routes */}
-      <Route path="/security/home" element={<div>Security Dashboard</div>} />
+      <Route path="/security/home" element={<SecurityDashboard />}/> 
+      <Route path="/security/closed" element={<ClosedEntries />}/> 
+      <Route path="/security/sure?" element={<ClosingDialogue />}/> 
 
       {/* Student Routes */}
       <Route path="/student/home" element={<div>Student Dashboard</div>} />

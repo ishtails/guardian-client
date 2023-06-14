@@ -12,7 +12,6 @@ type Props = { title: string; isHeading: boolean };
 const links = [
   { href: "/account-settings", label: "Account settings" },
   { href: "/support", label: "Support" },
-  { href: "/license", label: "License" },
   { href: "/sign-out", label: "Sign out" },
 ];
 
@@ -46,7 +45,7 @@ const Dropdown = (props: Props) => {
         <Menu.Items
           className={`absolute ${
             props.isHeading ? "right-0 bg-[#FCFFFF]" : "right-0 sm:left-0 bg-white"
-          } z-10 mt-2 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          } z-10 mt-3 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {links.map((link) => (
             <Menu.Item key={link.href} as={Fragment}>

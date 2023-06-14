@@ -1,53 +1,50 @@
-type Props = {};
+import React from "react";
 
-const Table = (props: Props) => {
+type TableColumn =
+  | "Date"
+  | "Roll No"
+  | "Name"
+  | "Hostel"
+  | "Room"
+  | "Out Time"
+  | "In Time"
+  | "Reason"
+  | "Status";
+
+type TableRow = Record<TableColumn, string>;
+
+interface TableProps {
+  columns: TableColumn[];
+  data: TableRow[];
+}
+
+const Table: React.FC<TableProps> = ({ columns, data }) => {
   return (
     <div className="relative overflow-x-auto h-[72vh]">
-      <table className="w-full text-sm text-left text-slate-500 ">
+      <table className="w-full text-sm text-left text-slate-500">
         <thead className="text-xs text-slate-700 uppercase border-b-2">
           <tr>
-            <th scope="col" className="pr-6 py-3">
-              Date
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Roll No
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Hostel
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Room
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Out Time
-            </th>
-            <th scope="col" className="px-6 py-3">
-              In Time
-            </th>
-            <th scope="col" className="pl-6 py-3">
-              Reason
-            </th>
+            {columns.map((column) => (
+              <th key={column} scope="col" className="px-6 py-3">
+                {column}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b">
-            <th
-              scope="row"
-              className="pr-6 py-4 font-medium whitespace-nowrap"
-            >
-              28/05/2023
-            </th>
-            <td className="px-6 py-4 whitespace-nowrap">2021BCS-035</td>
-            <td className="px-6 py-4 whitespace-nowrap">Kartikay Tiwari</td>
-            <td className="px-6 py-4 whitespace-nowrap">BH1</td>
-            <td className="px-6 py-4 whitespace-nowrap">340</td>
-            <td className="px-6 py-4 whitespace-nowrap">09:00AM</td>
-            <td className="px-6 py-4 whitespace-nowrap">06:00PM</td>
-            <td className="pl-6 py-4 whitespace-nowrap">Going to market</td>
-          </tr>          
+          {data.map((row, index) => (
+            <tr key={index} className="border-b">
+              {columns.map((column) => (
+                <td
+                  scope="row"
+                  key={column}
+                  className="px-6 py-4 whitespace-nowrap"
+                >
+                  {row[column]}
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
