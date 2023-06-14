@@ -10,7 +10,7 @@ const registerForm = () => (
     <div className="space-y-1">
       <span className="font-lexend font-bold text-h36 sm:text-h32">Register</span>
       <p className="text-[#667085] text-h16 sm:text-h14">
-        Please fill your detail to register.
+        Please fill your details to register.
       </p>
     </div>
 
@@ -29,44 +29,32 @@ const registerForm = () => (
     <InputField label="Password" placeholder="Password" isPassword={true} />
 
     {/* Remember Me */}
-    <div className="text-h14 flex lg:space-x-24 md:space-x-16 sm:space-x-12">
-      <div className="flex flex-row items-center justify-between w-screen py-1">
-        <label
-          className="flex space-x-1.5 text-slate-500 font-semibold cursor-pointer"
-          htmlFor="remember"
-        >
-          <input
-            className="w-[16px] cursor-pointer"
-            type="checkbox"
-            id="remember"
-            name="remember"
-          />
-          <span className="hover:text-slate-600 transition">Remember me</span>
-        </label>
-
+    <div className="text-h14 text-center ">
+     
         <Link
-          to="/forgotpass"
+          to="/"
           className="text-[#0EA5E9] transition font-medium hover:text-sky-700"
         >
-          Already a member?LogIn
+          Already a member?Login
         </Link>
-      </div>
     </div>
 
     {/* Submit Button */}
-    <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
-      Register
-    </button>
+    <Link to="/">
+        <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
+            Register
+        </button>
+    </Link>
 
     {/* Footer */}
-    <div className="flex flex-col items-center space-y-2">
+    {/* <div className="flex flex-col items-center space-y-2">
       <Link
         to="/help"
         className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1"
       >
         Something Wrong? Click Here
       </Link>
-    </div>
+    </div> */}
   </div>
 );
 
