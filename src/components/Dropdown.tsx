@@ -17,11 +17,11 @@ const links = [
 
 const Dropdown = (props: Props) => {
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative inline-block text-left mx-4">
       <div>
         <Menu.Button
           className={`${
-            props.isHeading ? "inline-flex items-center gap-x-1.5 bg-transparent px-3 py-1 rounded-md text-primary font-lexend font-bold" : "inline-flex w-32 sm:w-44 justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
+            props.isHeading ? "inline-flex items-center gap-x-1.5 bg-transparent px-3 py-1 rounded-md text-primary font-lexend font-bold" : "inline-flex w-32 md:w-44 justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
           }`}
         >
           {props.title}
@@ -44,7 +44,7 @@ const Dropdown = (props: Props) => {
       >
         <Menu.Items
           className={`absolute ${
-            props.isHeading ? "right-0 bg-[#FCFFFF]" : "right-0 sm:left-0 bg-white"
+            props.isHeading ? "right-0 bg-[#FCFFFF]" : "right-0 md:left-0 bg-white"
           } z-10 mt-3 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {links.map((link) => (
