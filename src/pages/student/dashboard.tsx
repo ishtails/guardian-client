@@ -61,9 +61,9 @@ const studentDashboard: React.FC = () => {
                 </span>
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
-              <button className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 ">
+              <Link to={'/student/update'} className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 ">
                 Update Info
-              </button>
+              </Link>
             </div>
 
             <div className="flex justify-center mt-5 bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center">
