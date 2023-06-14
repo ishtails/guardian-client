@@ -11,6 +11,7 @@ import ClosedEntries from "../pages/security/closedEntries";
 import ClosingDialogue from "../pages/security/closingDialogue";
 import Support from "../pages/common/support";
 import StudentDashboard from "../pages/student/dashboard";
+import StudentReport from "../pages/student/reports";
 
 
 type Props = {};
@@ -35,6 +36,7 @@ const mainRouter = ({}: Props) => {
 
       {/* Student Routes */}
       <Route path="/student/home" element={<StudentDashboard/>} />
+      <Route path="/student/report" element={<StudentReport/>} />
 
       <Route path="*" element={<Error404 />} />
     </Routes>

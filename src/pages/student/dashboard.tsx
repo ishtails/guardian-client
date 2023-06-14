@@ -4,8 +4,8 @@ import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
 import skygradient from "../../assets/icons/sky-gradient.svg";
-import avatar from "../../assets/icons/avatar.svg";
 import lightbulb from "../../assets/icons/lightbulb.svg";
+import avatar from "../../assets/icons/avatar.svg";
 import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
@@ -80,7 +80,7 @@ const studentDashboard: React.FC = () => {
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
               <Dropdown title="Today" isHeading={false} />
             </span>
-            <Table columns={columns} data={data} />d
+            <Table columns={columns} data={data} />
           </div>
         </div>
       </div>
