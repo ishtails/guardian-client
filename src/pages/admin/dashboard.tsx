@@ -37,6 +37,8 @@ const adminDashboard: React.FC = () => {
   
   return (
     <div className="bg-[#FCFFFF] h-screen">
+      
+      {/* Desktop */}
       <div className="hidden md:flex flex-col px-5 space-y-8">
         <nav>
           <Navbar role="admin" />
@@ -50,7 +52,7 @@ const adminDashboard: React.FC = () => {
 
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between">
-              <h1 className="font-lexend font-bold text-h24">Overview</h1>
+              <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
               <Dropdown title="Today" isHeading={false} />
             </span>
             <Table columns={columns} data={data} />
@@ -58,6 +60,7 @@ const adminDashboard: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile */}
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <Searchbar isMobile={true} />

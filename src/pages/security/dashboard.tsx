@@ -53,8 +53,8 @@ const securityDashboard: React.FC = () => {
         </nav>
         <div className="flex space-x-6">
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
-            <span className="flex items-center justify-between mx-4">
-              <h1 className="font-lexend font-bold text-h24">Open Entries</h1>
+            <span className="flex items-center justify-between ">
+              <h1 className="font-lexend font-bold text-h24 mx-4">Open Entries</h1>
               <div className=" px-2 py-1 rounded-lg text-sm font-medium">13/06/2023</div>
             </span>
             <Table columns={columns} data={data} />

@@ -5,7 +5,7 @@ import Dropdown from "./Dropdown";
 
 type Props = {};
 
-const Filter = (props: Props) => {
+const Filter = ({}: Props) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -26,7 +26,7 @@ const Filter = (props: Props) => {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items
-          className={`absolute right-0 sm:left-0 bg-white z-10 mt-2 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          className={`absolute right-0 md:left-0 bg-white z-10 mt-2 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           <Menu.Item as={Fragment}>
             {() => (

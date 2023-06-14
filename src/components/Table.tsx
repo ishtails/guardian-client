@@ -20,7 +20,7 @@ interface TableProps {
 
 const Table: React.FC<TableProps> = ({ columns, data }) => {
   return (
-    <div className="relative overflow-x-auto h-[72vh]">
+    <div className="overflow-x-auto h-[72vh]">
       <table className="w-full text-sm text-left text-slate-500">
         <thead className="text-xs text-slate-700 uppercase border-b-2">
           <tr>
