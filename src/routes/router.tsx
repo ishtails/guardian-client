@@ -7,6 +7,7 @@ import ForgotPassword_2 from "../pages/common/forgotPassword_2";
 import ForgotPassword_3 from "../pages/common/forgotPassword_3";
 import Register from "../pages/common/register";
 import AdminDashboard from "../pages/admin/dashboard";
+import IndividualProfile from "../pages/admin/individual";
 import SecurityDashboard from "../pages/security/dashboard";
 import ClosedEntries from "../pages/security/closedEntries";
 import ClosingDialogue from "../pages/security/closingDialogue";
@@ -32,6 +33,7 @@ const mainRouter = ({}: Props) => {
 
       {/* Admin Routes */}
       <Route path="/admin/home" element={<AdminDashboard />} />
+      <Route path="/admin/individual" element={<IndividualProfile />} />
 
       {/* Security Routes */}
       <Route path="/security/home" element={<SecurityDashboard />}/> 
