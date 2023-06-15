@@ -8,7 +8,6 @@ type Props = {};
 
 const reports = ({}: Props) => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
-  console.log(columns);
   const data: TableRow[] = [
     // Sample data rows
     {
