@@ -95,18 +95,20 @@ const individual: React.FC = () => {
                         <img src={avatar} className="absolute self-center h-[80px] w-[80px]"/>
                     </div>
                     <div className="flex flex-col items-center">
-                        <h2 className="text-[11px] font-lexend font-bold">
-                        Kartikay Tiwari
-                        </h2>
-                        <h3 className="text-[8px]">2021BCS035</h3>
-                        <span className="flex items-center space-x-2">
-                            <BsFillTelephoneFill style={{ fontSize: "10px" }} />
-                            <p className="text-[10px] py-1">7905934905</p>
-                        </span>
-                        <span className="flex items-center space-x-2">
-                            <BsFillHouseFill style={{ fontSize: "10px" }} />
-                            <p className="text-[10px]">BH1 / 340</p>
-                        </span>
+                        <div>
+                            <h2 className="text-[11px] font-lexend font-bold">
+                            Kartikay Tiwari
+                            </h2>
+                            <h3 className="text-[8px]">2021BCS035</h3>
+                            <span className="flex items-center space-x-2">
+                                <BsFillTelephoneFill style={{ fontSize: "10px" }} />
+                                <p className="text-[10px] py-1">7905934905</p>
+                            </span>
+                            <span className="flex items-center space-x-2">
+                                <BsFillHouseFill style={{ fontSize: "10px" }} />
+                                <p className="text-[10px]">BH1 / 340</p>
+                            </span>
+                        </div> 
                     </div>
                     <hr className="h-px w-full bg-gray-200 border-0" />
                 </div>
