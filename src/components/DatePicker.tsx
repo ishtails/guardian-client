@@ -7,15 +7,14 @@ const DatePicker = () => {
     endDate: new Date(),
   });
 
-  const handleValueChange = (newValue:any) => {
-    console.log("newValue:", newValue);
+  const handleValueChange = (newValue: any) => {
     setValue(newValue);
   };
 
   return (
     <Datepicker
       primaryColor={"sky"}
-      value = {value}
+      value={value}
       onChange={handleValueChange}
       showShortcuts={true}
       separator="to"

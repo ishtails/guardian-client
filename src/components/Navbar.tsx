@@ -9,7 +9,6 @@ type Props = { role: String };
 
 const Navbar = ({ role }: Props) => {
   let location = useLocation();
-  console.log(location.pathname);
 
   if (role === "admin")
     return (

@@ -19,15 +19,11 @@ const forgotPassForm_1 = () => (
     {/* Input Fields */}
     <InputField label="OTP" placeholder="Enter OTP" isPassword={false} />
 
-    {/* Submit Button */}
-    <div className="pt-1">
-      <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition font-semibold">
+    {/* Footer */}
+    <div className="flex flex-col items-center space-y-2 text-p14">
+      <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition font-semibold text-p16">
         Submit
       </button>
-    </div>
-
-    {/* Footer */}
-    <div className="flex flex-col items-center space-y-2">
       <Link
         to="/ResendOTP"
         className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1"

@@ -15,7 +15,6 @@ import blurindigo from "../../assets/blur-indigo.svg";
 
 const studentDashboard: React.FC = () => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
-  console.log(columns);
   const data: TableRow[] = [
     // Sample data rows
     {

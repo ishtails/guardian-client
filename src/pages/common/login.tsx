@@ -36,28 +36,28 @@ const loginForm = () => (
             id="remember"
             name="remember"
           />
-          <span className="hover:text-slate-600 transition">Remember me</span>
+          <span className="hover:text-slate-600 transition text-p14">
+            Remember me
+          </span>
         </label>
 
         <Link
           to="/forgotpass"
-          className="text-[#0EA5E9] transition font-medium hover:text-sky-700"
+          className="text-[#0EA5E9] transition font-medium hover:text-sky-700 text-p14"
         >
           Forgot Password?
         </Link>
       </div>
     </div>
 
-    {/* Submit Button */}
-    <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
-      Sign In
-    </button>
-
-    {/* Footer */}
+    {/* Submit */}
     <div className="flex flex-col items-center space-y-2">
+      <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
+        Sign In
+      </button>
       <Link
         to="/help"
-        className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1"
+        className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 text-p14"
       >
         Something Wrong? Click Here
       </Link>
