@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import InputField from "../../components/InputField";
 
 const changePasswordForm = () => (
-  <div className="flex flex-col space-y-4">
+  <div className="flex flex-col space-y-5">
     {/* Header */}
     <div className="">
       <span className="font-lexend font-bold text-h36 sm:text-h32">
@@ -32,19 +32,18 @@ const changePasswordForm = () => (
     />
 
     {/* Submit Button */}
-    <div className="pt-1">
+    <div className="pt-1 flex flex-col items-center space-y-2">
       <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
         Submit
       </button>
-    </div>
 
-    {/* Footer */}
       <Link
         to="/admin/home"
-        className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 self-center"
+        className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 self-center text-p14"
       >
         Back to Home
       </Link>
+    </div>      
   </div>
 );
 

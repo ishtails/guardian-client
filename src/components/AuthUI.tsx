@@ -1,7 +1,11 @@
 import logo from "./../assets/icons/logo.svg";
 import blur_cyan from "./../assets/blur-cyan.svg";
 
-const authUI = (props:{InputField:any, illustration_1:any, illustration_2:any}) => {
+const authUI = (props: {
+  InputField: any;
+  illustration_1: any;
+  illustration_2: any;
+}) => {
   return (
     <div className="bg-[#FCFFFF] relative">
       {/* Logo */}
@@ -31,7 +35,11 @@ const authUI = (props:{InputField:any, illustration_1:any, illustration_2:any}) 
 
             {/* Illustration */}
             <div className=" z-10 grid justify-center backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 m-5 p-5 items-center">
-              <img src={props.illustration_1} alt="" className="py-14 max-h-[720px]" />
+              <img
+                src={props.illustration_1}
+                alt=""
+                className="py-14 max-h-[720px]"
+              />
             </div>
           </div>
         </div>
@@ -39,7 +47,7 @@ const authUI = (props:{InputField:any, illustration_1:any, illustration_2:any}) 
 
       {/* Mobile Screen */}
       <div className="flex flex-col md:hidden px-5 h-screen">
-        <img src={props.illustration_2} />
+        <img src={props.illustration_2} className="my-4" />
 
         <props.InputField />
 

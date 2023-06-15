@@ -6,13 +6,13 @@ const InputField = ({ label, placeholder, isPassword }: Props) => {
 
   return (
     <div className="space-y-1">
-      <h1 className="text-[#344054] text-h14 font-medium">{label}</h1>
+      <h1 className="text-[#344054] text-p16 font-medium">{label}</h1>
 
       <div className="relative">
         <input
           type={!isPassword ? "text" : isPasswordVisible ? "text" : "password"}
           placeholder={placeholder}
-          className="border-2 rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50"
+          className="border rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50"
         />
         <button
           className={`${

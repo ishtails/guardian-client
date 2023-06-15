@@ -23,18 +23,14 @@ const forgotPassForm_1 = () => (
       isPassword={false}
     />
 
-    {/* Submit Button */}
-    <div className="pt-1">
+    {/* Submit */}
+    <div className="flex flex-col items-center space-y-2">
       <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition font-semibold">
         Continue
       </button>
-    </div>
-
-    {/* Footer */}
-    <div className="flex flex-col items-center space-y-2">
       <Link
         to="/"
-        className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1"
+        className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 text-p14"
       >
         Back to Login
       </Link>

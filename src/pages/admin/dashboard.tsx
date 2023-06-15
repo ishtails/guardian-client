@@ -19,7 +19,6 @@ const adminDashboard: React.FC = () => {
     "In Time",
     "Reason",
   ];
-  console.log(columns);
   const data: TableRow[] = [
     // Sample data rows
     {

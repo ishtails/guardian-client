@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, redirect } from "react-router-dom";
 import LoginScreen from "../pages/common/login";
 import Error404 from "../pages/common/error404";
 import ChangePassword from "../pages/common/changePassword";
@@ -23,7 +23,9 @@ type Props = {};
 const mainRouter = ({}: Props) => {
   return (
     <Routes>
-      <Route path="/" element={<LoginScreen />} />
+      {/* Common */}
+      <Route path="/" element={<LoginScreen/>}/>
+      <Route path="/login" element={<LoginScreen />} />
       <Route path="/forgotpass" element={<ForgotPassword_1 />} />
       <Route path="/forgotpass_2" element={<ForgotPassword_2 />} />
       <Route path="/forgotpass_3" element={<ForgotPassword_3 />} />
