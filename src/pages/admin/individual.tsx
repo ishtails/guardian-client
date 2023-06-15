@@ -4,7 +4,7 @@ import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
 import skygradient from "../../assets/icons/sky-gradient.svg";
-import lightbulb from "../../assets/icons/lightbulb.svg";
+import Searchbar from "../../components/Searchbar";
 import avatar from "../../assets/icons/avatar.svg";
 import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
@@ -12,8 +12,10 @@ import { BsFillHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import blurcyan from "../../assets/blur-cyan.svg";
 import blurindigo from "../../assets/blur-indigo.svg";
+import DatePicker from "../../components/DatePicker";
+import Filter from "../../components/Filter";
 
-const studentDashboard: React.FC = () => {
+const individual: React.FC = () => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
   console.log(columns);
   const data: TableRow[] = [
@@ -78,48 +80,56 @@ const studentDashboard: React.FC = () => {
       </div>
 
       {/* Mobile */}
-      <div className="lg:hidden flex flex-col space-y-4 px-4 pb-3 relative">
+      <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
-          <Link to={"/student/update"}>
-            <img src={profile} className="" />
-          </Link>
-          <button className="font-bold text-p14 text-[#0C4A6E]">
-            Sign Out
-          </button>
+          <Searchbar isMobile={true} />
+          <Dropdown title="admin" isHeading={true} />
         </nav>
 
         <hr />
 
-        <div className="h-[72vh] overflow-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
-          <div className="flex flex-col items-center w-screen space-y-4">
-            <img src={avatar} className="w-[50%]" />
+        <div className="flex flex-row justify-between items-center">
+            <div className="flex items-center">
+                <div className="h-[100px] w-[300px] bg-white rounded-b-xl shadow-card-shadow space-y-4 items-center">
+                    <div className="px-4">
+                        <img src={avatar} className="absolute self-center h-[80px] w-[80px]"/>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <h2 className="text-[11px] font-lexend font-bold">
+                        Kartikay Tiwari
+                        </h2>
+                        <h3 className="text-[8px]">2021BCS035</h3>
+                        <span className="flex items-center space-x-2">
+                            <BsFillTelephoneFill style={{ fontSize: "10px" }} />
+                            <p className="text-[10px] py-1">7905934905</p>
+                        </span>
+                        <span className="flex items-center space-x-2">
+                            <BsFillHouseFill style={{ fontSize: "10px" }} />
+                            <p className="text-[10px]">BH1 / 340</p>
+                        </span>
+                    </div>
+                    <hr className="h-px w-full bg-gray-200 border-0" />
+                </div>
+                <div className="flex flex-col space-y-4">
+                    {/* <DatePicker/> */}
+                    <Dropdown title="Today" isHeading={false}/>
+                    <Dropdown title="Today" isHeading={false}/>
+                </div>
+                
 
-            <div className="flex flex-col items-center">
-              <h2 className="text-h24 font-lexend font-bold">
-                Kartikay Tiwari
-              </h2>
-              <h3 className="text-p14 font-medium">2021BCS035</h3>
             </div>
-          </div>
-
-          <div className="flex flex-col items-center space-y-2">
-            <Link to={"/student/reason"} className="text-white text-p16 bg-[#0EA5E9]  py-4 px-16 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 ">
-              Request Exit
-            </Link>
-
-            <Link to={`/student/report`} className="underline text-p14">View Reports</Link>
-          </div>
         </div>
 
-        <div className="flex space-x-3 self-center">
-          <img src={logo} className="w-[32px]" />
-          <h1 className="flex flex-row font-lexend text-h28 text-primary">
-            Guar <span className="font-lexend font-bold text-h28">dian</span>
-          </h1>
+        <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
+          <Table columns={columns} data={data} />
         </div>
+
+        <hr />
+
+        <img src={logo} className="w-[32px] self-center" />
       </div>
     </div>
   );
 };
 
-export default studentDashboard;
+export default individual;
