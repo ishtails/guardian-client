@@ -5,7 +5,7 @@ import ChangePassword from "../pages/common/changePassword";
 import ForgotPassword_1 from "../pages/common/forgotPassword_1";
 import ForgotPassword_2 from "../pages/common/forgotPassword_2";
 import ForgotPassword_3 from "../pages/common/forgotPassword_3";
-import Register from "../pages/common/register";
+import Register from "../pages/student/register";
 import AdminDashboard from "../pages/admin/dashboard";
 import IndividualProfile from "../pages/admin/individual";
 import SecurityDashboard from "../pages/security/dashboard";

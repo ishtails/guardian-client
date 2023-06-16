@@ -9,6 +9,8 @@ import avatar from "../../assets/icons/avatar.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
 import Filter from "../../components/Filter";
+import { BiHomeAlt2 } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const individual: React.FC = () => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
@@ -80,7 +82,14 @@ const individual: React.FC = () => {
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <Searchbar isMobile={true} />
-          <Dropdown title="admin" isHeading={true} />
+          <span className="flex items-center">
+            <Link
+              to={"/admin/home"}
+            >
+              <BiHomeAlt2 style={{ color: "#0EA5E9", fontSize: "24px" }} />
+            </Link>
+            <Dropdown title="admin" isHeading={true} />
+          </span>
         </nav>
 
         <hr />

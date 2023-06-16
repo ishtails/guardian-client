@@ -17,7 +17,7 @@ const links = [
 
 const Dropdown = (props: Props) => {
   return (
-    <Menu as="div" className="relative inline-block text-left mx-4">
+    <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
           className={`${
