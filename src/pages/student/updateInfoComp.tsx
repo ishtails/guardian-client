@@ -5,30 +5,36 @@ import {useDropzone} from 'react-dropzone'
 import React, {useCallback, useState} from 'react' 
 import axios from 'axios';
 
-const updateInfoComp = () => {
+const updateInfoComp: React.FC  = () => {
+    
+    // const [name, setName] = useState('');
+    // const [phone, setPhone] = useState('');
+    // const [hostel, setHostel] = useState('');
+    // const [room, setRoom] = useState('');
     const [idCard, setIdCard] = useState<File | null>(null);
     const onDrop = async (acceptedFiles: File[]) => {
         // console.log(acceptedFiles[0]);
         setIdCard(acceptedFiles[0]);
     };
     
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!idCard) {
+            alert('Please select a file.');
+            return;
+        }
         try {
             const formData = new FormData();
             formData.append('idCard', idCard);
             
             //sending idCard image to backend route
-            const response = await axios.patch('/api/updateInfo', formData);
-        
-            if (response.status === 200) {
-                console.log(response.data);
-              const imageUrl = response.data.imageUrl;
-              console.log('Image URL:', imageUrl);
-            } else {
-              console.error('Failed to upload image:', response.status);
-            }
+            const response = await axios.patch('http://localhost:8000/api/update-profile', formData);
+            
+            console.log(response.data);
+            const imageUrl = response.data.imageUrl;
+            console.log('Image URL:', imageUrl);
           } catch (error) {
-            console.error('Error uploading image:', error);
+            console.error(error);
           }
       };
     
@@ -47,21 +53,25 @@ const updateInfoComp = () => {
         label="Full Name"
         placeholder=""
         isPassword={false}
+        
         />
         <InputField
         label="Phone"
         placeholder=""
         isPassword={false}
+        
         />
         <InputField
         label="Hostel"
         placeholder=""
         isPassword={false}
+        
         />
         <InputField
         label="Room"
         placeholder=""
         isPassword={false}
+        
         />
         {/* Select ID card image*/}
         <div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
-type Props = { label: string; placeholder: string; isPassword: boolean };
+type Props = { label: string; placeholder: string; isPassword: boolean};
 
-const InputField = ({ label, placeholder, isPassword }: Props) => {
+const InputField = ({ label, placeholder, isPassword}: Props) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
@@ -9,7 +9,8 @@ const InputField = ({ label, placeholder, isPassword }: Props) => {
       <h1 className="text-[#344054] text-p16 font-medium">{label}</h1>
 
       <div className="relative">
-        <input
+        <input 
+          // onChange={(e)=>setData(e.target.value)} value={setValue}
           type={!isPassword ? "text" : isPasswordVisible ? "text" : "password"}
           placeholder={placeholder}
           className="border rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50"
@@ -20,7 +21,7 @@ const InputField = ({ label, placeholder, isPassword }: Props) => {
           } top-3 right-4 text-gray-600`}
           onClick={() => {
             setIsPasswordVisible((prevState) => !prevState);
-          }}
+          }}        
         >
           {isPasswordVisible ? (
             <svg
