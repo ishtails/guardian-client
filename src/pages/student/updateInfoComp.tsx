@@ -13,7 +13,7 @@ const updateInfoComp = () => {
     
   const {getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, accept: 'image/*', multiple:false, })
   return (
-    <div className="scale-75 xl:scale-100 z-10 backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 p-6 w-[400px]">
+    <div className="space-y-4">
         {/* Header */}
         <span className="font-lexend font-bold text-h36 sm:text-h32">
         Update Profile
