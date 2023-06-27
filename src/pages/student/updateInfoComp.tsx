@@ -31,6 +31,14 @@ const updateInfoComp = () => {
           }
     };
     
+    const handleSubmit = async () => {
+        try {
+          await axios.patch('/api/updateinfo', {image: idCard });
+        } catch (error) {
+          console.log(error)
+        }
+      };
+    
   const {getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, accept: 'image/*', multiple:false, })
   return (
     <div className="space-y-4">
@@ -40,7 +48,7 @@ const updateInfoComp = () => {
         </span>
 
         <p className="text-[#667085] text-h16 sm:text-h14">Change your information below</p>
-
+        <form onSubmit={handleSubmit}>
         {/* Input Fields */}
         <InputField
         label="Full Name"
@@ -75,7 +83,7 @@ const updateInfoComp = () => {
         </div>
         {/* Submit Button */}
         <div className="pt-1">
-            <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
+            <button type="submit" className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
                 Submit
             </button>
         </div>
@@ -87,6 +95,7 @@ const updateInfoComp = () => {
         >
         Back to Home
         </Link>
+        </form>
     </div>
   )
 }
