@@ -10,8 +10,6 @@ import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import blurcyan from "../../assets/blur-cyan.svg";
-import blurindigo from "../../assets/blur-indigo.svg";
 
 const studentDashboard: React.FC = () => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];

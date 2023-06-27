@@ -4,10 +4,22 @@ import { Link } from "react-router-dom";
 import InputField from "../../components/InputField";
 import {useDropzone} from 'react-dropzone'
 import React, {useCallback, useState} from 'react'
-import Dropzone from 'react-dropzone'
+import logo from "../../assets/icons/logo.svg";
+import blur_cyan from "./../assets/blur-cyan.svg";
 
-const loginForm = () => ( 
-  <div className="flex flex-col space-y-4">
+const updateInfo: React.FC<> = () => {
+    const [idCard, setIdCard] = useState<File | null>(null);
+    const onDrop = (acceptedFiles: File[]) => {
+        console.log(acceptedFiles[0]);
+        setIdCard(acceptedFiles[0]);
+    };
+    
+  const {getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, accept: 'image/*', multiple:false, })
+
+  return (
+    
+    <div className="flex flex-col space-y-4 relative">
+        
     {/* Header */}
     <div className="">
       <span className="font-lexend font-bold text-h36 sm:text-h32">
@@ -37,28 +49,17 @@ const loginForm = () => (
       placeholder=""
       isPassword={false}
     />
-    
-    <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
-      {({getRootProps, getInputProps}) => (
-        <section>
-          <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            <InputField
-              label="Identity Card"
-              placeholder="Select Image"
-              isPassword={false}
-            />
-            <p className="text-[10px]">Drag and drop file here, or click to select a file</p>
-          </div>
-        </section>
+    {/* Select ID card image*/}
+  <div>
+    <div {...getRootProps() } className={`dropzone ${isDragActive ? 'active' : ''}`}>
+      <input {...getInputProps()} accept="image/*"/>
+      {idCard ? (
+        <p>Image selected : {idCard.name}</p>
+      ) : (
+        <p className="cursor-pointer">Drag and drop your identity card image here, or click to select a file</p>
       )}
-    </Dropzone>
-  {/* <div>
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here, or click to select files</p>
     </div>
-  </div> */}
+  </div>
     {/* Submit Button */}
     <div className="pt-1">
       <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
@@ -74,22 +75,6 @@ const loginForm = () => (
       Back to Home
     </Link>
   </div>
-);
-
-const updateInfo = () => {
-  // const [idCard, setIdCard] = useState([]);
-  const onDrop = (acceptedFiles) => {
-    console.log(acceptedFiles);
-  };
-
-  // const {getRootProps, getInputProps} = useDropzone({onDrop})
-
-  return (
-    <AuthUI
-      InputField={loginForm}
-      illustration_1={update}
-      illustration_2={update}
-    />
   );
 };
 

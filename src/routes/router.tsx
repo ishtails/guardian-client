@@ -17,7 +17,7 @@ import StudentReport from "../pages/student/reports";
 import StudentReason from "../pages/student/reason";
 import SuccessfulExit from "../pages/student/success";
 import FailedExit from "../pages/student/failure";
-import StudentUpdateInfo from "../pages/student/updateInfo";
+import StudentUpdateInfo from "../pages/student/update";
 
 type Props = {};
 
