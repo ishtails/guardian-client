@@ -3,12 +3,32 @@ import { Link } from "react-router-dom";
 import InputField from "../../components/InputField";
 import {useDropzone} from 'react-dropzone' 
 import React, {useCallback, useState} from 'react' 
+import axios from 'axios';
 
 const updateInfoComp = () => {
     const [idCard, setIdCard] = useState<File | null>(null);
-    const onDrop = (acceptedFiles: File[]) => {
-        console.log(acceptedFiles[0]);
-        setIdCard(acceptedFiles[0]);
+    const onDrop = async (acceptedFiles: File[]) => {
+        // console.log(acceptedFiles[0]);
+        const image = acceptedFiles[0];
+        setIdCard(image);
+
+        try {
+            const formData = new FormData();
+            formData.append('image', image);
+        
+            const response = await axios.post('/api/upload', formData);
+        
+            if (response.status === 200) {
+              const imageUrl = response.data.imageUrl;
+        
+              // Save the imageUrl to your database or perform any other desired actions
+              console.log('Image URL:', imageUrl);
+            } else {
+              console.error('Failed to upload image:', response.status);
+            }
+          } catch (error) {
+            console.error('Error uploading image:', error);
+          }
     };
     
   const {getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, accept: 'image/*', multiple:false, })
