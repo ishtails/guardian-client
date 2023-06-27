@@ -9,19 +9,20 @@ const updateInfoComp = () => {
     const [idCard, setIdCard] = useState<File | null>(null);
     const onDrop = async (acceptedFiles: File[]) => {
         // console.log(acceptedFiles[0]);
-        const image = acceptedFiles[0];
-        setIdCard(image);
-
+        setIdCard(acceptedFiles[0]);
+    };
+    
+    const handleSubmit = async () => {
         try {
             const formData = new FormData();
-            formData.append('image', image);
-        
-            const response = await axios.post('/api/upload', formData);
+            formData.append('idCard', idCard);
+            
+            //sending idCard image to backend route
+            const response = await axios.patch('/api/updateInfo', formData);
         
             if (response.status === 200) {
+                console.log(response.data);
               const imageUrl = response.data.imageUrl;
-        
-              // Save the imageUrl to your database or perform any other desired actions
               console.log('Image URL:', imageUrl);
             } else {
               console.error('Failed to upload image:', response.status);
@@ -29,14 +30,6 @@ const updateInfoComp = () => {
           } catch (error) {
             console.error('Error uploading image:', error);
           }
-    };
-    
-    const handleSubmit = async () => {
-        try {
-          await axios.patch('/api/updateinfo', {image: idCard });
-        } catch (error) {
-          console.log(error)
-        }
       };
     
   const {getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, accept: 'image/*', multiple:false, })
