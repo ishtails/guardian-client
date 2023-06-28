@@ -4,7 +4,7 @@ import logo from "../../assets/icons/logo.svg";
 import blur_cyan from "../../assets/blur-cyan.svg";
 import UpdateInfoComp from "./updateInfoComp";
 
-const updateInfo: React.FC<> = () => {
+const updateInfo: any = () => {
   return (
     <div className=" bg-[#FCFFFF] relative">
         {/* Logo */}
