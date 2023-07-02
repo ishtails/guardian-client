@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { useFormStore } from "../store/store";
 import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 
 type Props = {
   label: string;
@@ -8,18 +9,17 @@ type Props = {
 
 const InputImage = ({ label }: Props) => {
   const formStore = useFormStore();
+  const { formValues } = formStore;
+  const {register, formState: { errors }} = useFormContext();
   const [isInvalid, setIsInvalid] = useState(false);
   const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-  const { formValues } = formStore;
-
-  console.log(formValues);
+  const inputId = `file_upload_${label.replace(/\s+/g, "_").toLowerCase()}`;
 
   const handleInputChange = (fieldName: string, value: any) => {
     if (value) {
       if (!allowedTypes.includes(value.type)) {
         setIsInvalid(true);
         return toast.error("Invalid file type");
-        
       }
 
       if (value.size >= 5 * 1024 * 1024) {
@@ -31,8 +31,6 @@ const InputImage = ({ label }: Props) => {
       setIsInvalid(false);
     }
   };
-
-  const inputId = `file_upload_${label.replace(/\s+/g, "_").toLowerCase()}`;
 
   return (
     <div className="space-y-1">
@@ -82,9 +80,9 @@ const InputImage = ({ label }: Props) => {
       </label>
       <input
         id={inputId}
+        {...register(inputId)}
         type="file"
         accept="image/*"
-        name={inputId}
         className="hidden"
         onChange={(e) => handleInputChange(inputId, e.target.files?.[0])}
       />

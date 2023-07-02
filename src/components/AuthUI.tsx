@@ -27,7 +27,7 @@ const authUI = (props: {
         <div className="grid grid-cols-2 items-center h-screen m-auto w-full">
           {/* Login Component */}
           <div className="grid justify-center items-center w-full">
-            <div className="xl:my-10 z-10 backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 p-6 lg:w-[25rem]">
+            <div className="my-10 z-10 backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 p-6 w-[22rem] lg:w-[25rem]">
               <props.InputField />
             </div>
           </div>
