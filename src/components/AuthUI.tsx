@@ -8,14 +8,14 @@ const authUI = (props: {
 }) => {
   return (
     <div className="bg-[#FCFFFF] relative">
-      {/* Logo */}
-      <div className="hidden z-20 md:flex p-5 lg:px-5 absolute space-x-3 left-2 top-0">
+      {/* Logo NOT LOOKING GOOD HERE */}
+      {/* <div className="hidden z-20 md:flex p-5 lg:px-5 absolute space-x-3 left-2 top-0">
         <img src={logo} className="w-[32px]" />
         <div className="flex flex-row font-lexend text-h28 text-primary">
           Guar
           <span className="font-lexend font-bold text-h28">dian</span>
         </div>
-      </div>
+      </div> */}
 
       <div className="px-6 h-screen hidden md:flex flex-col relative justify-center">
         <img
@@ -24,23 +24,21 @@ const authUI = (props: {
           className="absolute z-0 top-[3%] left-[26%] w-[400px]"
         />
 
-        <div className="flex flex-col z-0 relative">
-          <div className="grid grid-cols-2 items-center m-auto w-full">
-            {/* Login Component */}
-            <div className="grid justify-center items-center h-full w-full">
-              <div className="scale-75 xl:scale-100 z-10 backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 p-6 w-[400px]">
-                <props.InputField />
-              </div>
+        <div className="grid grid-cols-2 items-center h-screen m-auto w-full">
+          {/* Login Component */}
+          <div className="grid justify-center items-center w-full">
+            <div className="xl:my-10 z-10 backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 p-6 lg:w-[25rem]">
+              <props.InputField />
             </div>
+          </div>
 
-            {/* Illustration */}
-            <div className=" z-10 grid justify-center backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 m-5 p-5 items-center">
-              <img
-                src={props.illustration_1}
-                alt=""
-                className="py-14 max-h-[720px]"
-              />
-            </div>
+          {/* Illustration */}
+          <div className="z-10 grid justify-center backdrop-blur-xl bg-[#F0F9FF]/50 rounded-xl shadow-card-shadow space-y-4 m-5 p-5 items-center">
+            <img
+              src={props.illustration_1}
+              alt=""
+              className="py-14 max-h-[720px]"
+            />
           </div>
         </div>
       </div>
