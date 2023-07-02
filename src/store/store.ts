@@ -1,11 +1,20 @@
 import { create } from "zustand";
 
-export const useAuthStore = create((set) => ({
-  auth: {
-    username: "",
-    active: false,
-  },
+type FormStore = {
+  formValues: {
+    [key: string]: any;
+  };
+  setFormField: (fieldName: string, value: any) => void;
+};
 
-  setUsername: (name: String) =>
-    set((state: any) => ({ auth: { ...state.auth, username: name } })),
+export const useFormStore = create<FormStore>((set) => ({
+  formValues: {},
+  setFormField: (fieldName: any, value: any) => {
+    set((state: any) => ({
+      formValues: {
+        ...state.formValues,
+        [fieldName]: value,
+      },
+    }));
+  },
 }));
