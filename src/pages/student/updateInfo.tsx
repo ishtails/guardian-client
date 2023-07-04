@@ -31,7 +31,7 @@ const updateForm = () => {
         {/* Input Fields */}
         <InputField
           label="update_Full Name"
-          placeholder=""
+          placeholder="Enter your name"
           isPassword={false}
           validationRules={{
             required: { value: true, message: "Required Field" },
@@ -39,21 +39,35 @@ const updateForm = () => {
         />
         <InputField
           label="update_Mobile"
-          placeholder=""
+          placeholder="10-digit mobile number"
           isPassword={false}
-          validationRules={{ required: { value: true, message: "Required Field" } }}
+          validationRules={{
+            required: { value: true, message: "Required Field" },
+            pattern: {
+              value: /^\d{10}$/,
+              message: "Please enter a 10-digit mobile number",
+            },
+          }}
         />
         <InputField
           label="update_Hostel"
-          placeholder=""
+          placeholder="BH1 / BH2 / BH3 / IVH / GH"
           isPassword={false}
-          validationRules={{ required: { value: true, message: "Required Field" } }}
+          validationRules={{
+            required: { value: true, message: "Required Field" },
+            pattern: {
+              value: /^(bh1|bh2|bh3|ivh|gh)$/i,
+              message: 'Invalid Hostel',
+            },
+          }}
         />
         <InputField
           label="update_Room"
-          placeholder=""
+          placeholder="Hostel room number"
           isPassword={false}
-          validationRules={{ required: { value: true, message: "Required Field" } }}
+          validationRules={{
+            required: { value: true, message: "Required Field" },
+          }}
         />
         <InputImage label="update_Identity Card" />
 
