@@ -82,7 +82,7 @@ const InputField = ({
           )}
         </button>
         {errors[inputId] && (
-          <span className="text-red-400 text-p14">{errors[inputId].message}</span>
+          <span className="text-red-500 text-p14">{errors[inputId].message}</span>
         )}
       </div>
     </div>

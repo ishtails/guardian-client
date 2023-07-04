@@ -8,12 +8,11 @@ type Props = {
 };
 
 const InputImage = ({ label }: Props) => {
-  const formStore = useFormStore();
-  const { formValues } = formStore;
+  const { formValues, setFormField } = useFormStore();
   const {register, formState: { errors }} = useFormContext();
   const [isInvalid, setIsInvalid] = useState(false);
   const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-  const inputId = `file_upload_${label.replace(/\s+/g, "_").toLowerCase()}`;
+  const inputId = `${label.replace(/\s+/g, "_").toLowerCase()}`;
   label = label.split("_")[1];
 
   const handleInputChange = (fieldName: string, value: any) => {
@@ -28,7 +27,7 @@ const InputImage = ({ label }: Props) => {
         return toast.error("File size exceeds 5MB limit");
       }
 
-      formStore.setFormField(fieldName, value);
+      setFormField(fieldName, value);
       setIsInvalid(false);
     }
   };
@@ -39,7 +38,7 @@ const InputImage = ({ label }: Props) => {
       <label
         htmlFor={inputId}
         className={`${
-          isInvalid ? "border-red-300 bg-red-50" : "border-slate-300"
+          errors[inputId] || isInvalid ? "border-red-300" : "border-slate-300"
         }
         flex justify-center w-full h-32 px-4 transition bg-white border-2  border-dashed rounded-md appearance-none cursor-pointer hover:border-slate-400 focus:outline-none`}
       >
@@ -87,6 +86,9 @@ const InputImage = ({ label }: Props) => {
         className="hidden"
         onChange={(e) => handleInputChange(inputId, e.target.files?.[0])}
       />
+      {errors[inputId] && (
+          <span className="text-red-500 text-p14">{errors[inputId].message}</span>
+        )}
     </div>
   );
 };
