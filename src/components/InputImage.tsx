@@ -14,6 +14,7 @@ const InputImage = ({ label }: Props) => {
   const [isInvalid, setIsInvalid] = useState(false);
   const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
   const inputId = `file_upload_${label.replace(/\s+/g, "_").toLowerCase()}`;
+  label = label.split("_")[1];
 
   const handleInputChange = (fieldName: string, value: any) => {
     if (value) {

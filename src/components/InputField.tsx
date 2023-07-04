@@ -1,12 +1,26 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
-type Props = { label: string; placeholder: string; isPassword: boolean };
+type Props = {
+  label: string;
+  placeholder: string;
+  isPassword: boolean;
+  validationRules: any;
+};
 
-const InputField = ({ label, placeholder, isPassword }: Props) => {
+const InputField = ({
+  label,
+  placeholder,
+  isPassword,
+  validationRules,
+}: Props) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const inputId = `field_${label.replace(/\s+/g, "_").toLowerCase()}`;
-  const { register, formState: { errors } } = useFormContext();
+  const inputId = `${label.replace(/\s+/g, "_").toLowerCase()}`;
+  label = label.split("_")[1];
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className="space-y-1">
@@ -17,7 +31,7 @@ const InputField = ({ label, placeholder, isPassword }: Props) => {
       <div className="relative">
         <input
           id={inputId}
-          {...register(inputId)}
+          {...register(inputId, validationRules)}
           type={!isPassword ? "text" : isPasswordVisible ? "text" : "password"}
           placeholder={placeholder}
           className="border rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50"
@@ -67,6 +81,9 @@ const InputField = ({ label, placeholder, isPassword }: Props) => {
             </svg>
           )}
         </button>
+        {errors[inputId] && (
+          <span className="text-red-400 text-p14">{errors[inputId].message}</span>
+        )}
       </div>
     </div>
   );

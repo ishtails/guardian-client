@@ -29,11 +29,33 @@ const updateForm = () => {
         </div>
 
         {/* Input Fields */}
-        <InputField label="Full Name" placeholder="" isPassword={false} />
-        <InputField label="Mobile" placeholder="" isPassword={false} />
-        <InputField label="Hostel" placeholder="" isPassword={false} />
-        <InputField label="Room" placeholder="" isPassword={false} />
-        <InputImage label="Identity Card" />
+        <InputField
+          label="update_Full Name"
+          placeholder=""
+          isPassword={false}
+          validationRules={{
+            required: { value: true, message: "Required Field" },
+          }}
+        />
+        <InputField
+          label="update_Mobile"
+          placeholder=""
+          isPassword={false}
+          validationRules={{ required: { value: true, message: "Required Field" } }}
+        />
+        <InputField
+          label="update_Hostel"
+          placeholder=""
+          isPassword={false}
+          validationRules={{ required: { value: true, message: "Required Field" } }}
+        />
+        <InputField
+          label="update_Room"
+          placeholder=""
+          isPassword={false}
+          validationRules={{ required: { value: true, message: "Required Field" } }}
+        />
+        <InputImage label="update_Identity Card" />
 
         {/* Submit Button */}
         <div className="pt-1">
