@@ -41,7 +41,7 @@ const authUI = (props: {
             <img src={logo} className="w-[32px] " />
           </div>
         </footer>
-      </div>
+      </div> 
     </div>
   );
 };
