@@ -15,7 +15,7 @@ const forgotPassForm_1 = () => {
     let { forgotpass_email } = data;
 
     const requestObj = {
-      id: forgotpass_email,
+      email: forgotpass_email,
     };
 
     try {
@@ -25,7 +25,6 @@ const forgotPassForm_1 = () => {
         error: (error) => error.response.data,
       });
       console.log(response)
-
       navigate(`/forgotpass_2`);
     } catch (error: any) {
       console.log(error.response);
@@ -50,7 +49,7 @@ const forgotPassForm_1 = () => {
 
     {/* Input Fields */}
     <InputField
-      label="forgotpass_Institute Email"
+      label="forgotpass_Email"
       placeholder="example@iiitm.ac.in"
       isPassword={false}
       validationRules={{ 
