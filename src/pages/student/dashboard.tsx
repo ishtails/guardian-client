@@ -96,9 +96,9 @@ const studentDashboard = () => {
           <Link to={"/student/update"}>
             <img src={profile} className="" />
           </Link>
-          <button className="font-bold text-p14 text-[#0C4A6E]">
+          <Link to={"/logout"} className="font-bold text-p14 text-[#0C4A6E]">
             Sign Out
-          </button>
+          </Link>
         </nav>
 
         <hr />
