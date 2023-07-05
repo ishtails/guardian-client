@@ -18,6 +18,7 @@ import StudentReason from "../pages/student/reason";
 import SuccessfulExit from "../pages/student/success";
 import FailedExit from "../pages/student/failure";
 import StudentUpdateInfo from "../pages/student/updateInfo";
+import LogOut from "../components/logOut";
 
 type Props = {};
 
@@ -27,6 +28,7 @@ const mainRouter = ({}: Props) => {
       {/* Common */}
       <Route path="/" element={<LoginScreen/>}/>
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/logout" element={<LogOut />} />
       <Route path="/forgotpass" element={<ForgotPassword_1 />} />
       <Route path="/forgotpass_2" element={<ForgotPassword_2 />} />
       <Route path="/forgotpass_3" element={<ForgotPassword_3 />} />
