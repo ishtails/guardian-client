@@ -6,12 +6,15 @@ import InputField from "../../components/InputField";
 import { useForm, FormProvider } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useState } from "react";
 
 const loginForm = () => {
   const methods = useForm();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: any) => {
+    setIsLoading(true);
     let { login_password, login_remember_me, login_username } = data;
 
     const requestObj = {
@@ -24,13 +27,15 @@ const loginForm = () => {
       const response = await toast.promise(axios.post("/login", requestObj), {
         loading: 'Logging in...',
         success: 'Successful',
-        error: (error) => error.response.data,
+        error: (error) => (error.response?.data || "Server Error"),
       });
       console.log(response)
-      localStorage.setItem("role", response.data.role)
 
+      localStorage.setItem("role", response.data.role)
+      setIsLoading(false);
       navigate(`/${response.data.role}/home`);
     } catch (error: any) {
+      setIsLoading(false);
       console.log(error.response);
     }
   };
@@ -95,7 +100,7 @@ const loginForm = () => {
 
         {/* Submit */}
         <div className="flex flex-col items-center space-y-2">
-          <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
+          <button disabled={isLoading} className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold disabled:bg-slate-300">
             Sign In
           </button>
           <Link
