@@ -19,8 +19,8 @@ const forgotPassForm_1 = () => {
     };
 
     try {
-      const response = await toast.promise(axios.post("/is-registered", requestObj), {
-        loading: 'Loading...',
+      const response = await toast.promise(axios.post("/send-otp", requestObj), {
+        loading: 'Sending OTP...',
         success: 'Successful',
         error: (error) => error.response.data,
       });

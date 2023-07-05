@@ -15,15 +15,15 @@ const forgotPassForm_1 = () => {
 
   const onSubmit = async (data: any) => {
     setIsLoading(true);
-    let { forgotpass_2_email } = data;
+    let { forgotpass2_otp } = data;
 
     const requestObj = {
-      email: forgotpass_2_email,
+      otp: forgotpass2_otp,
     };
 
     try {
-      const response = await toast.promise(axios.post("/send-otp", requestObj), {
-        loading: 'Sending OTP...',
+      const response = await toast.promise(axios.post("/verify-otp", requestObj), {
+        loading: 'Verifying OTP...',
         success: 'Successful',
         error: (error) => (error.response?.data || "Server Error"),
       });
