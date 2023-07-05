@@ -40,7 +40,7 @@ const reports = ({}: Props) => {
           <h2 className="text-p14 font-medium text-[#0C4A6E]">2021BCS035</h2>
         </div>
         <span className="flex space-x-4 items-center">
-          <Dropdown title="Today" isHeading={false} />
+          <Dropdown options={[]} title="Today" isHeading={false} />
         </span>
       </div>
 

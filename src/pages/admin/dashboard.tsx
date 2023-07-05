@@ -45,14 +45,14 @@ const adminDashboard: React.FC = () => {
         <div className="flex space-x-6">
           <div className="flex flex-col bg-white rounded-xl shadow-card-shadow w-[230px] space-y-4 p-5 pb-6 items-center h-full">
             <span className="font-lexend font-bold text-h24">Filters</span>
-            <Dropdown title="Hostel" isHeading={false} />
-            <Dropdown title="Deadline" isHeading={false} />
+            <Dropdown options={[]} title="Hostel" isHeading={false} />
+            <Dropdown options={[]} title="Deadline" isHeading={false} />
           </div>
 
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
-              <Dropdown title="Today" isHeading={false} />
+              <Dropdown options={[]} title="Today" isHeading={false} />
             </span>
             <Table columns={columns} data={data} />
           </div>
@@ -63,7 +63,7 @@ const adminDashboard: React.FC = () => {
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <Searchbar isMobile={true} />
-          <Dropdown title="admin" isHeading={true} />
+          <Dropdown options={[]} title="admin" isHeading={true} />
         </nav>
 
         <hr />
@@ -72,7 +72,7 @@ const adminDashboard: React.FC = () => {
           <h1 className="font-lexend text-p18 font-bold">Overview</h1>
           <span className="flex space-x-4 items-center">
             <Filter />
-            <Dropdown title="Today" isHeading={false} />
+            <Dropdown options={[]} title="Today" isHeading={false} />
           </span>
         </div>
 

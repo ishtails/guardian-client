@@ -32,8 +32,8 @@ const Filter = ({}: Props) => {
             {() => (
               <div className={`flex flex-col items-center p-5 space-y-4`}>
                 <h2 className="font-lexend font-bold text-p20">Filters</h2>
-                <Dropdown title="Hostel" isHeading={false} />
-                <Dropdown title="Deadline" isHeading={false} />
+                <Dropdown options={[]} title="Hostel" isHeading={false} />
+                <Dropdown options={[]} title="Deadline" isHeading={false} />
                 
               </div>
             )}

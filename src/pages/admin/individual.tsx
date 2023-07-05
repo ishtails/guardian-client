@@ -61,7 +61,7 @@ const individual: React.FC = () => {
 
               <div className="flex flex-col space-y-4 pb-4 items-center h-full">
                 <span className="font-lexend font-bold text-h24">Filters</span>
-                <Dropdown title="Deadline" isHeading={false} />
+                <Dropdown options={[]} title="Deadline" isHeading={false} />
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@ const individual: React.FC = () => {
               <h1 className="font-lexend font-bold text-h24 mx-4">
                 Kartikay Tiwari
               </h1>
-              <Dropdown title="Today" isHeading={false} />
+              <Dropdown options={[]} title="Today" isHeading={false} />
             </span>
             <Table columns={columns} data={data} />
           </div>
@@ -88,7 +88,7 @@ const individual: React.FC = () => {
             >
               <BiHomeAlt2 style={{ color: "#0EA5E9", fontSize: "24px" }} />
             </Link>
-            <Dropdown title="admin" isHeading={true} />
+            <Dropdown options={[]} title="admin" isHeading={true} />
           </span>
         </nav>
 

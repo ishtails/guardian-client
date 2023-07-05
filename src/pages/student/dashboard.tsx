@@ -2,7 +2,6 @@ import Dropdown from "../../components/Dropdown";
 import Navbar from "../../components/Navbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
-import React from "react";
 import skygradient from "../../assets/icons/sky-gradient.svg";
 import lightbulb from "../../assets/icons/lightbulb.svg";
 import avatar from "../../assets/icons/avatar.svg";
@@ -11,7 +10,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const studentDashboard: React.FC = () => {
+const studentDashboard = () => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
   const data: TableRow[] = [
     // Sample data rows
@@ -23,10 +22,16 @@ const studentDashboard: React.FC = () => {
     },
   ];
 
+  const dropDownDate = [
+    { href: "/Today", label: "Today" },
+    { href: "/Yesterday", label: "Yesterday" },
+    { href: "/Past-Week", label: "Past Week" },
+  ];
+
   return (
     <div className="h-screen ">
       {/* Desktop */}
-      <div className="hidden lg:flex flex-col px-5 space-y-8 bg-[#FCFFFF]">
+      <div className="hidden md:flex flex-col px-5 space-y-8 bg-[#FCFFFF]">
         <nav>
           <Navbar role="student" />
         </nav>
@@ -58,7 +63,10 @@ const studentDashboard: React.FC = () => {
                 </span>
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
-              <Link to={'/student/update'} className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 ">
+              <Link
+                to={"/student/update"}
+                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 "
+              >
                 Update Info
               </Link>
             </div>
@@ -75,7 +83,7 @@ const studentDashboard: React.FC = () => {
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
-              <Dropdown title="Today" isHeading={false} />
+              <Dropdown options={dropDownDate} title="Today" isHeading={false}  />
             </span>
             <Table columns={columns} data={data} />
           </div>
@@ -83,7 +91,7 @@ const studentDashboard: React.FC = () => {
       </div>
 
       {/* Mobile */}
-      <div className="lg:hidden flex flex-col space-y-4 px-4 pb-3 relative">
+      <div className="md:hidden flex flex-col space-y-4 px-4 pb-3 relative">
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <Link to={"/student/update"}>
             <img src={profile} className="" />
@@ -108,11 +116,16 @@ const studentDashboard: React.FC = () => {
           </div>
 
           <div className="flex flex-col items-center space-y-2">
-            <Link to={"/student/reason"} className="text-white text-p16 bg-[#0EA5E9]  py-4 px-16 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 ">
+            <Link
+              to={"/student/reason"}
+              className="text-white text-p16 bg-[#0EA5E9]  py-4 px-16 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 "
+            >
               Request Exit
             </Link>
 
-            <Link to={`/student/report`} className="underline text-p14">View Reports</Link>
+            <Link to={`/student/report`} className="underline text-p14">
+              View Reports
+            </Link>
           </div>
         </div>
 
