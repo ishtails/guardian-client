@@ -23,7 +23,7 @@ const loginForm = () => {
     try {
       const response = await toast.promise(axios.post("/login", requestObj), {
         loading: 'Logging in...',
-        success: 'Successful!',
+        success: 'Successful',
         error: (error) => error.response.data,
       });
       console.log(response)

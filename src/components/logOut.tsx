@@ -10,7 +10,7 @@ const LogOut = () => {
     try {
       toast.promise(axios.get("/logout"), {
         loading: 'Logging out...',
-        success: 'Logout Successful!',
+        success: 'Logged out',
         error: (error) => error.response.data,
       })
         .then((response) => {
