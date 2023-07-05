@@ -1,19 +1,40 @@
 import { useState } from "react";
-type Props = { label: string; placeholder: string; isPassword: boolean};
+import { useFormContext } from "react-hook-form";
 
-const InputField = ({ label, placeholder, isPassword}: Props) => {
+type Props = {
+  label: string;
+  placeholder: string;
+  isPassword: boolean;
+  validationRules: any;
+};
+
+const InputField = ({
+  label,
+  placeholder,
+  isPassword,
+  validationRules,
+}: Props) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const inputId = `${label.replace(/\s+/g, "_").toLowerCase()}`;
+  label = label.split("_")[1];
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className="space-y-1">
-      <h1 className="text-[#344054] text-p16 font-medium">{label}</h1>
+      <label htmlFor={inputId} className="text-[#344054] text-p16 font-medium">
+        {label}
+      </label>
 
       <div className="relative">
-        <input 
-          // onChange={(e)=>setData(e.target.value)} value={setValue}
+        <input
+          id={inputId}
+          {...register(inputId, validationRules)}
           type={!isPassword ? "text" : isPasswordVisible ? "text" : "password"}
           placeholder={placeholder}
-          className="border rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50"
+          className={`border rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50 ${errors[inputId] ? 'border-red-300':''}`}
         />
         <button
           className={`${
@@ -21,7 +42,7 @@ const InputField = ({ label, placeholder, isPassword}: Props) => {
           } top-3 right-4 text-gray-600`}
           onClick={() => {
             setIsPasswordVisible((prevState) => !prevState);
-          }}        
+          }}
         >
           {isPasswordVisible ? (
             <svg
@@ -60,6 +81,9 @@ const InputField = ({ label, placeholder, isPassword}: Props) => {
             </svg>
           )}
         </button>
+        {errors[inputId] && (
+          <span className="text-red-500 text-p14">{errors[inputId].message}</span>
+        )}
       </div>
     </div>
   );
