@@ -98,6 +98,10 @@ const updateForm = () => {
           isPassword={false}
           validationRules={{
             required: { value: true, message: "Required" },
+            pattern: {
+              value: /^\d{3}$/,
+              message: "Enter a valid room number",
+            },
           }}
         />
 
