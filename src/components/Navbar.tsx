@@ -8,7 +8,7 @@ import AppLogo from "./Logo";
 const dropDownNavStudent = [
   { href: "/profile", label: "Profile" },
   { href: "/Contact", label: "Contact" },
-  { href: "/Sign-Out", label: "Sign Out" },
+  { href: "/logout", label: "Sign Out" },
 ];
 
 const Navbar = ({ role }: { role: String }) => {

@@ -6,30 +6,18 @@ import InputImage from "../../components/InputImage";
 import { FormProvider, useForm } from "react-hook-form";
 import { useFormStore } from "../../store/store";
 import { toast } from "react-hot-toast";
-
-const ToTitleCase = (value:string) => {
-  const words = value.split(' ');
-
-  const capitalizedWords = words.map((word) => {
-    const lowercaseWord = word.toLowerCase();
-    const firstLetterCapitalized = lowercaseWord.charAt(0).toUpperCase();
-    const restOfWord = lowercaseWord.slice(1);
-
-    return firstLetterCapitalized + restOfWord;
-  });
-
-  return capitalizedWords.join(' ');
-};
+import { ToTitleCase } from "../../helpers/helpers";
+import axios from "axios";
 
 const updateForm = () => {
   const methods = useForm();
-  const {formValues} = useFormStore();
+  const { formValues } = useFormStore();
 
-  const onSubmit = (data: any) => {
-    let {update_full_name, update_mobile, update_hostel, update_room} = data;
+  const onSubmit = async (data: any) => {
+    let { update_full_name, update_mobile, update_hostel, update_room } = data;
 
-    if(!formValues.update_identity_card){
-      return toast.error("No image attached")
+    if (!formValues.update_identity_card) {
+      return toast.error("No image attached");
     }
 
     const requestObj = {
@@ -37,10 +25,15 @@ const updateForm = () => {
       mobile: update_mobile,
       hostel: update_hostel.toUpperCase(),
       room: update_room,
-      idCard: formValues.update_identity_card
-    }
+      idCard: formValues.update_identity_card,
+    };
 
-    console.log(requestObj)
+    try {
+      const response = await axios.patch("/update-profile", requestObj);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -88,7 +81,7 @@ const updateForm = () => {
             required: { value: true, message: "Required" },
             pattern: {
               value: /^(bh1|bh2|bh3|ivh|gh)$/i,
-              message: 'Invalid Hostel',
+              message: "Invalid Hostel",
             },
           }}
         />
@@ -105,7 +98,7 @@ const updateForm = () => {
           }}
         />
 
-        <InputImage label="update_Identity Card"/>
+        <InputImage label="update_Identity Card" />
 
         {/* Submit Button */}
         <div className="pt-1">
