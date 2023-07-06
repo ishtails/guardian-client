@@ -14,22 +14,21 @@ const updateForm = () => {
   const { formValues } = useFormStore();
 
   const onSubmit = async (data: any) => {
-    let { update_full_name, update_mobile, update_hostel, update_room } = data;
+    let { update_full_name, update_mobile, update_hostel, update_room} = data;
 
     if (!formValues.update_identity_card) {
       return toast.error("No image attached");
     }
 
-    const requestObj = {
-      name: ToTitleCase(update_full_name),
-      mobile: update_mobile,
-      hostel: update_hostel.toUpperCase(),
-      room: update_room,
-      idCard: formValues.update_identity_card,
-    };
+    const formData = new FormData();
+    formData.append('name', ToTitleCase(update_full_name));
+    formData.append('mobile', update_mobile);
+    formData.append('hostel', update_hostel.toUpperCase());
+    formData.append('room', update_room);
+    formData.append('idCard', formValues.update_identity_card);
 
     try {
-      const response = await axios.patch("/update-profile", requestObj);
+      const response = await axios.patch("/update-profile", formData);
       console.log(response);
     } catch (error) {
       console.log(error);

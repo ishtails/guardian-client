@@ -9,13 +9,16 @@ type Props = {
 
 const InputImage = ({ label }: Props) => {
   const { formValues, setFormField } = useFormStore();
-  const {register, formState: { errors }} = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
   const [isInvalid, setIsInvalid] = useState(false);
-  const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
   const inputId = `${label.replace(/\s+/g, "_").toLowerCase()}`;
   label = label.split("_")[1];
 
   const handleInputChange = (fieldName: string, value: any) => {
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
     if (value) {
       if (!allowedTypes.includes(value.type)) {
         setIsInvalid(true);
@@ -87,8 +90,8 @@ const InputImage = ({ label }: Props) => {
         onChange={(e) => handleInputChange(inputId, e.target.files?.[0])}
       />
       {errors[inputId] && (
-          <span className="text-red-500 text-p14">{errors[inputId].message}</span>
-        )}
+        <span className="text-red-500 text-p14">{errors[inputId].message}</span>
+      )}
     </div>
   );
 };
