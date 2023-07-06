@@ -8,11 +8,12 @@ const LogOut = () => {
 
   useEffect(() => {
     try {
-      toast.promise(axios.get("/logout"), {
-        loading: 'Logging out...',
-        success: 'Logged out',
-        error: (error) => error.response.data,
-      })
+      toast
+        .promise(axios.get("/logout"), {
+          loading: "Logging out...",
+          success: "Logged out",
+          error: (error) => error.response.data,
+        })
         .then((response) => {
           console.log(response);
           navigate("/login");
@@ -23,11 +24,7 @@ const LogOut = () => {
     }
   }, [navigate]);
 
-  return (
-    <div>
-      <div>Logging out...</div>
-    </div>
-  );
+  return (<div>Logging out...</div>);
 };
 
 export default LogOut;
