@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useUserStore } from "../store/store";
 
-const useFetch = (query: string) => {
+const useFetchProfile = (query: string) => {
   const {user, setUser,  isLoading, setIsLoading} = useUserStore();
   useEffect(() => {
     if (!query) {
@@ -26,4 +26,4 @@ const useFetch = (query: string) => {
   return {user, isLoading};
 };
 
-export default useFetch;
+export default useFetchProfile;

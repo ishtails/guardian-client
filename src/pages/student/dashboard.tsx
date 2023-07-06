@@ -10,13 +10,13 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../../store/store";
-import useFetch from "../../helpers/fetchHook";
+import useFetchProfile from "../../helpers/fetchHook";
 
 type TableColumn = any;
 type TableRow = any;
 
 const studentDashboard = () => {
-  useFetch("/profile");
+  useFetchProfile("/profile");
   const { user } = useUserStore();
   console.log(user);
 
