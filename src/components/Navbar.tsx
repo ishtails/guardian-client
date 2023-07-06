@@ -6,7 +6,7 @@ import { BiHomeAlt2 } from "react-icons/bi";
 import AppLogo from "./Logo";
 
 const dropDownNavStudent = [
-  { href: "/student/update", label: "Edit Profile" },
+  { href: "/student/update", label: "Update Profile" },
   { href: "/changepass", label: "Change Password" },
   { href: "/logout", label: "Sign Out" },
 ];

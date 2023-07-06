@@ -30,8 +30,6 @@ const loginForm = () => {
         error: (error) => (error.response?.data || "Server Error"),
       });
       console.log(response)
-
-      localStorage.setItem("role", response.data.role)
       setIsLoading(false);
       navigate(`/${response.data.role}/home`);
     } catch (error: any) {
