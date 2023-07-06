@@ -10,12 +10,15 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../../store/store";
+import useFetch from "../../helpers/fetchHook";
 
 type TableColumn = any;
 type TableRow = any;
 
 const studentDashboard = () => {
+  useFetch("/profile");
   const { user } = useUserStore();
+  console.log(user);
 
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
   const data: TableRow[] = [
