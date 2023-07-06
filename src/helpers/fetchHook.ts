@@ -1,18 +1,19 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useUserStore } from "../store/store";
 
 const useFetch = (query: string) => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
+  const {user, setUser,  isLoading, setIsLoading} = useUserStore();
   useEffect(() => {
-    if (!query) return;
+    if (!query) {
+      setIsLoading(false);
+      return;
+    };
 
     const fetchData = async () => {
-      setIsLoading(true);
       try {
         const response = await axios.get(query);
-        setData(response.data);
+        setUser(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -22,7 +23,7 @@ const useFetch = (query: string) => {
     fetchData();
   }, [query]);
 
-  return {data, isLoading};
+  return {user, isLoading};
 };
 
 export default useFetch;
