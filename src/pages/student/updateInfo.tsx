@@ -17,15 +17,21 @@ const updateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  console.log(user)
-
   const onSubmit = async (data: any) => {
+    if(!user){
+      return toast.error("Not logged in", {
+        id: 'update_not_logged_in',
+      });
+    }
+
     setIsLoading(true);
     let { update_full_name, update_mobile, update_hostel, update_room } = data;
 
     if (!formValues.update_identity_card && !user?.idCard) {
       setIsLoading(false);
-      return toast.error("No image attached");
+      return toast.error("No image attached", {
+        id: 'update_no_image',
+      });
     }
 
     const formData = new FormData();
@@ -33,20 +39,27 @@ const updateForm = () => {
       formData.append("name", ToTitleCase(update_full_name));
     }
 
-    if (update_mobile) {
+    else if (update_mobile) {
       formData.append("mobile", update_mobile);
     }
 
-    if (update_hostel) {
+    else if (update_hostel) {
       formData.append("hostel", update_hostel.toUpperCase());
     }
 
-    if (update_room) {
+    else if (update_room) {
       formData.append("room", update_room);
     }
 
-    if (formValues.update_identity_card) {
+    else if (formValues.update_identity_card) {
       formData.append("idCard", formValues.update_identity_card);
+    }
+
+    else{
+      setIsLoading(false);
+      return toast.error("No changes to submit", {
+        id: 'update_no_changes',
+      });
     }
 
     try {
@@ -54,13 +67,13 @@ const updateForm = () => {
         axios.patch("/update-profile", formData),
         {
           loading: "Updating...",
-          success: "Successful",
+          success: "Updated Successfully",
           error: (error) => error.response?.data || "Server Error",
         }
       );
       console.log(response);
       setIsLoading(false);
-      navigate("/student/home");
+      navigate("/student/home", { state: { key: Math.random() } });
     } catch (error) {
       setIsLoading(false);
       console.log(error);
