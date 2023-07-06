@@ -1,5 +1,6 @@
 import { create } from "zustand";
 
+// ImageStore
 type FormStore = {
   formValues: {
     [key: string]: any;
@@ -17,4 +18,28 @@ export const useFormStore = create<FormStore>((set) => ({
       },
     }));
   },
+}));
+
+// UserStore
+type User = {
+  email: string;
+  gender: string;
+  hostel: string;
+  mobile: number;
+  name: string;
+  role: string;
+  room: number;
+  username: string;
+  idCard: string;
+  profilePic: string;
+};
+
+type UserStore = {
+  user: User | null;
+  setUser: (user: User) => void;
+};
+
+export const useUserStore = create<UserStore>((set) => ({
+  user: null,
+  setUser: (user) => set({ user }),
 }));
