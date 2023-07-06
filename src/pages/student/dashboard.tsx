@@ -9,11 +9,16 @@ import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useUserStore } from "../../store/store";
+
+type TableColumn = any;
+type TableRow = any;
 
 const studentDashboard = () => {
+  const { user } = useUserStore();
+
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
   const data: TableRow[] = [
-    // Sample data rows
     {
       Date: "28/05/2023",
       "Out Time": "10:00 AM",
@@ -48,25 +53,33 @@ const studentDashboard = () => {
 
             <div className="flex flex-col bg-white rounded-b-xl shadow-card-shadow space-y-4 pt-[25%] px-5 pb-4 items-center">
               <div className="flex flex-col items-center mt-2 xl:mt-0">
-                <h2 className="text-h24 font-lexend font-bold">
-                  Kartikay Tiwari
-                </h2>
-                <h3 className="text-p14 font-medium">2021BCS035</h3>
+                <h2 className="text-h24 font-lexend font-bold">{user?.name}</h2>
+                <h3 className="text-p14 font-medium text-slate-400">
+                  {user?.username}
+                </h3>
               </div>
               <div className="flex w-full justify-between py-1">
                 <span className="flex items-center space-x-2">
                   <BsFillTelephoneFill style={{ fontSize: "18px" }} />
-                  <p>7905934905</p>
+                  <p>{user?.mobile}</p>
                 </span>
                 <span className="flex items-center space-x-2">
                   <BsFillHouseFill style={{ fontSize: "18px" }} />
-                  <p>BH1 / 340</p>
+                  <p>
+                    {user?.hostel} / {user?.room}
+                  </p>
                 </span>
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
               <Link
+                to={"/student/reason"}
+                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 lg:hidden"
+              >
+                Request Exit
+              </Link>
+              <Link
                 to={"/student/update"}
-                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 "
+                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block"
               >
                 Update Info
               </Link>
@@ -84,7 +97,11 @@ const studentDashboard = () => {
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
-              <Dropdown options={dropDownDate} title="Today" isHeading={false}  />
+              <Dropdown
+                options={dropDownDate}
+                title="Today"
+                isHeading={false}
+              />
             </span>
             <Table columns={columns} data={data} />
           </div>
@@ -109,10 +126,23 @@ const studentDashboard = () => {
             <img src={avatar} className="w-[50%]" />
 
             <div className="flex flex-col items-center">
-              <h2 className="text-h24 font-lexend font-bold">
-                Kartikay Tiwari
-              </h2>
-              <h3 className="text-p14 font-medium">2021BCS035</h3>
+              <h2 className="text-h24 font-lexend font-bold">{user?.name}</h2>
+              <h3 className="text-p14 font-medium text-[#0c4a6ea8]">
+                {user?.username}
+              </h3>
+            </div>
+
+            <div className="flex space-x-10 py-1">
+              <span className="flex items-center space-x-2">
+                <BsFillTelephoneFill style={{ fontSize: "18px" }} />
+                <p>{user?.mobile}</p>
+              </span>
+              <span className="flex items-center space-x-2">
+                <BsFillHouseFill style={{ fontSize: "18px" }} />
+                <p>
+                  {user?.hostel} / {user?.room}
+                </p>
+              </span>
             </div>
           </div>
 
