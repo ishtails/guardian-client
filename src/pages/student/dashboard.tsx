@@ -9,26 +9,46 @@ import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useUserStore } from "../../store/store";
-import useFetchProfile from "../../helpers/fetchHook";
+import { useOutingStore, useUserStore } from "../../store/store";
+import useFetchProfile from "../../helpers/fetchUserHook";
+import useFetchOutings from "../../helpers/fetchOutingHook";
 
 type TableColumn = any;
 type TableRow = any;
 
 const studentDashboard = () => {
   useFetchProfile("/profile");
-  const { user } = useUserStore();
-  console.log(user);
+  useFetchOutings("/outings");
 
-  const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
-  const data: TableRow[] = [
-    {
-      Date: "28/05/2023",
-      "Out Time": "10:00 AM",
-      "In Time": "5:00 PM",
-      Reason: "Going to Market for fruits",
-    },
-  ];
+  const { user } = useUserStore();
+  const { outing, isLoading, filter, setFilter } = useOutingStore();
+
+  const columns: TableColumn[] = ["Out Time", "In Time", "Late By", "Reason"];
+  const values: TableRow[] = [];
+
+  if (!isLoading) {
+    outing?.map((unit) => {
+      const newObj = {
+        "Out Time": unit.outTime,
+        "In Time": unit.inTime,
+        "Late By": unit.lateBy,
+        Reason: unit.reason,
+      };
+
+      values.push(newObj);
+      values.sort((a, b) => {
+        if (a["Out Time"] > b["Out Time"]) {
+          return -1;
+        }
+
+        if (a["Out Time"] < b["Out Time"]) {
+          return 1;
+        }
+
+        return 0;
+      });
+    });
+  }
 
   const dropDownDate = [
     { href: "/Today", label: "Today" },
@@ -106,7 +126,7 @@ const studentDashboard = () => {
                 isHeading={false}
               />
             </span>
-            <Table columns={columns} data={data} />
+            <Table columns={columns} values={values} />
           </div>
         </div>
       </div>
