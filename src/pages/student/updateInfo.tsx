@@ -9,8 +9,10 @@ import { toast } from "react-hot-toast";
 import { ToTitleCase } from "../../helpers/helpers";
 import axios from "axios";
 import { useState } from "react";
+import useFetchProfile from "../../helpers/fetchUserHook";
 
 const updateForm = () => {
+  useFetchProfile('/profile');
   const methods = useForm();
   const { user } = useUserStore();
   const { formValues } = useFormStore();
@@ -73,7 +75,7 @@ const updateForm = () => {
       );
       console.log(response);
       setIsLoading(false);
-      navigate("/student/home", { state: { key: Math.random() } });
+      navigate("/student/home");
     } catch (error) {
       setIsLoading(false);
       console.log(error);
