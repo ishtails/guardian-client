@@ -39,23 +39,23 @@ const updateForm = () => {
       formData.append("name", ToTitleCase(update_full_name));
     }
 
-    else if (update_mobile) {
+    if (update_mobile) {
       formData.append("mobile", update_mobile);
     }
 
-    else if (update_hostel) {
+    if (update_hostel) {
       formData.append("hostel", update_hostel.toUpperCase());
     }
 
-    else if (update_room) {
+    if (update_room) {
       formData.append("room", update_room);
     }
 
-    else if (formValues.update_identity_card) {
+    if (formValues.update_identity_card) {
       formData.append("idCard", formValues.update_identity_card);
     }
 
-    else{
+    if(!update_full_name && !update_mobile && !update_hostel && !update_room && !update_full_name && !formValues.update_identity_card){
       setIsLoading(false);
       return toast.error("No changes to submit", {
         id: 'update_no_changes',
