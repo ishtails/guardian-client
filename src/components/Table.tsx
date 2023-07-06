@@ -15,10 +15,10 @@ type TableRow = Record<TableColumn, string>;
 
 interface TableProps {
   columns: TableColumn[];
-  data: TableRow[];
+  values: TableRow[];
 }
 
-const Table: React.FC<TableProps> = ({ columns, data }) => {
+const Table: React.FC<TableProps> = ({ columns, values }) => {
   return (
     <div className="overflow-x-auto h-[72vh]">
       <table className="w-full text-sm text-left text-slate-500">
@@ -32,7 +32,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
+          {values.map((row, index) => (
             <tr key={index} className="border-b">
               {columns.map((column) => (
                 <td
