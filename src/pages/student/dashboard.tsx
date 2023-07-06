@@ -26,6 +26,7 @@ const studentDashboard = () => {
     { href: "/Today", label: "Today" },
     { href: "/Yesterday", label: "Yesterday" },
     { href: "/Past-Week", label: "Past Week" },
+    { href: "/Past-Month", label: "Past Month" },
   ];
 
   return (

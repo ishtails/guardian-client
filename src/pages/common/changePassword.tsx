@@ -19,14 +19,14 @@ const changePasswordForm = () => {
     };
     try{
       const response = await toast.promise(axios.post("/reset-password", requestObj), {
-        loading: 'Loading...',
-        success: 'Password changed Successfully!',
-        error: (error) => error.response.data,
+        loading: 'Working...',
+        success: 'Successful',
+        error: 'Password reset failed'
       });
       console.log(response)
       navigate(`/login`);
     }catch(error: any){
-      console.log(error.response);
+      console.log(error.response?.data);
     }
   };
   
