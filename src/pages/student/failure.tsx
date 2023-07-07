@@ -5,11 +5,9 @@ import failure_illustration from "../../assets/illustrations/failed.svg";
 import logo from "../../assets/icons/logo.svg";
 import exclaimation from "../../assets/icons/exclaimation.svg";
 
-type Props = {};
-
-const reason = ({}: Props) => {
+const reason = () => {
   return (
-    <div className="relative flex flex-col lg:hidden overflow-x-clip h-screen">
+    <div className="relative flex flex-col xl:hidden overflow-x-clip h-screen">
       <img src={bgyellowgradient} className="absolute -z-10 scale-[250%]" />
       <div className="flex flex-col px-4 pb-3">
         {/* Navbar */}
@@ -23,7 +21,6 @@ const reason = ({}: Props) => {
           <hr className="w-full" />
         </nav>
 
-        {/* Illustration Box */}
         {/* Illustration Box */}
         <div className="bg-white mt-8 shadow-card-shadow rounded-xl py-20 self-center w-[85%] flex flex-col items-center justify-center">
           <img src={failure_illustration} className="w-full"/>

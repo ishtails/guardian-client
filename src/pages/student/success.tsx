@@ -8,7 +8,7 @@ type Props = {};
 
 const reason = ({}: Props) => {
   return (
-    <div className="relative flex flex-col lg:hidden overflow-x-clip h-screen">
+    <div className="relative flex flex-col xl:hidden overflow-x-clip h-screen">
       <img src={bgbluegradient} className="absolute -z-10 scale-[300%]" />
       <div className="flex flex-col px-4 pb-3">
         {/* Navbar */}
