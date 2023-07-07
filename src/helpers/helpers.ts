@@ -18,8 +18,7 @@ export const getLocation = () => {
     }
 
     if(coords){
-        const location = { latitude: coords.latitude, longitude: coords.longitude }
-        return (location)
+        return { latitude: coords.latitude, longitude: coords.longitude }
     }
 };
 
