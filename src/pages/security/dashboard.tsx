@@ -45,7 +45,7 @@ const securityDashboard: React.FC = () => {
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         "Reason": unit.reason,
-        "Status": "open"
+        "Status": unit.username
       };
       values.push(newObj);
       values.sort((a, b) => {
@@ -61,6 +61,10 @@ const securityDashboard: React.FC = () => {
     });
   }
   
+  const handleEntryClose = () => {
+    // Perform the necessary actions when an entry is closed
+  };
+
   return (
     <div className="bg-[#FCFFFF] h-screen">
       {/* Desktop */}
