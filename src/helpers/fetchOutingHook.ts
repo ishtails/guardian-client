@@ -3,15 +3,15 @@ import { useEffect } from "react";
 import { useOutingStore } from "../store/store";
 
 type Filters = {
-  startDate?: string,
-  endDate?: string,
-  isOpen?: boolean,
-  username?: string,
-  reason?: string,
-  isLate?: boolean,
-}
+  startDate?: string;
+  endDate?: string;
+  isOpen?: boolean;
+  username?: string;
+  reason?: string;
+  isLate?: boolean;
+};
 
-const useFetchOutings = (query: string) => {
+const useFetchOutings = (query: string, filt: Filters) => {
   const { outing, setOuting, isLoading, setIsLoading, filter } = useOutingStore();
   useEffect(() => {
     if (!query) {
@@ -21,7 +21,9 @@ const useFetchOutings = (query: string) => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(query, { params: filter });
+        const response = await axios.get(query, {
+          params: { ...filter, ...filt },
+        });
         setOuting(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

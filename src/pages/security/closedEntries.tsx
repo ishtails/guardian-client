@@ -4,22 +4,19 @@ import Searchbar from "../../components/Searchbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
-import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { LuClipboardCheck } from "react-icons/lu";
-import { useOutingStore, useUserStore } from "../../store/store";
+import { useOutingStore } from "../../store/store";
 import moment from "moment";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type TableColumn = any;
 type TableRow = any;
 
 const closedEntries: React.FC = () => {
-  useFetchProfile("/profile");
-  useFetchOutings("/outings");
+  useFetchOutings("/outings", {isOpen:false});
 
-  const { user } = useUserStore();
-  const { outing, isLoading, filter, setFilter } = useOutingStore();
+  const { outing, isLoading } = useOutingStore();
   
   const columns: TableColumn[] = [
     "Roll No",

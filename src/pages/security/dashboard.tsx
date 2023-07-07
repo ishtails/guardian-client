@@ -4,23 +4,18 @@ import Searchbar from "../../components/Searchbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
-import Toggle from "../../components/Toggle";
 import { Link } from "react-router-dom";
-import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { LuClipboardCheck } from "react-icons/lu";
-import { useOutingStore, useUserStore } from "../../store/store";
+import { useOutingStore } from "../../store/store";
 import moment from "moment";
 
 type TableColumn = any;
 type TableRow = any;
 
 const securityDashboard: React.FC = () => {
-  useFetchProfile("/profile");
-  useFetchOutings("/outings");
-
-  const { user } = useUserStore();
-  const { outing, isLoading, filter, setFilter } = useOutingStore();
+  useFetchOutings("/outings", {isOpen:true});
+  const { outing, isLoading } = useOutingStore();
   
   const columns: TableColumn[] = [
     "Roll No",
@@ -60,10 +55,6 @@ const securityDashboard: React.FC = () => {
       });
     });
   }
-  
-  const handleEntryClose = () => {
-    // Perform the necessary actions when an entry is closed
-  };
 
   return (
     <div className="bg-[#FCFFFF] h-screen">

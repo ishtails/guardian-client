@@ -10,6 +10,14 @@ const dropDownNavStudent = [
   { href: "/changepass", label: "Change Password" },
   { href: "/logout", label: "Sign Out" },
 ];
+const dropDownNavSecurity = [
+  { href: "/changepass", label: "Change Password" },
+  { href: "/logout", label: "Sign Out" },
+];
+const dropDownNavAdmin = [
+  { href: "/changepass", label: "Change Password" },
+  { href: "/logout", label: "Sign Out" },
+];
 
 const Navbar = ({ role }: { role: String }) => {
   let location = useLocation();
@@ -28,7 +36,7 @@ const Navbar = ({ role }: { role: String }) => {
           <Link to={"/admin/home"} className="bg-slate-100 p-2 rounded-lg mx-1">
             <BiHomeAlt2 style={{ color: "#0EA5E9", fontSize: "24px" }} />
           </Link>
-          <Dropdown options={[]} title="admin" isHeading={true} />
+          <Dropdown options={dropDownNavAdmin} title="admin" isHeading={true} />
         </div>
       </div>
     );
@@ -50,6 +58,7 @@ const Navbar = ({ role }: { role: String }) => {
               className="bg-slate-100 p-2 rounded-lg mx-1"
             >
               <LuClipboardCheck
+                title='View Closed Entries'
                 style={{ color: "#0EA5E9", fontSize: "24px" }}
               />
             </Link>
@@ -61,12 +70,13 @@ const Navbar = ({ role }: { role: String }) => {
               className="bg-slate-100 p-2 rounded-lg mx-1"
             >
               <LuClipboardCheck
+                title='View Open Entries'
                 style={{ color: "#0EA5E9", fontSize: "24px" }}
               />
             </Link>
           )}
 
-          <Dropdown options={[]} title="security" isHeading={true} />
+          <Dropdown options={dropDownNavSecurity} title="security" isHeading={true} />
         </div>
       </div>
     );
