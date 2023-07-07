@@ -30,7 +30,7 @@ const forgotPassForm_1 = () => {
       });
       console.log(response)
       // setIsLoading(false);
-      navigate(`/login`);
+      navigate(`/`);
     } catch (error: any) {
       // setIsLoading(false);
       console.log(error.response);

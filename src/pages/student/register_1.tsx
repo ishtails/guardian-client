@@ -1,11 +1,46 @@
 import register from "../../assets/illustrations/register.svg";
 import register2 from "../../assets/illustrations/register2.svg";
 import AuthUI from "../../components/AuthUI";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
+import { useForm, FormProvider } from "react-hook-form";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
-const registerForm = () => (
-  <div className="flex flex-col space-y-3">
+const registerForm = () => {
+  const methods = useForm();
+  const navigate = useNavigate();
+  // const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = async (data: any) => {
+    // setIsLoading(true);
+    let { register_institute_email } = data;
+
+    const requestObj = {
+      email: register_institute_email,
+    };
+
+    try {
+      const response = await toast.promise(axios.post("/send-otp", requestObj), {
+        loading: 'Sending OTP...',
+        success: 'Successful',
+        error: (error) => ("error"),
+      });
+      console.log(response)
+      // setIsLoading(false);
+      navigate(`/register/otp`);
+    } catch (error: any) {
+      // setIsLoading(false);
+      console.log(error.response);
+    }
+  };
+
+  return (
+    <FormProvider {...methods}>
+      <form
+        className="flex flex-col space-y-4"
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
     {/* Header */}
     <div className="space-y-1">
       <span className="font-lexend font-bold text-h36 sm:text-h32">
@@ -18,12 +53,11 @@ const registerForm = () => (
 
     {/* Input Fields */}
     <InputField
-      label="Institute Email"
+      label="register_Institute Email"
       placeholder="bcs_xxxxyyy@iiitm.ac.in"
       isPassword={false}
+      validationRules={{ required: { value: true, message: "Required" } }}
     />
-
-    <InputField label="Password" placeholder="Password" isPassword={true} />
 
     {/* Submit Button */}
     <div className="flex flex-col text-h14 text-center space-y-2">
@@ -37,8 +71,10 @@ const registerForm = () => (
         Already registered? Login
       </Link>
     </div>
-  </div>
-);
+    </form>
+    </FormProvider>
+  );
+};
 
 const registerScreen = () => {
   return (
