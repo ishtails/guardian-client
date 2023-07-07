@@ -7,26 +7,22 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-type Props = { title: string; isHeading: boolean };
+type Props = { title: string; isHeading: boolean; options:any };
 
-const links = [
-  { href: "/account-settings", label: "Account settings" },
-  { href: "/support", label: "Support" },
-  { href: "/sign-out", label: "Sign out" },
-];
-
-const Dropdown = (props: Props) => {
+const Dropdown = ({title, isHeading, options}: Props) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
           className={`${
-            props.isHeading ? "inline-flex items-center gap-x-1.5 bg-transparent px-3 py-1 rounded-md text-primary font-lexend font-bold" : "inline-flex w-32 md:w-44 justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
+            isHeading
+              ? "inline-flex items-center gap-x-1.5 bg-transparent px-3 py-1 rounded-md text-primary font-lexend font-bold"
+              : "inline-flex w-32 md:w-44 justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
           }`}
         >
-          {props.title}
+          {title}
           <img
-            src={props.isHeading ? dropdown_blue : dropdown}
+            src={isHeading ? dropdown_blue : dropdown}
             className="w-[12px] 
                 -mr-1 h-5"
           />
@@ -44,20 +40,22 @@ const Dropdown = (props: Props) => {
       >
         <Menu.Items
           className={`absolute ${
-            props.isHeading ? "right-0 bg-[#FCFFFF]" : "right-0 md:left-0 bg-white"
+            isHeading
+              ? "right-0 bg-[#FCFFFF]"
+              : "right-0 md:left-0 bg-white"
           } z-10 mt-3 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
-          {links.map((link) => (
-            <Menu.Item key={link.href} as={Fragment}>
+          {options.map((option: any) => (
+            <Menu.Item key={option.href} as={Fragment}>
               {({ active }) => (
                 <a
-                  href={link.href}
+                  href={option.href}
                   className={classNames(
                     active ? "bg-slate-100 text-slate-900" : "text-slate-700",
                     "block w-full px-4 py-2 text-left text-sm"
                   )}
                 >
-                  {link.label}
+                  {option.label}
                 </a>
               )}
             </Menu.Item>

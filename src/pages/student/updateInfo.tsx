@@ -1,46 +1,85 @@
 import update from "../../assets/illustrations/updateInfo.svg";
 import AuthUI from "../../components/AuthUI";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import InputImage from "../../components/InputImage";
 import { FormProvider, useForm } from "react-hook-form";
-import { useFormStore } from "../../store/store";
+import { useFormStore, useUserStore } from "../../store/store";
 import { toast } from "react-hot-toast";
-
-const ToTitleCase = (value:string) => {
-  const words = value.split(' ');
-
-  const capitalizedWords = words.map((word) => {
-    const lowercaseWord = word.toLowerCase();
-    const firstLetterCapitalized = lowercaseWord.charAt(0).toUpperCase();
-    const restOfWord = lowercaseWord.slice(1);
-
-    return firstLetterCapitalized + restOfWord;
-  });
-
-  return capitalizedWords.join(' ');
-};
+import { ToTitleCase } from "../../helpers/helpers";
+import axios from "axios";
+import { useState } from "react";
+import useFetchProfile from "../../helpers/fetchUserHook";
 
 const updateForm = () => {
+  useFetchProfile('/profile');
   const methods = useForm();
-  const {formValues} = useFormStore();
+  const { user } = useUserStore();
+  const { formValues } = useFormStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const onSubmit = (data: any) => {
-    let {update_full_name, update_mobile, update_hostel, update_room} = data;
-
-    if(!formValues.update_identity_card){
-      return toast.error("No image attached")
+  const onSubmit = async (data: any) => {
+    if(!user){
+      return toast.error("Not logged in", {
+        id: 'update_not_logged_in',
+      });
     }
 
-    const requestObj = {
-      name: ToTitleCase(update_full_name),
-      mobile: update_mobile,
-      hostel: update_hostel.toUpperCase(),
-      room: update_room,
-      idCard: formValues.update_identity_card
+    setIsLoading(true);
+    let { update_full_name, update_mobile, update_hostel, update_room } = data;
+
+    if (!formValues.update_identity_card && !user?.idCard) {
+      setIsLoading(false);
+      return toast.error("No image attached", {
+        id: 'update_no_image',
+      });
     }
 
-    console.log(requestObj)
+    const formData = new FormData();
+    if (update_full_name) {
+      formData.append("name", ToTitleCase(update_full_name));
+    }
+
+    if (update_mobile) {
+      formData.append("mobile", update_mobile);
+    }
+
+    if (update_hostel) {
+      formData.append("hostel", update_hostel.toUpperCase());
+    }
+
+    if (update_room) {
+      formData.append("room", update_room);
+    }
+
+    if (formValues.update_identity_card) {
+      formData.append("idCard", formValues.update_identity_card);
+    }
+
+    if(!update_full_name && !update_mobile && !update_hostel && !update_room && !update_full_name && !formValues.update_identity_card){
+      setIsLoading(false);
+      return toast.error("No changes to submit", {
+        id: 'update_no_changes',
+      });
+    }
+
+    try {
+      const response = await toast.promise(
+        axios.patch("/update-profile", formData),
+        {
+          loading: "Updating...",
+          success: "Updated Successfully",
+          error: (error) => error.response?.data || "Server Error",
+        }
+      );
+      console.log(response);
+      setIsLoading(false);
+      navigate("/student/home");
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
   };
 
   return (
@@ -62,18 +101,18 @@ const updateForm = () => {
         {/* Input Fields */}
         <InputField
           label="update_Full Name"
-          placeholder="Enter your name"
+          placeholder={user?.name || "Enter your name"}
           isPassword={false}
           validationRules={{
-            required: { value: true, message: "Required" },
+            required: { value: !user?.name, message: "Required" },
           }}
         />
         <InputField
           label="update_Mobile"
-          placeholder="10-digit mobile number"
+          placeholder={user?.mobile.toString() || "10-digit mobile number"}
           isPassword={false}
           validationRules={{
-            required: { value: true, message: "Required" },
+            required: { value: !user?.mobile, message: "Required" },
             pattern: {
               value: /^\d{10}$/,
               message: "Enter a valid 10-digit mobile number",
@@ -82,22 +121,22 @@ const updateForm = () => {
         />
         <InputField
           label="update_Hostel"
-          placeholder="BH1 / BH2 / BH3 / IVH / GH"
+          placeholder={user?.hostel || "BH1 / BH2 / BH3 / IVH / GH"}
           isPassword={false}
           validationRules={{
-            required: { value: true, message: "Required" },
+            required: { value: !user?.hostel, message: "Required" },
             pattern: {
               value: /^(bh1|bh2|bh3|ivh|gh)$/i,
-              message: 'Invalid Hostel',
+              message: "Invalid Hostel",
             },
           }}
         />
         <InputField
           label="update_Room"
-          placeholder="Hostel room number"
+          placeholder={user?.room.toString() || "Room number"}
           isPassword={false}
           validationRules={{
-            required: { value: true, message: "Required" },
+            required: { value: !user?.room, message: "Required" },
             pattern: {
               value: /^\d{3}$/,
               message: "Enter a valid room number",
@@ -105,11 +144,14 @@ const updateForm = () => {
           }}
         />
 
-        <InputImage label="update_Identity Card"/>
+        <InputImage label="update_Identity Card" />
 
         {/* Submit Button */}
         <div className="pt-1">
-          <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold">
+          <button
+            disabled={isLoading}
+            className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold disabled:bg-slate-300"
+          >
             Submit
           </button>
         </div>

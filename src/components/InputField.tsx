@@ -36,10 +36,10 @@ const InputField = ({
           placeholder={placeholder}
           className={`border rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50 ${errors[inputId] ? 'border-red-300':''}`}
         />
-        <button
+        <div
           className={`${
             !isPassword ? "hidden" : "absolute"
-          } top-3 right-4 text-gray-600`}
+          } top-3 right-4 text-gray-600 cursor-pointer`}
           onClick={() => {
             setIsPasswordVisible((prevState) => !prevState);
           }}
@@ -80,7 +80,7 @@ const InputField = ({
               />
             </svg>
           )}
-        </button>
+        </div>
         {errors[inputId] && (
           <span className="text-red-500 text-p14">{errors[inputId].message}</span>
         )}

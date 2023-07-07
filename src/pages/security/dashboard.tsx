@@ -72,7 +72,7 @@ const securityDashboard: React.FC = () => {
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <Searchbar isMobile={true} />
-          <Dropdown title="security" isHeading={true} />
+          <Dropdown options={[]} title="security" isHeading={true} />
         </nav>
 
         <hr />

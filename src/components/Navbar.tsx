@@ -5,9 +5,13 @@ import { LuClipboardCheck } from "react-icons/lu";
 import { BiHomeAlt2 } from "react-icons/bi";
 import AppLogo from "./Logo";
 
-type Props = { role: String };
+const dropDownNavStudent = [
+  { href: "/student/update", label: "Update Profile" },
+  { href: "/changepass", label: "Change Password" },
+  { href: "/logout", label: "Sign Out" },
+];
 
-const Navbar = ({ role }: Props) => {
+const Navbar = ({ role }: { role: String }) => {
   let location = useLocation();
 
   if (role === "admin")
@@ -24,7 +28,7 @@ const Navbar = ({ role }: Props) => {
           <Link to={"/admin/home"} className="bg-slate-100 p-2 rounded-lg mx-1">
             <BiHomeAlt2 style={{ color: "#0EA5E9", fontSize: "24px" }} />
           </Link>
-          <Dropdown title="admin" isHeading={true} />
+          <Dropdown options={[]} title="admin" isHeading={true} />
         </div>
       </div>
     );
@@ -62,7 +66,7 @@ const Navbar = ({ role }: Props) => {
             </Link>
           )}
 
-          <Dropdown title="security" isHeading={true} />
+          <Dropdown options={[]} title="security" isHeading={true} />
         </div>
       </div>
     );
@@ -77,7 +81,7 @@ const Navbar = ({ role }: Props) => {
         </div>
 
         <div className="flex items-center">
-          <Dropdown title="student" isHeading={true} />
+          <Dropdown options={dropDownNavStudent} title="student" isHeading={true} />
         </div>
       </div>
     );
