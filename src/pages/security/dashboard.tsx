@@ -6,11 +6,23 @@ import logo from "../../assets/icons/logo.svg";
 import React from "react";
 import Toggle from "../../components/Toggle";
 import { Link } from "react-router-dom";
+import useFetchProfile from "../../helpers/fetchUserHook";
+import useFetchOutings from "../../helpers/fetchOutingHook";
 import { LuClipboardCheck } from "react-icons/lu";
+import { useOutingStore, useUserStore } from "../../store/store";
+import moment from "moment";
+
+type TableColumn = any;
+type TableRow = any;
 
 const securityDashboard: React.FC = () => {
+  useFetchProfile("/profile");
+  useFetchOutings("/outings");
+
+  const { user } = useUserStore();
+  const { outing, isLoading, filter, setFilter } = useOutingStore();
+  
   const columns: TableColumn[] = [
-    "Date",
     "Roll No",
     "Name",
     "Hostel",
@@ -20,32 +32,35 @@ const securityDashboard: React.FC = () => {
     "Reason",
     "Status",
   ];
-  const data: TableRow[] = [
-    // Sample data rows abhi ke liye, baadme we'll fetch from data.json
-    {
-      Date: "13/06/2023",
-      "Roll No": "2021BCS012",
-      Name: "Aneeka Mangal",
-      Hostel: "GH",
-      Room: "126",
-      "Out Time": "10:00 AM",
-      "In Time": "5:00 PM",
-      Reason: "Market",
-      Status: <Toggle />,
-    },
-    {
-      Date: "13/06/2023",
-      "Roll No": "2021BCS035",
-      Name: "Kartikay Tiwari",
-      Hostel: "BH1",
-      Room: "340",
-      "Out Time": "11:00 AM",
-      "In Time": "9:00 PM",
-      Reason: "Medical Shop",
-      Status: <Toggle />,
-    },
-  ];
-
+  const values: TableRow[] = [];
+  
+  if (!isLoading) {
+    outing?.map((unit) => {
+      const newObj = {
+        "Name": unit.name,
+        "Roll No": unit.username,
+        "Hostel": unit.hostel,
+        "Room": unit.room,
+        "Out Time": unit.outTime,
+        "In Time": unit.inTime,
+        "Late By": unit.lateBy,
+        "Reason": unit.reason,
+        "Status": "true"
+      };
+      values.push(newObj);
+      values.sort((a, b) => {
+        if (a["Out Time"] > b["Out Time"]) {
+          return -1;
+        }
+        
+        if (a["Out Time"] < b["Out Time"]) {
+          return 1;
+        }
+        return 0;
+      });
+    });
+  }
+  
   return (
     <div className="bg-[#FCFFFF] h-screen">
       {/* Desktop */}
@@ -60,10 +75,10 @@ const securityDashboard: React.FC = () => {
                 Open Entries
               </h1>
               <div className=" px-2 py-1 rounded-lg text-sm font-medium">
-                13/06/2023
+                {moment().format("YYYY-MM-DD")}
               </div>
             </span>
-            <Table columns={columns} data={data} />
+            <Table columns={columns} values={values} />
           </div>
         </div>
       </div>
@@ -88,7 +103,7 @@ const securityDashboard: React.FC = () => {
         </div>
 
         <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
-          <Table columns={columns} data={data} />
+          <Table columns={columns} values={values} />
         </div>
 
         <hr />
