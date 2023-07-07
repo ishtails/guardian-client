@@ -12,14 +12,14 @@ type TableRow = any;
 
 const reports = () => {
   useFetchProfile("/profile");
-  useFetchOutings("/outings");
+  useFetchOutings("/outings", {});
 
   const { user } = useUserStore();
-  const { outing, isLoading, filter, setFilter } = useOutingStore();
+  const { outing, isLoading } = useOutingStore();
 
   const columns: TableColumn[] = ["Out Time", "In Time", "Late By", "Reason"];
   const values: TableRow[] = [];
-    
+
   if (!isLoading) {
     outing?.map((unit) => {
       const newObj = {
@@ -47,7 +47,7 @@ const reports = () => {
     <div className="flex flex-col space-y-4 px-4 pb-3 relative">
       <nav className="flex flex-row pt-4 items-center justify-between ">
         <Link to={"/student/home"}>
-            <BiHomeAlt2 style={{ color: "#0C4A6E", fontSize: "24px" }} />
+          <BiHomeAlt2 style={{ color: "#0C4A6E", fontSize: "24px" }} />
         </Link>
         <button className="font-bold text-p14 text-[#0C4A6E]">Sign Out</button>
       </nav>
@@ -56,8 +56,12 @@ const reports = () => {
 
       <div className="flex flex-row justify-between items-center">
         <div>
-          <h1 className="font-lexend text-p18 font-bold text-[#0C4A6E]">{user?.name}</h1>
-          <p className="text-p14 font-medium text-[#0c4a6e7a]">{user?.username}</p>
+          <h1 className="font-lexend text-p18 font-bold text-[#0C4A6E]">
+            {user?.name}
+          </h1>
+          <p className="text-p14 font-medium text-[#0c4a6e7a]">
+            {user?.username}
+          </p>
         </div>
         <span className="flex space-x-4 items-center">
           <Dropdown options={[]} title="Today" isHeading={false} />

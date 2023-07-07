@@ -14,9 +14,9 @@ type TableColumn = any;
 type TableRow = any;
 
 const securityDashboard: React.FC = () => {
-  useFetchOutings("/outings", {isOpen:true});
+  useFetchOutings("/outings", { isOpen: true });
   const { outing, isLoading } = useOutingStore();
-  
+
   const columns: TableColumn[] = [
     "Roll No",
     "Name",
@@ -28,26 +28,26 @@ const securityDashboard: React.FC = () => {
     "Status",
   ];
   const values: TableRow[] = [];
-  
+
   if (!isLoading) {
     outing?.map((unit) => {
       const newObj = {
-        "Name": unit.name,
+        Name: unit.name,
         "Roll No": unit.username,
-        "Hostel": unit.hostel,
-        "Room": unit.room,
+        Hostel: unit.hostel,
+        Room: unit.room,
         "Out Time": unit.outTime,
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
-        "Reason": unit.reason,
-        "Status": unit.username
+        Reason: unit.reason,
+        Status: unit.username,
       };
       values.push(newObj);
       values.sort((a, b) => {
         if (a["Out Time"] > b["Out Time"]) {
           return -1;
         }
-        
+
         if (a["Out Time"] < b["Out Time"]) {
           return 1;
         }

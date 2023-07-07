@@ -18,10 +18,10 @@ type TableRow = any;
 
 const studentDashboard = () => {
   useFetchProfile("/profile");
-  useFetchOutings("/outings");
+  useFetchOutings("/outings", {});
 
   const { user } = useUserStore();
-  const { outing, isLoading, filter, setFilter } = useOutingStore();
+  const { outing, isLoading } = useOutingStore();
 
   const columns: TableColumn[] = ["Out Time", "In Time", "Late By", "Reason"];
   const values: TableRow[] = [];
