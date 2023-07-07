@@ -133,7 +133,7 @@ const studentDashboard = () => {
 
       {/* Mobile */}
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3 relative">
-        <nav className="flex flex-row pt-4 items-center justify-between ">
+        <nav className="flex flex-row pt-4 items-center justify-between">
           <Link to={"/student/update"}>
             <img src={profile} className="" />
           </Link>
@@ -144,9 +144,9 @@ const studentDashboard = () => {
 
         <hr />
 
-        <div className="h-[72vh] overflow-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
+        <div className="h-[72vh] overflow-x-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
           <div className="flex flex-col items-center w-screen space-y-4">
-            <img src={avatar} className="w-[50%]" />
+            <img src={avatar} className="w-[50%] max-w-[200px]" />
 
             <div className="flex flex-col items-center">
               <h2 className="text-h24 font-lexend font-bold">{user?.name}</h2>
@@ -183,7 +183,7 @@ const studentDashboard = () => {
           </div>
         </div>
 
-        <div className="flex space-x-3 self-center">
+        <div className="flex space-x-3 self-center -z-10">
           <img src={logo} className="w-[32px]" />
           <h1 className="flex flex-row font-lexend text-h28 text-primary">
             Guar <span className="font-lexend font-bold text-h28">dian</span>
