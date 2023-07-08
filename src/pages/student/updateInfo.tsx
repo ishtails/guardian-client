@@ -12,7 +12,7 @@ import { useState } from "react";
 import useFetchProfile from "../../helpers/fetchUserHook";
 
 const updateForm = () => {
-  useFetchProfile('/profile');
+  useFetchProfile("/profile");
   const methods = useForm();
   const { user } = useUserStore();
   const { formValues } = useFormStore();
@@ -20,9 +20,9 @@ const updateForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
-    if(!user){
+    if (!user) {
       return toast.error("Not logged in", {
-        id: 'update_not_logged_in',
+        id: "update_not_logged_in",
       });
     }
 
@@ -32,7 +32,7 @@ const updateForm = () => {
     if (!formValues.update_identity_card && !user?.idCard) {
       setIsLoading(false);
       return toast.error("No image attached", {
-        id: 'update_no_image',
+        id: "update_no_image",
       });
     }
 
@@ -57,10 +57,17 @@ const updateForm = () => {
       formData.append("idCard", formValues.update_identity_card);
     }
 
-    if(!update_full_name && !update_mobile && !update_hostel && !update_room && !update_full_name && !formValues.update_identity_card){
+    if (
+      !update_full_name &&
+      !update_mobile &&
+      !update_hostel &&
+      !update_room &&
+      !update_full_name &&
+      !formValues.update_identity_card
+    ) {
       setIsLoading(false);
       return toast.error("No changes to submit", {
-        id: 'update_no_changes',
+        id: "update_no_changes",
       });
     }
 
@@ -109,7 +116,7 @@ const updateForm = () => {
         />
         <InputField
           label="update_Mobile"
-          placeholder={"10-digit mobile number" || user?.mobile.toString() }
+          placeholder={user?.mobile?.toString() || "10-digit mobile number"}
           isPassword={false}
           validationRules={{
             required: { value: !user?.mobile, message: "Required" },
@@ -133,7 +140,7 @@ const updateForm = () => {
         />
         <InputField
           label="update_Room"
-          placeholder={"Room number" || user?.room.toString() }
+          placeholder={user?.room?.toString() || "Room number"}
           isPassword={false}
           validationRules={{
             required: { value: !user?.room, message: "Required" },
