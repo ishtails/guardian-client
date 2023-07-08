@@ -109,7 +109,7 @@ const updateForm = () => {
         />
         <InputField
           label="update_Mobile"
-          placeholder={user?.mobile.toString() || "10-digit mobile number"}
+          placeholder={"10-digit mobile number" || user?.mobile.toString() }
           isPassword={false}
           validationRules={{
             required: { value: !user?.mobile, message: "Required" },
@@ -133,7 +133,7 @@ const updateForm = () => {
         />
         <InputField
           label="update_Room"
-          placeholder={user?.room.toString() || "Room number"}
+          placeholder={"Room number" || user?.room.toString() }
           isPassword={false}
           validationRules={{
             required: { value: !user?.room, message: "Required" },

@@ -55,13 +55,13 @@ const registerForm = () => {
     <InputField
       label="register_Password"
       placeholder="Enter Password"
-      isPassword={false}
+      isPassword={true}
       validationRules={{ required: { value: true, message: "Required" } }}
     />
     <InputField
       label="register_Confirm Password"
       placeholder="Confirm Password"
-      isPassword={false}
+      isPassword={true}
       validationRules={{ required: { value: true, message: "Required" } }}
     />
 
