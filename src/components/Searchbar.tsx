@@ -41,7 +41,7 @@ const Searchbar = (props: { isMobile: boolean }) => {
         <input
           className={`focus:outline-none ${
             props.isMobile ? "w-32 h-8 bg-white" : "bg-slate-50"
-          }`}
+          } py-2`}
           placeholder="Search"
           value={searchTerm}
           onChange={filterDropdown}
