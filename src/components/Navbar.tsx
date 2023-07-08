@@ -1,10 +1,10 @@
-import Searchbar from "./Searchbar";
 import { Link, useLocation } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { LuClipboardCheck } from "react-icons/lu";
 import { BiHomeAlt2 } from "react-icons/bi";
 import AppLogo from "./Logo";
 import { useOutingStore } from "../store/store";
+import Searchbar from "./SearchBar";
 
 const dropDownNavStudent = [
   { href: "/student/update", label: "Update Profile" },
@@ -31,7 +31,7 @@ const Navbar = ({ role }: { role: String }) => {
           <Link to={"/admin/home"}>
             <AppLogo />
           </Link>
-          <Searchbar isMobile={false} />
+          <Searchbar />
         </div>
 
         <div className="flex items-center">
@@ -50,7 +50,7 @@ const Navbar = ({ role }: { role: String }) => {
           <Link to={"/security/home"}>
             <AppLogo />
           </Link>
-          <Searchbar isMobile={false} />
+          <Searchbar />
         </div>
 
         <div className="flex items-center">
