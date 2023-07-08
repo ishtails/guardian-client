@@ -1,4 +1,4 @@
-import { Routes, Route, redirect } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import LoginScreen from "../pages/common/login";
 import Error404 from "../pages/common/error404";
 import ChangePassword from "../pages/common/changePassword";
@@ -20,7 +20,7 @@ import StudentReason from "../pages/student/reason";
 import SuccessfulExit from "../pages/student/success";
 import FailedExit from "../pages/student/failure";
 import StudentUpdateInfo from "../pages/student/updateInfo";
-import LogOut from "../components/logout";
+import LogOut from "../components/logOut";
 
 type Props = {};
 

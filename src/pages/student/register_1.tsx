@@ -24,7 +24,7 @@ const registerForm = () => {
       const response = await toast.promise(axios.post("/send-otp", requestObj), {
         loading: 'Sending OTP...',
         success: 'Successful',
-        error: (error) => ("error"),
+        error: (error) => ("Failed"),
       });
       console.log(response)
       // setIsLoading(false);
