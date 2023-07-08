@@ -97,15 +97,15 @@ const loginForm = () => {
         </div>
 
         {/* Submit */}
-        <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-col items-center space-y-3">
           <button disabled={isLoading} className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold disabled:bg-slate-300">
             Sign In
           </button>
           <Link
-            to="/help"
+            to="/register/email"
             className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 text-p14"
           >
-            Something Wrong? Click Here
+            Create new account
           </Link>
         </div>
       </form>
