@@ -39,7 +39,7 @@ const mainRouter = ({}: Props) => {
 
       {/* Admin Routes */}
       <Route path="/admin/home" element={<AdminDashboard />} />
-      <Route path="/admin/individual" element={<IndividualProfile />} />
+      <Route path="/:username" element={<IndividualProfile />} />
 
       {/* Security Routes */}
       <Route path="/security/home" element={<SecurityDashboard />}/> 
