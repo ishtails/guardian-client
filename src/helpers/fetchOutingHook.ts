@@ -35,6 +35,7 @@ const useFetchOutings = (query: string, filt: Filters) => {
   }, [query, filter]);
 
   return { outing, isLoading };
+  
 };
 
 export default useFetchOutings;

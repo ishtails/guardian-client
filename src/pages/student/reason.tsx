@@ -12,7 +12,7 @@ import axios from "axios";
 const reason = () => {
   const methods = useForm();
   const location = getLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
     let { reason_reason } = data;
