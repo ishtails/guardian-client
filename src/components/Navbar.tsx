@@ -4,6 +4,7 @@ import Dropdown from "./Dropdown";
 import { LuClipboardCheck } from "react-icons/lu";
 import { BiHomeAlt2 } from "react-icons/bi";
 import AppLogo from "./Logo";
+import { useOutingStore } from "../store/store";
 
 const dropDownNavStudent = [
   { href: "/student/update", label: "Update Profile" },
@@ -21,6 +22,7 @@ const dropDownNavAdmin = [
 
 const Navbar = ({ role }: { role: String }) => {
   let location = useLocation();
+  const { filter, setFilter } = useOutingStore();
 
   if (role === "admin")
     return (
@@ -53,15 +55,25 @@ const Navbar = ({ role }: { role: String }) => {
 
         <div className="flex items-center">
           {location.pathname === "/security/home" && (
-            <Link
-              to={`/security/closed`}
-              className="bg-slate-100 p-2 rounded-lg mx-1"
+            <label
+              htmlFor="toggleOpenNav"
+              className="cursor-pointer bg-slate-100 p-2 rounded-lg mx-1"
             >
               <LuClipboardCheck
-                title='View Closed Entries'
+                title="View Closed Entries"
                 style={{ color: "#0EA5E9", fontSize: "24px" }}
               />
-            </Link>
+              <input
+                type="checkbox"
+                id="toggleOpenNav"
+                name="toggleOpenNav"
+                className="hidden"
+                checked={filter?.isOpen || false}
+                onChange={(e) => {
+                  setFilter({ ...filter, isOpen: e.target.checked });
+                }}
+              />
+            </label>
           )}
 
           {location.pathname === "/security/closed" && (
@@ -70,13 +82,17 @@ const Navbar = ({ role }: { role: String }) => {
               className="bg-slate-100 p-2 rounded-lg mx-1"
             >
               <LuClipboardCheck
-                title='View Open Entries'
+                title="View Open Entries"
                 style={{ color: "#0EA5E9", fontSize: "24px" }}
               />
             </Link>
           )}
 
-          <Dropdown options={dropDownNavSecurity} title="security" isHeading={true} />
+          <Dropdown
+            options={dropDownNavSecurity}
+            title="security"
+            isHeading={true}
+          />
         </div>
       </div>
     );
@@ -91,14 +107,21 @@ const Navbar = ({ role }: { role: String }) => {
         </div>
 
         <div className="flex items-center">
-          <Dropdown options={dropDownNavStudent} title="student" isHeading={true} />
+          <Dropdown
+            options={dropDownNavStudent}
+            title="student"
+            isHeading={true}
+          />
         </div>
       </div>
     );
-
-    else {
-      return(<div className="text-center font-semibold text-red-500 mt-5">Invalid NavBar Role Prop</div>)
-    }
+  else {
+    return (
+      <div className="text-center font-semibold text-red-500 mt-5">
+        Invalid NavBar Role Prop
+      </div>
+    );
+  }
 };
 
 export default Navbar;
