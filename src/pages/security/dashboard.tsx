@@ -60,10 +60,6 @@ const securityDashboard: React.FC = () => {
       });
     });
   }
-  
-  const handleEntryClose = () => {
-    // Perform the necessary actions when an entry is closed
-  };
 
   return (
     <div className="bg-[#FCFFFF] h-screen">

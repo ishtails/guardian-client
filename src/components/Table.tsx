@@ -43,13 +43,13 @@ const Table: React.FC<TableProps> = ({ columns, values }) => {
                   className="px-6 py-4 whitespace-nowrap"
                 >
                   {column==='Status' ? (<div>
-                    <button className="w-[50px]" onClick={async ()=>{
+                    <button onClick={async ()=>{
                       try {
                         await axios.get(`/security/close-entry/${row[column]}`)
                       } catch (error) {
                         console.log(error)
                       }
-                    }}><AiFillCheckCircle /></button>
+                    }}><AiFillCheckCircle className="icon" size="25px" color="#0EA5E9"/></button>
                   </div>) : row[column]}
                 </td>
               ))}
