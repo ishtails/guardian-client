@@ -30,33 +30,35 @@ const Searchbar = (props: { isMobile: boolean }) => {
   // );
 
   return (
-    <div
-      className={`flex flex-col ${
-        props.isMobile ? "bg-white" : "bg-slate-50"
-      } border border-slate-300 text-slate-900 text-sm rounded-lg hover:border-sky-500 px-3 w-auto`}
-    >
-      <div>
-        <form>
-          <input
-            className={`focus:outline-none ${
-              props.isMobile ? "w-32 h-8 bg-white" : "bg-slate-50"
-            }`}
-            placeholder="Search"
-            value={searchTerm}
-            onChange={filterDropdown}
-          />
-          <img
-            src={search}
-            alt="Search"
-            className="cursor-pointer inset-x-44 inset-y-2"
-          />
-        </form>
-      </div>
-      <div className="">
+    <div className="relative">
+      <form
+        className={`flex ${
+          props.isMobile ? "bg-white" : "bg-slate-50"
+        } border border-slate-300 text-slate-900 text-sm rounded-lg hover:border-sky-500 px-3 w-auto`}
+      >
+        <input
+          className={`focus:outline-none ${
+            props.isMobile ? "w-32 h-8 bg-white" : "bg-slate-50"
+          }`}
+          placeholder="Search"
+          value={searchTerm}
+          onChange={filterDropdown}
+        />
+        <img
+          src={search}
+          alt="Search"
+          className="cursor-pointer inset-x-44 inset-y-2"
+        />
+      </form>
+      <div className="absolute mt-2 bg-white border border-gray-300 rounded-lg">
         {dropdownItems.map((item) => {
           console.log(item.username);
           return (
-            <a key={item.username} href={`/${item.username}`}>
+            <a
+              key={item.username}
+              href={`/${item.username}`}
+              className="block px-4 py-2 hover:bg-gray-100 text-[14px]"
+            >
               {item.name}
             </a>
           );
