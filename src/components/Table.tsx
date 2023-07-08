@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { AiFillCheckCircle } from 'react-icons/ai';
+import { AiFillCheckCircle } from "react-icons/ai";
 
 type TableColumn =
   | "Date"
@@ -42,15 +42,27 @@ const Table: React.FC<TableProps> = ({ columns, values }) => {
                   key={column}
                   className="px-6 py-4 whitespace-nowrap"
                 >
-                  {column==='Status' ? (<div>
-                    <button className="w-[50px]" onClick={async ()=>{
-                      try {
-                        await axios.get(`/security/close-entry/${row[column]}`)
-                      } catch (error) {
-                        console.log(error)
-                      }
-                    }}><AiFillCheckCircle /></button>
-                  </div>) : row[column]}
+                  {column === "Status" ? (
+                    <div className="flex justify-center">
+                      <button
+                        className=""
+                        onClick={async () => {
+                          try {
+                            await axios.get(
+                              `/security/close-entry/${row[column]}`
+                            );
+                            window.location.reload();
+                          } catch (error) {
+                            console.log(error);
+                          }
+                        }}
+                      >
+                        <AiFillCheckCircle style={{ color: "#0ea5e9", fontSize: "1.6em" }}/>
+                      </button>
+                    </div>
+                  ) : (
+                    row[column]
+                  )}
                 </td>
               ))}
             </tr>
