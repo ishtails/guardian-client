@@ -13,11 +13,22 @@ import { Link } from "react-router-dom";
 import { useOutingStore, useUserStore } from "../../store/store";
 import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
+import AvatarModal from "../../components/AvatarModal";
+import { useState } from "react";
 
 type TableColumn = any;
 type TableRow = any;
 
 const studentDashboard = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   useFetchProfile("/profile");
   useFetchOutings("/outings", { isOpen: false });
 
@@ -60,6 +71,7 @@ const studentDashboard = () => {
 
   return (
     <div className="h-screen ">
+      <AvatarModal isOpen={isModalOpen} onClose={closeModal} />
       {/* Desktop */}
       <div className="hidden md:flex flex-col px-5 space-y-8 bg-[#FCFFFF]">
         <nav>
@@ -71,9 +83,14 @@ const studentDashboard = () => {
             <img src={skygradient} />
 
             <div className=" rounded-full absolute self-center top-[7%] lg:top-[9%] w-[50%]">
-              <img src={avatar} className="relative rounded-full transition"/>
-              
-              <button className="transition opacity-0 hover:opacity-100 rounded-full bgr z-10 absolute top-[45%] left-[40%]"><FiEdit2 style={{color:"white", fontSize: "1.5em"}}/></button>
+              <img src={avatar} className="rounded-full transition w-[100%]" />
+
+              <button
+                onClick={openModal}
+                className="transition opacity-0 hover:opacity-100 rounded-full bgr z-10 absolute top-[45%] left-[41%] lg:left-[43%] w-[100%]"
+              >
+                <FiEdit2 style={{ color: "white", fontSize: "1.5em" }} />
+              </button>
             </div>
 
             <div className="flex flex-col bg-white rounded-b-xl shadow-card-shadow space-y-4 pt-[25%] px-5 pb-4 items-center">
@@ -114,7 +131,6 @@ const studentDashboard = () => {
               >
                 Update Info
               </Link>
-              vbu
             </div>
 
             <div className="flex justify-center mt-5 bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center">
