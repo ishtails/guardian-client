@@ -41,7 +41,7 @@ const Searchbar = (props: { isMobile: boolean }) => {
         <input
           className={`focus:outline-none ${
             props.isMobile ? "w-32 h-8 bg-white" : "bg-slate-50"
-          }`}
+          } py-2`}
           placeholder="Search"
           value={searchTerm}
           onChange={filterDropdown}
@@ -49,7 +49,7 @@ const Searchbar = (props: { isMobile: boolean }) => {
         <img
           src={search}
           alt="Search"
-          className="cursor-pointer inset-x-44 inset-y-2"
+          className="cursor-pointer mt-2 w-4 h-4"
         />
       </form>
       {/* <Transition
