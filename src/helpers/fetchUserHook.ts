@@ -13,7 +13,12 @@ const useFetchProfile = (query: string) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(query);
-        setUser(response.data);
+        const outStatus = await axios.get('/student/outing-status');
+        if(outStatus.data === "outside"){
+          setUser({...response.data, isOutside:true})
+        } else{
+          setUser({...response.data, isOutside:false})
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }

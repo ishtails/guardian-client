@@ -4,23 +4,25 @@ import Searchbar from "../../components/Searchbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
-import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { LuClipboardCheck } from "react-icons/lu";
-import { useOutingStore, useUserStore } from "../../store/store";
+import { useOutingStore } from "../../store/store";
 import moment from "moment";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type TableColumn = any;
 type TableRow = any;
 
-const closedEntries: React.FC = () => {
-  useFetchProfile("/profile");
-  useFetchOutings("/outings");
+const dropDownNavSecurity = [
+  { href: "/changepass", label: "Change Password" },
+  { href: "/logout", label: "Sign Out" },
+];
 
-  const { user } = useUserStore();
-  const { outing, isLoading, filter, setFilter } = useOutingStore();
-  
+const closedEntries: React.FC = () => {
+  useFetchOutings("/outings", { isOpen: false });
+
+  const { outing, isLoading } = useOutingStore();
+
   const columns: TableColumn[] = [
     "Roll No",
     "Name",
@@ -31,25 +33,25 @@ const closedEntries: React.FC = () => {
     "Reason",
   ];
   const values: TableRow[] = [];
-  
+
   if (!isLoading) {
     outing?.map((unit) => {
       const newObj = {
-        "Name": unit.name,
+        Name: unit.name,
         "Roll No": unit.username,
-        "Hostel": unit.hostel,
-        "Room": unit.room,
+        Hostel: unit.hostel,
+        Room: unit.room,
         "Out Time": unit.outTime,
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
-        "Reason": unit.reason,
+        Reason: unit.reason,
       };
       values.push(newObj);
       values.sort((a, b) => {
         if (a["Out Time"] > b["Out Time"]) {
           return -1;
         }
-        
+
         if (a["Out Time"] < b["Out Time"]) {
           return 1;
         }
@@ -75,12 +77,11 @@ const closedEntries: React.FC = () => {
           </div>
         </div>
       </div>
-      
 
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <Searchbar isMobile={true} />
-          <Dropdown options={[]} title="security" isHeading={true} />
+          <Dropdown options={dropDownNavSecurity} title="security" isHeading={true} />
         </nav>
 
         <hr />

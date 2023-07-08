@@ -12,7 +12,7 @@ import axios from "axios";
 const reason = () => {
   const methods = useForm();
   const location = getLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
     let { reason_reason } = data;
@@ -22,8 +22,6 @@ const reason = () => {
       longitude: location?.longitude,
       latitude: location?.latitude,
     };
-
-    console.log(requestObj)
 
     try {
       const response = await toast.promise(axios.post("/student/exit-request", requestObj), {

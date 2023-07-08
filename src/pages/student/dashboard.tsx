@@ -18,10 +18,10 @@ type TableRow = any;
 
 const studentDashboard = () => {
   useFetchProfile("/profile");
-  useFetchOutings("/outings");
+  useFetchOutings("/outings", {isOpen:false});
 
   const { user } = useUserStore();
-  const { outing, isLoading, filter, setFilter } = useOutingStore();
+  const { outing, isLoading } = useOutingStore();
 
   const columns: TableColumn[] = ["Out Time", "In Time", "Late By", "Reason"];
   const values: TableRow[] = [];
@@ -95,14 +95,14 @@ const studentDashboard = () => {
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
               <Link
-                to={"/student/reason"}
-                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 lg:hidden"
+                to={user?.isOutside ? '/student/success' : '/student/reason'}
+                className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${user?.isOutside ? 'bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200' : 'lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200'}`}
               >
-                Request Exit
+                {user?.isOutside ? 'Outing Details' : 'Request Exit'}
               </Link>
               <Link
                 to={"/student/update"}
-                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block"
+                className={`text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block ${user?.isOutside ? 'lg:hidden' : ''}`}
               >
                 Update Info
               </Link>
@@ -133,7 +133,7 @@ const studentDashboard = () => {
 
       {/* Mobile */}
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3 relative">
-        <nav className="flex flex-row pt-4 items-center justify-between ">
+        <nav className="flex flex-row pt-4 items-center justify-between">
           <Link to={"/student/update"}>
             <img src={profile} className="" />
           </Link>
@@ -144,9 +144,9 @@ const studentDashboard = () => {
 
         <hr />
 
-        <div className="h-[72vh] overflow-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
+        <div className="h-[72vh] overflow-x-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
           <div className="flex flex-col items-center w-screen space-y-4">
-            <img src={avatar} className="w-[50%]" />
+            <img src={avatar} className="w-[50%] max-w-[200px]" />
 
             <div className="flex flex-col items-center">
               <h2 className="text-h24 font-lexend font-bold">{user?.name}</h2>
@@ -183,7 +183,7 @@ const studentDashboard = () => {
           </div>
         </div>
 
-        <div className="flex space-x-3 self-center">
+        <div className="flex space-x-3 self-center -z-10">
           <img src={logo} className="w-[32px]" />
           <h1 className="flex flex-row font-lexend text-h28 text-primary">
             Guar <span className="font-lexend font-bold text-h28">dian</span>
