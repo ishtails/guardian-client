@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import search from "../assets/icons/search.svg";
 import axios from "axios";
+import { useOutingStore } from "../store/store";
+import { Transition } from "@headlessui/react";
 
 type item = {
   hostel: string;
@@ -11,10 +13,12 @@ type item = {
 };
 
 const Searchbar = (props: { isMobile: boolean }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [dropdownItems, setDropdownItems] = useState<item[]>([]);
+  const { filter, setFilter } = useOutingStore();
 
-  const filterDropdown = async (e) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [dropdownItems, setDropdownItems] = useState<item[] | null>(null);
+
+  const filterDropdown = async (e: any) => {
     console.log(e.target.value);
     e.preventDefault;
     setSearchTerm(e.target.value);
@@ -25,16 +29,14 @@ const Searchbar = (props: { isMobile: boolean }) => {
 
   console.log(dropdownItems);
 
-  // const filteredItems = dropdownItems.filter((item) =>
-  // {console.log(item)}
-  // );
-
   return (
     <div className="relative">
       <form
         className={`flex ${
           props.isMobile ? "bg-white" : "bg-slate-50"
-        } border border-slate-300 text-slate-900 text-sm rounded-lg hover:border-sky-500 px-3 w-auto`}
+        } border border-slate-300 text-slate-900 text-sm ${
+          dropdownItems ? "rounded-t-lg" : "rounded-lg"
+        }  hover:border-sky-500 px-3 w-auto`}
       >
         <input
           className={`focus:outline-none ${
@@ -50,20 +52,36 @@ const Searchbar = (props: { isMobile: boolean }) => {
           className="cursor-pointer inset-x-44 inset-y-2"
         />
       </form>
-      <div className="absolute mt-2 bg-white border border-gray-300 rounded-lg">
-        {dropdownItems.map((item) => {
-          console.log(item.username);
-          return (
-            <a
-              key={item.username}
-              href={`/${item.username}`}
-              className="block px-4 py-2 hover:bg-gray-100 text-[14px]"
-            >
-              {item.name}
-            </a>
-          );
-        })}
-      </div>
+      {/* <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+        show={true}
+      > */}
+      {dropdownItems && (
+        <div className="absolute w-full bg-white border border-gray-300 rounded-b-lg">
+          {dropdownItems.map((item) => {
+            return (
+              <div className="w-full hover:bg-gray-100">
+                <button
+                  key={item.username}
+                  onClick={() => {
+                    setFilter({ ...filter, username: item.username });
+                  }}
+                  className="block px-4 py-2 text-[14px]"
+                >
+                  {item.name}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {/* </Transition> */}
     </div>
   );
 };
