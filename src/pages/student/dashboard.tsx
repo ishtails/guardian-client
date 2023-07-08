@@ -135,9 +135,13 @@ const studentDashboard = () => {
 
             <div className="flex justify-center mt-5 bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center">
               <img src={lightbulb} className="h-[32px]" />
-              <p className="text-amber-dark text-[12px] font-medium">
+              <p className="hidden lg:block text-amber-dark text-[12px] font-medium">
                 Trying to go out of campus? Open this site on your mobile to
                 submit an exit request!
+              </p>
+              <p className="lg:hidden text-amber-dark text-[12px] font-medium">
+                Trying to go out of campus? Tap the "Request Exit" button to
+                open an entry!
               </p>
             </div>
           </div>
@@ -169,7 +173,7 @@ const studentDashboard = () => {
 
         <hr />
 
-        <div className="h-[72vh] overflow-x-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
+        <div className="h-[75vh] overflow-x-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
           <div className="flex flex-col items-center w-screen space-y-4">
             <img src={avatar} className="w-[50%] max-w-[200px]" />
 
@@ -196,10 +200,14 @@ const studentDashboard = () => {
 
           <div className="flex flex-col items-center space-y-2">
             <Link
-              to={"/student/reason"}
-              className="text-white text-p16 bg-[#0EA5E9]  py-4 px-16 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 "
+              to={user?.isOutside ? "/student/success" : "/student/reason"}
+              className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${
+                user?.isOutside
+                  ? "bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
+                  : "lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200"
+              }`}
             >
-              Request Exit
+              {user?.isOutside ? "Outing Details" : "Request Exit"}
             </Link>
 
             <Link to={`/student/report`} className="underline text-p14">
@@ -208,7 +216,7 @@ const studentDashboard = () => {
           </div>
         </div>
 
-        <div className="flex space-x-3 self-center -z-10">
+        <div className="flex space-x-3 self-center">
           <img src={logo} className="w-[32px]" />
           <h1 className="flex flex-row font-lexend text-h28 text-primary">
             Guar <span className="font-lexend font-bold text-h28">dian</span>
