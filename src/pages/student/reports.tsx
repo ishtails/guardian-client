@@ -12,7 +12,7 @@ type TableRow = any;
 
 const reports = () => {
   useFetchProfile("/profile");
-  useFetchOutings("/outings", {});
+  useFetchOutings("/outings", { isOpen: false });
 
   const { user } = useUserStore();
   const { outing, isLoading } = useOutingStore();
@@ -43,13 +43,22 @@ const reports = () => {
     });
   }
 
+  const dropDownDate = [
+    { href: "/Today", label: "Today" },
+    { href: "/Yesterday", label: "Yesterday" },
+    { href: "/Past-Week", label: "Past Week" },
+    { href: "/Past-Month", label: "Past Month" },
+  ];
+
   return (
     <div className="flex flex-col space-y-4 px-4 pb-3 relative">
       <nav className="flex flex-row pt-4 items-center justify-between ">
         <Link to={"/student/home"}>
           <BiHomeAlt2 style={{ color: "#0C4A6E", fontSize: "24px" }} />
         </Link>
-        <button className="font-bold text-p14 text-[#0C4A6E]">Sign Out</button>
+        <Link to={"/logout"} className="font-bold text-p14 text-[#0C4A6E]">
+            Sign Out
+          </Link>
       </nav>
 
       <hr />
@@ -64,7 +73,7 @@ const reports = () => {
           </p>
         </div>
         <span className="flex space-x-4 items-center">
-          <Dropdown options={[]} title="Today" isHeading={false} />
+          <Dropdown options={dropDownDate} title="Today" isHeading={false} />
         </span>
       </div>
 
