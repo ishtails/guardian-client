@@ -1,4 +1,5 @@
 import { useGeolocated } from "react-geolocated";
+import { toast } from "react-hot-toast";
 
 // Grab Location Information
 export const getLocation = () => {
@@ -11,10 +12,16 @@ export const getLocation = () => {
       });
 
     if (!isGeolocationAvailable) {
+      toast.error("Device does not have GPS", {
+        id:"gps_unavailable"
+      });
       throw new Error("Location is not available on this device!");
     }
 
     if (!isGeolocationEnabled) {
+      toast.error("Location is not enabled", {
+        id:"gps_blocked"
+      });
       throw new Error("Location is not enabled!");
     }
 
@@ -22,7 +29,7 @@ export const getLocation = () => {
       return { latitude: coords.latitude, longitude: coords.longitude };
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
