@@ -18,7 +18,7 @@ type TableRow = any;
 
 const studentDashboard = () => {
   useFetchProfile("/profile");
-  useFetchOutings("/outings", {});
+  useFetchOutings("/outings", {isOpen:false});
 
   const { user } = useUserStore();
   const { outing, isLoading } = useOutingStore();
@@ -95,14 +95,14 @@ const studentDashboard = () => {
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
               <Link
-                to={"/student/reason"}
-                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 lg:hidden"
+                to={user?.isOutside ? '/student/success' : '/student/reason'}
+                className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${user?.isOutside ? 'bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200' : 'lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200'}`}
               >
-                Request Exit
+                {user?.isOutside ? 'Outing Details' : 'Request Exit'}
               </Link>
               <Link
                 to={"/student/update"}
-                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block"
+                className={`text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block ${user?.isOutside ? 'lg:hidden' : ''}`}
               >
                 Update Info
               </Link>
