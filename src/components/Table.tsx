@@ -43,7 +43,7 @@ const Table: React.FC<TableProps> = ({ columns, values }) => {
                   className="px-6 py-4 whitespace-nowrap"
                 >
                   {column === "Status" ? (
-                    <div className="flex justify-center">
+                    <div className="flex items-center">
                       <button
                         className=""
                         onClick={async () => {

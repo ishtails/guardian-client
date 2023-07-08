@@ -27,7 +27,7 @@ const reason = () => {
       const response = await toast.promise(axios.post("/student/exit-request", requestObj), {
         loading: 'Verifying...',
         success: 'Successful',
-        error: (error) => (error.response.data || "Server Error"),
+        error: (error) => ("Failed"),
       });
 
       console.log(response)
