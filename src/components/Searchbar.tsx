@@ -1,90 +1,131 @@
-import { Fragment, useState } from "react";
-import search from "../assets/icons/search.svg";
+import { useEffect, useRef, useState } from "react";
+import { Transition } from "@headlessui/react";
 import axios from "axios";
 import { useOutingStore } from "../store/store";
-import { Transition, Menu } from "@headlessui/react";
+import { MdOutlineCancel } from "react-icons/md";
+import { FiSearch } from "react-icons/fi";
 
-type item = {
+type searchObj = {
+  username: string;
+  name: string;
   hostel: string;
   mobile: number;
-  name: string;
   room: number;
-  username: string;
 };
 
-const Searchbar = (props: { isMobile: boolean }) => {
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<searchObj[]>([]);
+  const searchInputRef = useRef<HTMLDivElement>(null);
   const { filter, setFilter } = useOutingStore();
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [dropdownItems, setDropdownItems] = useState<item[] | null>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target as Node)
+      ) {
+        setSearchTerm("");
+        setSuggestions([]);
+      }
+    };
 
-  const filterDropdown = async (e: any) => {
-    console.log(e.target.value);
-    e.preventDefault;
-    setSearchTerm(e.target.value);
-    const result = await axios.get("/search", { params: { key: searchTerm } });
-    console.log(result.data);
-    setDropdownItems(result.data);
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  // Function to handle input change
+  const handleInputChange = async (e: any) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    if (value) {
+      const response = await axios.get("/search", {
+        params: {
+          key: searchTerm,
+        },
+      });
+
+      setSuggestions(response.data);
+    }
   };
 
-  console.log(dropdownItems);
-
   return (
-    <Menu as="div" className="relative inline-block text-left">
-      <form
-        className={`flex ${
-          props.isMobile ? "bg-white" : "bg-slate-50"
-        } border border-slate-300 text-slate-900 text-sm ${
-          dropdownItems ? "rounded-t-lg" : "rounded-lg"
-        }  hover:border-sky-500 px-3 w-auto`}
+    <div className="relative">
+      <label
+        htmlFor="search"
+        className="flex items-center rounded-lg px-1 border border-gray-300  focus:ring-blue-500"
       >
         <input
-          className={`focus:outline-none ${
-            props.isMobile ? "w-32 h-8 bg-white" : "bg-slate-50"
-          } py-2`}
-          placeholder="Search"
+          id="search"
+          name="search"
+          type="text"
+          placeholder={filter?.username || "Search..."}
           value={searchTerm}
-          onChange={filterDropdown}
+          className="px-4 py-2 focus:outline-none max-w-[12rem]"
+          onChange={handleInputChange}
+          autoComplete="off"
         />
-        <Menu.Button>
-          <img
-            src={search}
-            alt="Search"
-            className="cursor-pointer inset-x-44 inset-y-2"
-          />
-        </Menu.Button>
-      </form>
+        <button
+          onClick={() => {
+            setFilter({ ...filter, username: null });
+          }}
+          className={`rounded-full px-2 py-2 ${
+            filter?.username ? "" : "hidden"
+          }`}
+        >
+          <MdOutlineCancel style={{ color: "#676767", fontSize: "1.2em" }} />
+        </button>
+        <button
+          onClick={() => {
+            setFilter({ ...filter, username: null });
+          }}
+          className={`rounded-full px-2 py-2 ${
+            filter?.username ? "hidden" : ""
+          }`}
+        >
+          <FiSearch style={{ color: "#676767", fontSize: "1.2em" }} />
+        </button>
+      </label>
       <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
+        show={suggestions.length > 0}
+        enter="transition-opacity duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-300"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
       >
-        {dropdownItems && (
-          <Menu.Items className="absolute w-full bg-white border border-gray-300 rounded-b-lg">
-            {dropdownItems.map((item) => {
-              return (
-                <div className="w-full hover:bg-gray-100">
-                  <button
-                    key={item.username}
-                    onClick={() => {
-                      setFilter({ ...filter, username: item.username });
-                    }}
-                    className="block px-4 py-2 text-[14px]"
-                  >
-                    {item.name}
-                  </button>
+        {(transitionProps) => (
+          <ul
+            ref={searchInputRef}
+            className="absolute z-10 mt-2 w-full bg-white rounded-md shadow-card-shadow border"
+            {...transitionProps}
+          >
+            {suggestions.map((suggestion) => (
+              <li
+                key={suggestion.username}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => {
+                  setFilter({ ...filter, username: suggestion.username });
+                }}
+              >
+                <div className="flex flex-col text-p14">
+                  <span className="text-p16 text-slate-800">
+                    {suggestion.name}
+                  </span>
+                  <span className="text-slate-400">{suggestion.username}</span>
                 </div>
-              );
-            })}
-          </Menu.Items>
+              </li>
+            ))}
+          </ul>
         )}
       </Transition>
-    </Menu>
+    </div>
   );
 };
 
-export default Searchbar;
+export default SearchBar;
