@@ -1,6 +1,5 @@
 import Dropdown from "../../components/Dropdown";
 import Navbar from "../../components/Navbar";
-import Searchbar from "../../components/Searchbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
@@ -9,6 +8,7 @@ import { LuClipboardCheck } from "react-icons/lu";
 import { useOutingStore } from "../../store/store";
 import moment from "moment";
 import { useEffect } from "react";
+import SearchBar from "../../components/SearchBar";
 
 type TableColumn = any;
 type TableRow = any;
@@ -90,7 +90,7 @@ const securityDashboard: React.FC = () => {
       {/* Mobile */}
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
-          <Searchbar isMobile={true} />
+          <SearchBar />
           <Dropdown
             options={dropDownNavSecurity}
             title="security"
