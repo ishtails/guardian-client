@@ -8,6 +8,7 @@ import avatar from "../../assets/icons/avatar.svg";
 import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
+import { FiEdit2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useOutingStore, useUserStore } from "../../store/store";
 import useFetchProfile from "../../helpers/fetchUserHook";
@@ -18,7 +19,7 @@ type TableRow = any;
 
 const studentDashboard = () => {
   useFetchProfile("/profile");
-  useFetchOutings("/outings", {isOpen:false});
+  useFetchOutings("/outings", { isOpen: false });
 
   const { user } = useUserStore();
   const { outing, isLoading } = useOutingStore();
@@ -69,10 +70,11 @@ const studentDashboard = () => {
           <div className="flex flex-col relative lg:w-[500px]">
             <img src={skygradient} />
 
-            <img
-              src={avatar}
-              className="absolute self-center top-[7%] lg:top-[9%] w-[50%]"
-            />
+            <div className=" rounded-full absolute self-center top-[7%] lg:top-[9%] w-[50%]">
+              <img src={avatar} className="relative rounded-full transition"/>
+              
+              <button className="transition opacity-0 hover:opacity-100 rounded-full bgr z-10 absolute top-[45%] left-[40%]"><FiEdit2 style={{color:"white", fontSize: "1.5em"}}/></button>
+            </div>
 
             <div className="flex flex-col bg-white rounded-b-xl shadow-card-shadow space-y-4 pt-[25%] px-5 pb-4 items-center">
               <div className="flex flex-col items-center mt-2 xl:mt-0">
@@ -95,17 +97,24 @@ const studentDashboard = () => {
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
               <Link
-                to={user?.isOutside ? '/student/success' : '/student/reason'}
-                className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${user?.isOutside ? 'bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200' : 'lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200'}`}
+                to={user?.isOutside ? "/student/success" : "/student/reason"}
+                className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${
+                  user?.isOutside
+                    ? "bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
+                    : "lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200"
+                }`}
               >
-                {user?.isOutside ? 'Outing Details' : 'Request Exit'}
+                {user?.isOutside ? "Outing Details" : "Request Exit"}
               </Link>
               <Link
                 to={"/student/update"}
-                className={`text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block ${user?.isOutside ? 'lg:hidden' : ''}`}
+                className={`text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block ${
+                  user?.isOutside ? "lg:hidden" : ""
+                }`}
               >
                 Update Info
               </Link>
+              vbu
             </div>
 
             <div className="flex justify-center mt-5 bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center">
