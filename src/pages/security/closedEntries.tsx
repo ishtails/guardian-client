@@ -13,6 +13,11 @@ import { Link } from "react-router-dom";
 type TableColumn = any;
 type TableRow = any;
 
+const dropDownNavSecurity = [
+  { href: "/changepass", label: "Change Password" },
+  { href: "/logout", label: "Sign Out" },
+];
+
 const closedEntries: React.FC = () => {
   useFetchOutings("/outings", { isOpen: false });
 
@@ -76,7 +81,7 @@ const closedEntries: React.FC = () => {
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <Searchbar isMobile={true} />
-          <Dropdown options={[]} title="security" isHeading={true} />
+          <Dropdown options={dropDownNavSecurity} title="security" isHeading={true} />
         </nav>
 
         <hr />
