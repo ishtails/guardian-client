@@ -4,7 +4,6 @@ import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import skygradient from "../../assets/icons/sky-gradient.svg";
 import lightbulb from "../../assets/icons/lightbulb.svg";
-import avatar from "../../assets/icons/avatar.svg";
 import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
@@ -15,11 +14,13 @@ import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import AvatarModal from "../../components/AvatarModal";
 import { useState } from "react";
-
-type TableColumn = any;
-type TableRow = any;
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { boysAvatars, girlsAvatars } from "../../helpers/constants";
 
 const studentDashboard = () => {
+  useFetchProfile("/profile");
+  useFetchOutings("/outings", { isOpen: false });
   const [isModalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -29,8 +30,25 @@ const studentDashboard = () => {
     setModalOpen(false);
   };
 
-  useFetchProfile("/profile");
-  useFetchOutings("/outings", { isOpen: false });
+  const handleAvatarSubmit = async (avatar: Avatar) => {
+    try {
+      await toast.promise(
+        axios.patch("/update-profile", {
+          profilePic: avatar.url,
+        }), {
+          loading: 'Updating...',
+          success: 'Successful',
+          error: (error) => (error.response?.data || "Server Error"),
+        }
+      );
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const { user } = useUserStore();
   const { outing, isLoading } = useOutingStore();
@@ -44,7 +62,7 @@ const studentDashboard = () => {
         "Out Time": unit.outTime,
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
-        Reason: unit.reason,
+        "Reason": unit.reason,
       };
 
       values.push(newObj);
@@ -71,7 +89,12 @@ const studentDashboard = () => {
 
   return (
     <div className="h-screen ">
-      <AvatarModal isOpen={isModalOpen} onClose={closeModal} />
+      <AvatarModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        avatars={user?.hostel === "GH" ? girlsAvatars : boysAvatars}
+        onSubmit={handleAvatarSubmit}
+      />
       {/* Desktop */}
       <div className="hidden md:flex flex-col px-5 space-y-8 bg-[#FCFFFF]">
         <nav>
@@ -83,7 +106,10 @@ const studentDashboard = () => {
             <img src={skygradient} />
 
             <div className=" rounded-full absolute self-center top-[7%] lg:top-[9%] w-[50%]">
-              <img src={avatar} className="rounded-full transition w-[100%]" />
+              <img
+                src={user?.profilePic}
+                className="border-[0.5rem] border-slate-100 rounded-full transition w-[100%]"
+              />
 
               <button
                 onClick={openModal}
@@ -175,7 +201,12 @@ const studentDashboard = () => {
 
         <div className="h-[75vh] overflow-x-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
           <div className="flex flex-col items-center w-screen space-y-4">
-            <img src={avatar} className="w-[50%] max-w-[200px]" />
+            <img
+              src={user?.profilePic}
+              onClick={openModal}
+              title="Change Avatar"
+              className="border-[0.5rem] border-slate-100 rounded-full transition w-[50%] max-w-[200px] cursor-pointer"
+            />
 
             <div className="flex flex-col items-center">
               <h2 className="text-h24 font-lexend font-bold">{user?.name}</h2>
