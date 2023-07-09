@@ -41,7 +41,7 @@ const securityDashboard: React.FC = () => {
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
-        Status: unit.username,
+        "Close Entry": unit.username,
       };
       values.push(newObj);
       values.sort((a, b) => {

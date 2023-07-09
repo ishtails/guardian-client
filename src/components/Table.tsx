@@ -1,6 +1,6 @@
-import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import Close from "../assets/icons/close-entry.svg";
+import CloseEntryModal from "./CloseEntryModal";
 
 interface TableProps {
   columns: TableColumn[];
@@ -8,8 +8,16 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ columns, values }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [username, setUsername] = useState("");
+
   return (
     <div className="overflow-x-auto h-[72vh]">
+      <CloseEntryModal
+        isOpen={isModalOpen}
+        onClose={()=>{setModalOpen(false);}}
+        username={username}
+      />
       <table className="w-full text-sm text-left text-slate-500">
         <thead className="text-xs text-slate-700 uppercase border-b-2">
           <tr>
@@ -32,15 +40,9 @@ const Table: React.FC<TableProps> = ({ columns, values }) => {
                   {column === "Close Entry" ? (
                     <button
                       className="w-full max-w-[5.2rem] flex justify-center"
-                      onClick={async () => {
-                        try {
-                          await axios.get(
-                            `/security/close-entry/${row[column]}`
-                          );
-                          window.location.reload();
-                        } catch (error) {
-                          console.log(error);
-                        }
+                      onClick={() => {
+                        setUsername(row[column]);
+                        setModalOpen(true);
                       }}
                     >
                       <img src={Close} className="w-[1.6rem]" />
