@@ -18,13 +18,17 @@ const LogOut = () => {
           console.log(response);
           navigate("/login");
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          navigate("/login");
+        });
     } catch (error) {
       console.log(error);
+      navigate("/login");
     }
   }, [navigate]);
 
-  return (<div>Logging out...</div>);
+  return <div></div>;
 };
 
 export default LogOut;
