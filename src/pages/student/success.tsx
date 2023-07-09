@@ -10,13 +10,9 @@ import { useStopwatch } from "react-timer-hook";
 
 const reason = () => {
   useFetchOutings("/outings", { isOpen: true });
-  const { outing } = useOutingStore();
-
-  // const offset = moment().diff(moment(outing?.[0].outTime, "DD-MM-YYYY HH:mm"));
-  // const timestamp = moment().add(offset).toDate();
+  const { outing, isLoading } = useOutingStore();
 
   const { hours, minutes, seconds } = useStopwatch({
-    // offsetTimestamp: timestamp,
     autoStart: true,
   });
 
@@ -48,7 +44,7 @@ const reason = () => {
           <div className="flex flex-col mt-6 mb-14 items-center text-[#0A77A8]">
             <h1 className="text-h32 font-bold">Success</h1>
             <h2 className="tracking-widest font-light">
-              {outing?.[0].outTime}
+              {isLoading ? "NA" : outing?.[0].outTime}
             </h2>
 
             <h2 className="tracking-wide mt-6 font-lexend font-bold text-6xl">
@@ -65,8 +61,15 @@ const reason = () => {
       </div>
 
       <div className="hidden xl:flex flex-col items-center justify-center h-screen">
-          <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">Switch to a mobile device to view this page</h1>
-          <Link to={'/student/home'} className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500">Go back</Link>
+        <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">
+          Switch to a mobile device to view this page
+        </h1>
+        <Link
+          to={"/student/home"}
+          className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500"
+        >
+          Go back
+        </Link>
       </div>
     </div>
   );
