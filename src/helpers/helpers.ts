@@ -19,8 +19,9 @@ export const getLocation = () => {
     }
 
     if (!isGeolocationEnabled) {
-      toast.error("Location is not enabled", {
-        id:"gps_blocked"
+      toast.error("Location access blocked", {
+        id:"gps_blocked",
+        duration:2000
       });
       throw new Error("Location is not enabled!");
     }
