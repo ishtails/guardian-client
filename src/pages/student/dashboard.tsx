@@ -7,7 +7,6 @@ import lightbulb from "../../assets/icons/lightbulb.svg";
 import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
-import { FiEdit2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useOutingStore, useUserStore } from "../../store/store";
 import useFetchProfile from "../../helpers/fetchUserHook";
@@ -35,10 +34,11 @@ const studentDashboard = () => {
       await toast.promise(
         axios.patch("/update-profile", {
           profilePic: avatar.url,
-        }), {
-          loading: 'Updating...',
-          success: 'Successful',
-          error: (error) => (error.response?.data || "Server Error"),
+        }),
+        {
+          loading: "Updating...",
+          success: "Successful",
+          error: (error) => error.response?.data || "Server Error",
         }
       );
 
@@ -62,7 +62,7 @@ const studentDashboard = () => {
         "Out Time": unit.outTime,
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
-        "Reason": unit.reason,
+        Reason: unit.reason,
       };
 
       values.push(newObj);
@@ -107,34 +107,29 @@ const studentDashboard = () => {
 
             <div className=" rounded-full absolute self-center top-[7%] lg:top-[9%] w-[50%]">
               <img
-                src={user?.profilePic}
-                className="border-[0.5rem] border-slate-100 rounded-full transition w-[100%]"
-              />
-
-              <button
+                title="Change avatar"
                 onClick={openModal}
-                className="transition opacity-0 hover:opacity-100 rounded-full bgr z-10 absolute top-[45%] left-[41%] lg:left-[43%] w-[100%]"
-              >
-                <FiEdit2 style={{ color: "white", fontSize: "1.5em" }} />
-              </button>
+                src={user?.profilePic}
+                className="border-[0.5rem] border-slate-100 rounded-full transition w-[100%] cursor-pointer hover:brightness-90"
+              />
             </div>
 
             <div className="flex flex-col bg-white rounded-b-xl shadow-card-shadow space-y-4 pt-[25%] px-5 pb-4 items-center">
               <div className="flex flex-col items-center mt-2 xl:mt-0">
-                <h2 className="text-h24 font-lexend font-bold">{user?.name}</h2>
+                <h2 className="text-h24 font-lexend font-bold">{user?.name || user?.username}</h2>
                 <h3 className="text-p14 font-medium text-slate-400">
-                  {user?.username}
+                  {user?.name ? user?.username : user?.email}
                 </h3>
               </div>
               <div className="flex w-full justify-between py-1">
                 <span className="flex items-center space-x-2">
                   <BsFillTelephoneFill style={{ fontSize: "18px" }} />
-                  <p>{user?.mobile}</p>
+                  <p>{user?.mobile || "NA"}</p>
                 </span>
                 <span className="flex items-center space-x-2">
                   <BsFillHouseFill style={{ fontSize: "18px" }} />
                   <p>
-                    {user?.hostel} / {user?.room}
+                    {user?.room ? `${user?.hostel} / ${user?.room}` : "NA"}
                   </p>
                 </span>
               </div>
@@ -205,7 +200,7 @@ const studentDashboard = () => {
               src={user?.profilePic}
               onClick={openModal}
               title="Change Avatar"
-              className="border-[0.5rem] border-slate-100 rounded-full transition w-[50%] max-w-[200px] cursor-pointer"
+              className="border-[0.5rem] border-slate-100 rounded-full transition w-[50%] max-w-[200px] cursor-pointer hover:brightness-90"
             />
 
             <div className="flex flex-col items-center">
