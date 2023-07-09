@@ -47,6 +47,18 @@ const updateForm = () => {
 
     if (update_hostel) {
       formData.append("hostel", update_hostel.toUpperCase());
+
+      let gender = "";
+      if (update_hostel.toUpperCase() === "GH") {
+        gender = "female";
+      }
+      if (["BH1", "BH2", "BH3", "IVH"].includes(update_hostel.toUpperCase())) {
+        gender = "male";
+      }
+      if(gender){
+        formData.append("gender", gender);
+      }
+      
     }
 
     if (update_room) {
