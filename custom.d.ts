@@ -22,7 +22,7 @@ type TableColumn =
   | "Out Time"
   | "In Time"
   | "Reason"
-  | "Status"
+  | "Close Entry"
   | "Late By"
   | "Out Time"
   | "In Time"

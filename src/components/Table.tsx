@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { AiFillCheckCircle } from "react-icons/ai";
+import Close from "../assets/icons/close-entry.svg";
 
 interface TableProps {
   columns: TableColumn[];
@@ -29,24 +29,22 @@ const Table: React.FC<TableProps> = ({ columns, values }) => {
                   key={column}
                   className="px-6 py-4 whitespace-nowrap"
                 >
-                  {column === "Status" ? (
-                    <div className="flex items-center">
-                      <button
-                        className=""
-                        onClick={async () => {
-                          try {
-                            await axios.get(
-                              `/security/close-entry/${row[column]}`
-                            );
-                            window.location.reload();
-                          } catch (error) {
-                            console.log(error);
-                          }
-                        }}
-                      >
-                        <AiFillCheckCircle style={{ color: "#0ea5e9", fontSize: "1.6em" }}/>
-                      </button>
-                    </div>
+                  {column === "Close Entry" ? (
+                    <button
+                      className="w-full max-w-[5.2rem] flex justify-center"
+                      onClick={async () => {
+                        try {
+                          await axios.get(
+                            `/security/close-entry/${row[column]}`
+                          );
+                          window.location.reload();
+                        } catch (error) {
+                          console.log(error);
+                        }
+                      }}
+                    >
+                      <img src={Close} className="w-[1.6rem]" />
+                    </button>
                   ) : (
                     row[column]
                   )}

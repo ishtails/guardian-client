@@ -26,7 +26,7 @@ const securityDashboard: React.FC = () => {
     "Out Time",
     "In Time",
     "Reason",
-    `${filter?.isOpen ? "Status" : "Late By"}`,
+    `${filter?.isOpen ? "Close Entry" : "Late By"}`,
   ];
   const values: TableRow[] = [];
 

@@ -12,7 +12,7 @@ import AdminDashboard from "../pages/admin/dashboard";
 import IndividualProfile from "../pages/admin/individual";
 import SecurityDashboard from "../pages/security/dashboard";
 import ClosedEntries from "../pages/security/closedEntries";
-import ClosingDialogue from "../pages/security/closingDialogue";
+import ClosingDialogue from "../components/CloseEntryModal";
 import Support from "../pages/common/support";
 import StudentDashboard from "../pages/student/dashboard";
 import StudentReport from "../pages/student/reports";
