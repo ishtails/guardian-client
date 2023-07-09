@@ -10,9 +10,6 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 
-type TableColumn = any;
-type TableRow = any;
-
 const dropDownNavSecurity = [
   { href: "/changepass", label: "Change Password" },
   { href: "/logout", label: "Sign Out" },

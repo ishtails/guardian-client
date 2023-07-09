@@ -12,9 +12,6 @@ import { BiHomeAlt2 } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 
-type TableColumn = any;
-type TableRow = any;
-
 const individual: React.FC = () => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
   const values: TableRow[] = [

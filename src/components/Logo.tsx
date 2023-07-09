@@ -1,9 +1,7 @@
 import logo from "../assets/icons/logo.svg";
 import line from "../assets/icons/line.svg";
 
-type Props = {};
-
-const Logo = ({}: Props) => {
+const Logo = () => {
   return (
     <div className="flex space-x-4">
       <img src={logo} className="w-[32px]" />

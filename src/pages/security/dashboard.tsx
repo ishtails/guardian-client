@@ -10,9 +10,6 @@ import moment from "moment";
 import { useEffect } from "react";
 import SearchBar from "../../components/SearchBar";
 
-type TableColumn = any;
-type TableRow = any;
-
 const securityDashboard: React.FC = () => {
   useFetchOutings("/outings", {});
   const { outing, isLoading, filter, setFilter } = useOutingStore();

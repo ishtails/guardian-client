@@ -8,9 +8,6 @@ import { useOutingStore } from "../../store/store";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import SearchBar from "../../components/SearchBar";
 
-type TableColumn = any;
-type TableRow = any;
-
 const dropDownNavAdmin = [
   { href: "/changepass", label: "Change Password" },
   { href: "/logout", label: "Sign Out" },

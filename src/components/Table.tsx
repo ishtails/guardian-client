@@ -2,19 +2,6 @@ import axios from "axios";
 import React from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 
-type TableColumn =
-  | "Date"
-  | "Roll No"
-  | "Name"
-  | "Hostel"
-  | "Room"
-  | "Out Time"
-  | "In Time"
-  | "Reason"
-  | "Status";
-
-type TableRow = Record<TableColumn, string>;
-
 interface TableProps {
   columns: TableColumn[];
   values: TableRow[];

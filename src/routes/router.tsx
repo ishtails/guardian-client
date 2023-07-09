@@ -22,9 +22,7 @@ import FailedExit from "../pages/student/failure";
 import StudentUpdateInfo from "../pages/student/updateInfo";
 import LogOut from "../components/logOut";
 
-type Props = {};
-
-const mainRouter = ({}: Props) => {
+const mainRouter = () => {
   return (
     <Routes>
       {/* Common */}

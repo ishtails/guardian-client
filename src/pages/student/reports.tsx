@@ -7,9 +7,6 @@ import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { useOutingStore, useUserStore } from "../../store/store";
 
-type TableColumn = any;
-type TableRow = any;
-
 const reports = () => {
   useFetchProfile("/profile");
   useFetchOutings("/outings", { isOpen: false });
