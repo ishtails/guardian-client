@@ -40,7 +40,10 @@ const registerForm = () => {
         return;
       }
 
-      return toast.error("Already registered");
+      return toast.error("Already registered", {
+        id:"email_exists",
+        duration:2000
+      });
     } catch (error: any) {
       console.log(error.response);
     }
