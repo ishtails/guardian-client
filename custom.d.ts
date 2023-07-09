@@ -3,11 +3,6 @@ declare module "*.svg" {
   export default content;
 }
 
-declare module "preline" {
-  const content: any;
-  export default content;
-}
-
 type Avatar = {
   url: string;
   details: string;
