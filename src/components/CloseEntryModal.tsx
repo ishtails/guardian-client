@@ -1,10 +1,32 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import axios from "axios";
 
-const Modal = ({ isOpen, onClose }) => {
+const CloseEntryModal = ({ isOpen, onClose, username }) => {
+  const [userDetails, setUserDetails] = useState<searchObj>();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        if (username) {
+          const response = await axios.get("/search", {
+            params: {
+              key: username,
+            },
+          });
+
+          setUserDetails(response.data[0]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUser();
+  }, [username]);
 
   const handleSubmit = () => {
-    console.log("hey")
+    console.log("hey");
   };
 
   return (
@@ -37,11 +59,11 @@ const Modal = ({ isOpen, onClose }) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden w-[90%] shadow-xl transform transition-all sm:my-24 lg:sm:my-12 sm:align-middle sm:max-w-[90%] lg:max-w-[75%] xl:max-w-[60%] sm:w-full">
+            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden w-[90%] shadow-xl transform transition-all sm:my-24 lg:sm:my-12 sm:align-middle sm:max-w-[90%] lg:-[60%] xl:w-[50%] sm:w-[70%]">
               <div className="px-4 py-5 sm:px-6">
                 <div className="flex justify-between">
                   <h1 className="font-bold font-lexend text-slate-800">
-                    Choose your avatar
+                    Close entry?
                   </h1>
                   <button
                     type="button"
@@ -64,20 +86,29 @@ const Modal = ({ isOpen, onClose }) => {
                   </button>
                 </div>
               </div>
-              <div className="px-4">
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-
-                  TEXT
-
-                </div>
+              <div className="px-4 flex flex-col items-center">
+                <img
+                  src={userDetails?.idCard}
+                  alt="idCard"
+                  title="idCard"
+                  className="rounded-xl"
+                />
+                <span className="flex flex-col items-center justify-center w-full mt-2">
+                  <h1 className="font-lexend text-slate-800 text-2xl font-semibold">
+                    {userDetails?.name}
+                  </h1>
+                  <h2 className="text-p14 font-medium text-slate-500">
+                    {userDetails?.username}
+                  </h2>
+                </span>
               </div>
-              <div className="px-4 py-3 mt-2 sm:px-6 sm:flex sm:flex-row-reverse">
+              <div className="px-4 py-3  sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-sky-500 text-base font-medium text-white hover:bg-sky-400 transition focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 transition focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={handleSubmit}
                 >
-                  Confirm
+                  Close Entry
                 </button>
                 <button
                   type="button"
@@ -95,4 +126,4 @@ const Modal = ({ isOpen, onClose }) => {
   );
 };
 
-export default Modal;
+export default CloseEntryModal;
