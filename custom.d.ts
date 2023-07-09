@@ -89,3 +89,13 @@ type Filter = {
   isLate?: true | null;
   gender?: "male" | "female" | null;
 };
+
+type searchObj = {
+  username: string;
+  name: string;
+  hostel: string;
+  mobile: number;
+  room: number;
+  profilePic: string,
+  idCard: string,
+};

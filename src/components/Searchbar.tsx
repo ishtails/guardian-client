@@ -5,14 +5,6 @@ import { useOutingStore } from "../store/store";
 import { MdOutlineCancel } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
 
-type searchObj = {
-  username: string;
-  name: string;
-  hostel: string;
-  mobile: number;
-  room: number;
-};
-
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [suggestions, setSuggestions] = useState<searchObj[]>([]);
