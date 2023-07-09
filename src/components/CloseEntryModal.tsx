@@ -1,9 +1,18 @@
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useOutingStore } from "../store/store";
 
-const CloseEntryModal = ({ isOpen, onClose, username }) => {
+type Props = {
+  isOpen: any;
+  onClose: any;
+  username: string;
+};
+
+const CloseEntryModal = ({ isOpen, onClose, username }: Props) => {
   const [userDetails, setUserDetails] = useState<searchObj>();
+  const { setIsLoading } = useOutingStore();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -25,8 +34,23 @@ const CloseEntryModal = ({ isOpen, onClose, username }) => {
     fetchUser();
   }, [username]);
 
-  const handleSubmit = () => {
-    console.log("hey");
+  const handleSubmit = async () => {
+    try {
+      setIsLoading(true);
+      const result = await axios.get(`/security/close-entry`, {
+        params: { username },
+      });
+
+      setIsLoading(false);
+      console.log(result);
+      onClose();
+    } catch (error) {
+      toast.error("Could not close entry", {
+        id: "close-error",
+        duration: 2000,
+      });
+      console.log(error);
+    }
   };
 
   return (
@@ -36,7 +60,7 @@ const CloseEntryModal = ({ isOpen, onClose, username }) => {
         className="fixed inset-0 z-50 overflow-y-auto"
         onClose={onClose}
       >
-        <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -93,7 +117,7 @@ const CloseEntryModal = ({ isOpen, onClose, username }) => {
                   title="idCard"
                   className="rounded-xl"
                 />
-                <span className="flex flex-col items-center justify-center w-full mt-2">
+                <span className="flex flex-col items-center justify-center w-full mt-4">
                   <h1 className="font-lexend text-slate-800 text-2xl font-semibold">
                     {userDetails?.name}
                   </h1>
@@ -102,7 +126,7 @@ const CloseEntryModal = ({ isOpen, onClose, username }) => {
                   </h2>
                 </span>
               </div>
-              <div className="px-4 py-3  sm:px-6 sm:flex sm:flex-row-reverse">
+              <div className="px-4 py-3 justify-center sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 transition focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
