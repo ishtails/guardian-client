@@ -4,17 +4,20 @@ import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import React from "react";
 import skygradient from "../../assets/icons/sky-gradient.svg";
-import Searchbar from "../../components/Searchbar";
 import avatar from "../../assets/icons/avatar.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
 import Filter from "../../components/Filter";
 import { BiHomeAlt2 } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import SearchBar from "../../components/SearchBar";
+
+type TableColumn = any;
+type TableRow = any;
 
 const individual: React.FC = () => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
-  const data: TableRow[] = [
+  const values: TableRow[] = [
     // Sample data rows
     {
       Date: "28/05/2023",
@@ -73,7 +76,7 @@ const individual: React.FC = () => {
               </h1>
               <Dropdown options={[]} title="Today" isHeading={false} />
             </span>
-            <Table columns={columns} data={data} />
+            <Table columns={columns} values={values} />
           </div>
         </div>
       </div>
@@ -81,7 +84,7 @@ const individual: React.FC = () => {
       {/* Mobile */}
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3">
         <nav className="flex flex-row pt-4 items-center justify-between ">
-          <Searchbar isMobile={true} />
+          <SearchBar />
           <span className="flex items-center">
             <Link
               to={"/admin/home"}
@@ -120,7 +123,7 @@ const individual: React.FC = () => {
         </div>
 
         <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
-          <Table columns={columns} data={data} />
+          <Table columns={columns} values={values} />
         </div>
 
         <hr />

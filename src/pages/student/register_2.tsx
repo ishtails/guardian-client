@@ -14,17 +14,17 @@ const registerForm = () => {
 
   const onSubmit = async (data: any) => {
     // setIsLoading(true);
-    let { register_otp } = data;
+    let { register_verify_otp } = data;
 
     const requestObj = {
-    otp: register_otp,
+    otp: register_verify_otp,
     };
 
     try {
       const response = await toast.promise(axios.post("/verify-otp", requestObj), {
         loading: 'Verifying...',
         success: 'Successful',
-        error: (error) => ("error"),
+        error: (error) => ("Failed"),
       });
       console.log(response)
       // setIsLoading(false);
@@ -53,7 +53,7 @@ const registerForm = () => {
 
     {/* Input Fields */}
     <InputField
-      label="register_OTP"
+      label="register_Verify OTP"
       placeholder="Enter OTP"
       isPassword={false}
       validationRules={{ required: { value: true, message: "Required" } }}

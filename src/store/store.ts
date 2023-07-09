@@ -32,6 +32,7 @@ type User = {
   username: string;
   idCard: string;
   profilePic: string;
+  isOutside: boolean;
 };
 
 type UserStore = {
@@ -65,12 +66,13 @@ type Outing = [{
 }];
 
 type Filter = {
-  startDate?: string,
-  endDate?: string,
-  isOpen?: boolean,
-  username?: string,
-  reason?: string,
-  isLate?: boolean,
+  startDate?: string | null,
+  endDate?: string | null,
+  isOpen?: boolean | null,
+  username?: string | null,
+  reason?: string | null,
+  isLate?: true | null,
+  gender?: "male" | "female" | null,
 }
 
 type OutingStore = {

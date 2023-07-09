@@ -7,9 +7,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-type Props = { title: string; isHeading: boolean; options:any };
+type Props = { title: string; isHeading: boolean; options: any };
 
-const Dropdown = ({title, isHeading, options}: Props) => {
+const Dropdown = ({ title, isHeading, options }: Props) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -40,9 +40,7 @@ const Dropdown = ({title, isHeading, options}: Props) => {
       >
         <Menu.Items
           className={`absolute ${
-            isHeading
-              ? "right-0 bg-[#FCFFFF]"
-              : "right-0 md:left-0 bg-white"
+            isHeading ? "right-0 bg-[#FCFFFF]" : "right-0 md:left-0 bg-white"
           } z-10 mt-3 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {options.map((option: any) => (

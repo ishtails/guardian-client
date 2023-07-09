@@ -12,7 +12,7 @@ import axios from "axios";
 const reason = () => {
   const methods = useForm();
   const location = getLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
     let { reason_reason } = data;
@@ -29,14 +29,13 @@ const reason = () => {
       const response = await toast.promise(axios.post("/student/exit-request", requestObj), {
         loading: 'Verifying...',
         success: 'Successful',
-        error: (error) => (error.response.data || "Server Error"),
+        error: (error) => (error.response.data || "Failed"),
       });
 
       console.log(response)
       navigate(`/student/success`);
     } catch (error: any) {
       console.log(error.response);
-      navigate(`/student/failure`);
     }
   };
 
@@ -87,6 +86,10 @@ const reason = () => {
           </div>
         </div>
       </form>
+      <div className="hidden xl:flex flex-col items-center justify-center h-screen">
+          <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">Switch to a mobile device to view this page</h1>
+          <Link to={'/student/home'} className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500">Go back</Link>
+      </div>
     </FormProvider>
   );
 };

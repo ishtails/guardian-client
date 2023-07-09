@@ -8,20 +8,32 @@ import avatar from "../../assets/icons/avatar.svg";
 import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
+import { FiEdit2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useOutingStore, useUserStore } from "../../store/store";
 import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
+import AvatarModal from "../../components/AvatarModal";
+import { useState } from "react";
 
 type TableColumn = any;
 type TableRow = any;
 
 const studentDashboard = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   useFetchProfile("/profile");
-  useFetchOutings("/outings");
+  useFetchOutings("/outings", { isOpen: false });
 
   const { user } = useUserStore();
-  const { outing, isLoading, filter, setFilter } = useOutingStore();
+  const { outing, isLoading } = useOutingStore();
 
   const columns: TableColumn[] = ["Out Time", "In Time", "Late By", "Reason"];
   const values: TableRow[] = [];
@@ -59,6 +71,7 @@ const studentDashboard = () => {
 
   return (
     <div className="h-screen ">
+      <AvatarModal isOpen={isModalOpen} onClose={closeModal} />
       {/* Desktop */}
       <div className="hidden md:flex flex-col px-5 space-y-8 bg-[#FCFFFF]">
         <nav>
@@ -69,10 +82,16 @@ const studentDashboard = () => {
           <div className="flex flex-col relative lg:w-[500px]">
             <img src={skygradient} />
 
-            <img
-              src={avatar}
-              className="absolute self-center top-[7%] lg:top-[9%] w-[50%]"
-            />
+            <div className=" rounded-full absolute self-center top-[7%] lg:top-[9%] w-[50%]">
+              <img src={avatar} className="rounded-full transition w-[100%]" />
+
+              <button
+                onClick={openModal}
+                className="transition opacity-0 hover:opacity-100 rounded-full bgr z-10 absolute top-[45%] left-[41%] lg:left-[43%] w-[100%]"
+              >
+                <FiEdit2 style={{ color: "white", fontSize: "1.5em" }} />
+              </button>
+            </div>
 
             <div className="flex flex-col bg-white rounded-b-xl shadow-card-shadow space-y-4 pt-[25%] px-5 pb-4 items-center">
               <div className="flex flex-col items-center mt-2 xl:mt-0">
@@ -95,14 +114,20 @@ const studentDashboard = () => {
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
               <Link
-                to={"/student/reason"}
-                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 lg:hidden"
+                to={user?.isOutside ? "/student/success" : "/student/reason"}
+                className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${
+                  user?.isOutside
+                    ? "bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
+                    : "lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200"
+                }`}
               >
-                Request Exit
+                {user?.isOutside ? "Outing Details" : "Request Exit"}
               </Link>
               <Link
                 to={"/student/update"}
-                className="text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block"
+                className={`text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block ${
+                  user?.isOutside ? "lg:hidden" : ""
+                }`}
               >
                 Update Info
               </Link>
@@ -110,9 +135,13 @@ const studentDashboard = () => {
 
             <div className="flex justify-center mt-5 bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center">
               <img src={lightbulb} className="h-[32px]" />
-              <p className="text-amber-dark text-[12px] font-medium">
+              <p className="hidden lg:block text-amber-dark text-[12px] font-medium">
                 Trying to go out of campus? Open this site on your mobile to
                 submit an exit request!
+              </p>
+              <p className="lg:hidden text-amber-dark text-[12px] font-medium">
+                Trying to go out of campus? Tap the "Request Exit" button to
+                open an entry!
               </p>
             </div>
           </div>
@@ -133,7 +162,7 @@ const studentDashboard = () => {
 
       {/* Mobile */}
       <div className="md:hidden flex flex-col space-y-4 px-4 pb-3 relative">
-        <nav className="flex flex-row pt-4 items-center justify-between ">
+        <nav className="flex flex-row pt-4 items-center justify-between">
           <Link to={"/student/update"}>
             <img src={profile} className="" />
           </Link>
@@ -144,9 +173,9 @@ const studentDashboard = () => {
 
         <hr />
 
-        <div className="h-[72vh] overflow-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
+        <div className="h-[75vh] overflow-x-hidden flex flex-col items-center justify-center space-y-10 text-[#0C4A6E]">
           <div className="flex flex-col items-center w-screen space-y-4">
-            <img src={avatar} className="w-[50%]" />
+            <img src={avatar} className="w-[50%] max-w-[200px]" />
 
             <div className="flex flex-col items-center">
               <h2 className="text-h24 font-lexend font-bold">{user?.name}</h2>
@@ -171,10 +200,14 @@ const studentDashboard = () => {
 
           <div className="flex flex-col items-center space-y-2">
             <Link
-              to={"/student/reason"}
-              className="text-white text-p16 bg-[#0EA5E9]  py-4 px-16 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 "
+              to={user?.isOutside ? "/student/success" : "/student/reason"}
+              className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${
+                user?.isOutside
+                  ? "bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
+                  : "lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200"
+              }`}
             >
-              Request Exit
+              {user?.isOutside ? "Outing Details" : "Request Exit"}
             </Link>
 
             <Link to={`/student/report`} className="underline text-p14">
