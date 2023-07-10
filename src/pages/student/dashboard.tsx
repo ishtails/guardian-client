@@ -16,8 +16,19 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { boysAvatars, girlsAvatars } from "../../helpers/constants";
+import { useNavigate } from "react-router-dom";
 
-const studentDashboard = () => {
+const studentDashboard: React.FC = () => {
+  const [exitTime, setExitTime] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const currentTime = new Date().toISOString();
+    setExitTime(currentTime);
+    localStorage.setItem("exitTime", currentTime);
+    navigate(`/success`);
+  };
+
   useFetchProfile("/profile");
   useFetchOutings("/outings", { isOpen: false });
   const [isModalOpen, setModalOpen] = useState(false);
@@ -134,16 +145,31 @@ const studentDashboard = () => {
                 </span>
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
-              <Link
+              {/* <Link
                 to={user?.isOutside ? "/student/success" : "/student/reason"}
                 className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${
                   user?.isOutside
                     ? "bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
                     : "lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200"
                 }`}
-              >
-                {user?.isOutside ? "Outing Details" : "Request Exit"}
-              </Link>
+              > */}
+              {user?.isOutside ? (
+                <Link
+                  onClick={handleClick}
+                  to="/student/success"
+                  className="text-white text-p16 py-3 px-10 rounded-full transition-all font-semibold shadow-lg bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
+                >
+                  Outing Details
+                </Link>
+              ) : (
+                <Link
+                  to="/student/reason"
+                  className="text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200"
+                >
+                  Request Exit
+                </Link>
+              )}
+              {/* </Link> */}
               <Link
                 to={"/student/update"}
                 className={`text-white text-p16 bg-[#0EA5E9]  py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg shadow-sky-200 hidden lg:block ${
