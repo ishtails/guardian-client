@@ -22,6 +22,7 @@ const DateRange = () => {
   
     const [showPicker, setShowPicker] = useState(false);
     const pickerRef = useRef<HTMLDivElement>(null);
+    const pickerRef2 = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const startDateFormatted = moment(selectedRange.selection.startDate)
@@ -39,6 +40,10 @@ const DateRange = () => {
       });
     }
   }, [selectedRange]);
+
+  const togglePicker = () => {
+    setShowPicker(!showPicker);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -62,7 +67,7 @@ const DateRange = () => {
     <div className="relative">
       <button
         className="inline-flex justify-between gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
-        onClick={() => setShowPicker(!showPicker)}
+        onClick={togglePicker}
       >
         <label className="cursor-pointer">Select Date</label>
         <img src={dropdown} className="w-[12px] -mr-1 h-5" />
@@ -86,7 +91,7 @@ const DateRange = () => {
                 pickerRef.current &&
                 !pickerRef.current.contains(event.target as Node)
               ) {
-                setShowPicker(false);
+                togglePicker();
               }
             }}
           >
@@ -109,7 +114,7 @@ const DateRange = () => {
               />
             </div>
             <div
-              ref={pickerRef}
+              ref={pickerRef2}
               className="lg:hidden bg-white rounded-xl p-2 border shadow-card-shadow"
             >
               <DefinedRange
