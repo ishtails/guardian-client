@@ -6,15 +6,60 @@ import logo from "../../assets/icons/logo.svg";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { useOutingStore } from "../../store/store";
 import { useStopwatch } from "react-timer-hook";
+import { useEffect, useState } from "react";
 // import moment from "moment";
 
-const reason = () => {
+const success = () => {
   useFetchOutings("/outings", { isOpen: true });
   const { outing, isLoading } = useOutingStore();
 
-  const { hours, minutes, seconds } = useStopwatch({
-    autoStart: true,
+  const [exitTime, setExitTime] = useState<string | null>(() => {
+    const storedExitTime = localStorage.getItem("exitTime");
+    return storedExitTime ? storedExitTime : null;
   });
+
+  // const { hours, minutes, seconds } = useStopwatch({
+  //   autoStart: true,
+  // });
+
+  // Calculate elapsed time
+  const calculateElapsedTime = () => {
+    if (exitTime) {
+      const currentTime = new Date();
+      const exitTimestamp = new Date(exitTime);
+      const elapsedTime = currentTime.getTime() - exitTimestamp.getTime();
+      return {
+        hours: Math.floor(elapsedTime / (1000 * 60 * 60)),
+        minutes: Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((elapsedTime % (1000 * 60)) / 1000),
+      };
+    }
+    return {
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+  };
+
+  const [elapsedTime, setElapsedTime] = useState(calculateElapsedTime());
+
+  // Update elapsed time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setElapsedTime(calculateElapsedTime());
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [exitTime]);
+
+  useEffect(() => {
+    const storedExitTime = localStorage.getItem("exitTime");
+    if (storedExitTime) {
+      setExitTime(storedExitTime);
+    }
+  }, []);
 
   return (
     <div>
@@ -48,7 +93,13 @@ const reason = () => {
             </h2>
 
             <h2 className="tracking-wide mt-6 font-lexend font-bold text-6xl">
-              {`${hours}:${minutes}:${seconds}`}
+              {`${elapsedTime.hours
+                .toString()
+                .padStart(2, "0")}:${elapsedTime.minutes
+                .toString()
+                .padStart(2, "0")}:${elapsedTime.seconds
+                .toString()
+                .padStart(2, "0")}`}
             </h2>
           </div>
 
@@ -75,4 +126,4 @@ const reason = () => {
   );
 };
 
-export default reason;
+export default success;
