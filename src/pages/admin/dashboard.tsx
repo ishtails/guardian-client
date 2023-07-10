@@ -7,6 +7,7 @@ import React from "react";
 import { useOutingStore } from "../../store/store";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import SearchBar from "../../components/SearchBar";
+import DateRange from "../../components/DateRange";
 
 const dropDownNavAdmin = [
   { href: "/changepass", label: "Change Password" },
@@ -46,7 +47,7 @@ const adminDashboard: React.FC = () => {
         if (a["In Time"] > b["In Time"]) {
           return -1;
         }
-  
+
         if (a["In Time"] < b["In Time"]) {
           return 1;
         }
@@ -156,7 +157,7 @@ const adminDashboard: React.FC = () => {
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
-              <Dropdown options={dropDownDate} title="Date" isHeading={false} />
+              <DateRange />
             </span>
             <Table columns={columns} values={values} />
           </div>
