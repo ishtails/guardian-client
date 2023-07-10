@@ -41,13 +41,23 @@ const success = () => {
     };
   };
 
-  const { hours, minutes, seconds } = calculateElapsedTime();
+  const [elapsedTime, setElapsedTime] = useState(calculateElapsedTime());
+
+  // Update elapsed time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setElapsedTime(calculateElapsedTime());
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [exitTime]);
 
   useEffect(() => {
     const storedExitTime = localStorage.getItem("exitTime");
     if (storedExitTime) {
       setExitTime(storedExitTime);
-      console.log(storedExitTime);
     }
   }, []);
 
@@ -83,10 +93,13 @@ const success = () => {
             </h2>
 
             <h2 className="tracking-wide mt-6 font-lexend font-bold text-6xl">
-              {/* {`${hours}:${minutes}:${seconds}`} */}
-              {`${hours.toString().padStart(2, "0")}:${minutes
+              {`${elapsedTime.hours
                 .toString()
-                .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`}
+                .padStart(2, "0")}:${elapsedTime.minutes
+                .toString()
+                .padStart(2, "0")}:${elapsedTime.seconds
+                .toString()
+                .padStart(2, "0")}`}
             </h2>
           </div>
 
