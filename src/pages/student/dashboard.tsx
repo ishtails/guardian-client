@@ -26,7 +26,7 @@ const studentDashboard: React.FC = () => {
     const currentTime = new Date().toISOString();
     setExitTime(currentTime);
     localStorage.setItem("exitTime", currentTime);
-    navigate(`/success`);
+    navigate(`/student/success`);
   };
 
   useFetchProfile("/profile");

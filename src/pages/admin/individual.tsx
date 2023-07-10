@@ -84,7 +84,7 @@ const individual: React.FC = () => {
           <SearchBar />
           <span className="flex items-center">
             <Link
-              to={"/admin/home"}
+              to={"/"}
             >
               <BiHomeAlt2 style={{ color: "#0EA5E9", fontSize: "24px" }} />
             </Link>

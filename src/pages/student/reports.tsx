@@ -43,7 +43,7 @@ const reports = () => {
   return (
     <div className="flex flex-col space-y-4 px-4 pb-3 relative">
       <nav className="flex flex-row pt-4 items-center justify-between ">
-        <Link to={"/student/home"}>
+        <Link to={"/"}>
           <BiHomeAlt2 style={{ color: "#0C4A6E", fontSize: "24px" }} />
         </Link>
         <Link to={"/logout"} className="font-bold text-p14 text-[#0C4A6E]">

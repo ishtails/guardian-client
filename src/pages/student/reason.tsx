@@ -48,7 +48,7 @@ const reason = () => {
           <nav className="space-y-2">
             <div className="flex pt-4 items-center justify-between ">
               <Link
-                to={"/student/home"}
+                to={"/"}
                 className="flex items-center space-x-2"
               >
                 <img src={goback} className="w-[24px] self-center" />
@@ -88,7 +88,7 @@ const reason = () => {
       </form>
       <div className="hidden xl:flex flex-col items-center justify-center h-screen">
           <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">Switch to a mobile device to view this page</h1>
-          <Link to={'/student/home'} className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500">Go back</Link>
+          <Link to={'/'} className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500">Go back</Link>
       </div>
     </FormProvider>
   );

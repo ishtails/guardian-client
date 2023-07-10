@@ -70,7 +70,7 @@ const success = () => {
           <nav className="space-y-2">
             <div className="flex pt-4 items-center justify-between ">
               <Link
-                to={"/student/home"}
+                to={"/"}
                 className="flex items-center space-x-2"
               >
                 <img src={goback} className="w-[24px] self-center" />
@@ -116,7 +116,7 @@ const success = () => {
           Switch to a mobile device to view this page
         </h1>
         <Link
-          to={"/student/home"}
+          to={"/"}
           className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500"
         >
           Go back

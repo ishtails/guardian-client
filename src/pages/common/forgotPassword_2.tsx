@@ -67,12 +67,12 @@ const forgotPassForm_1 = () => {
       <button disabled={isLoading} className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition font-semibold text-p16">
         Submit
       </button>
-      <Link
-        to="/ResendOTP"
+      <button
+        onClick={()=>{console.log('configure me to send req!')}}
         className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1"
       >
         Didn't recieve the code? Resend OTP
-      </Link>
+      </button>
       <Link
         to="/"
         className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1"

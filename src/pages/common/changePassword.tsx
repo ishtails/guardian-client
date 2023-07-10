@@ -77,7 +77,7 @@ const changePasswordForm = () => {
           </button>
 
           <Link
-            to={`/student/home`}
+            to={`/`}
             className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 self-center text-p14"
           >
             Back to Home

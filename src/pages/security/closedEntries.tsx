@@ -86,7 +86,7 @@ const closedEntries: React.FC = () => {
         <div className="flex flex-row justify-between items-center">
           <h1 className="font-lexend text-p18 font-bold">Closed Entries</h1>
           <Link
-            to={`/security/home`}
+            to={`/`}
             className="bg-slate-100 p-2 rounded-lg mx-1"
           >
             <LuClipboardCheck style={{ fontSize: "24px" }} />
