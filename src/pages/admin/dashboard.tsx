@@ -44,24 +44,17 @@ const adminDashboard: React.FC = () => {
       };
       values.push(newObj);
       values.sort((a, b) => {
-        if (a["In Time"] > b["In Time"]) {
+        if (a["Out Time"] > b["Out Time"]) {
           return -1;
         }
 
-        if (a["In Time"] < b["In Time"]) {
+        if (a["Out Time"] < b["Out Time"]) {
           return 1;
         }
         return 0;
       });
     });
   }
-
-  const dropDownDate = [
-    { href: "/Today", label: "Today" },
-    { href: "/Yesterday", label: "Yesterday" },
-    { href: "/Past-Week", label: "Past Week" },
-    { href: "/Past-Month", label: "Past Month" },
-  ];
 
   const handleGenderFilter = (e: any) => {
     const { name, checked } = e.target;
@@ -177,7 +170,7 @@ const adminDashboard: React.FC = () => {
           <h1 className="font-lexend text-p18 font-bold">Overview</h1>
           <span className="flex space-x-4 items-center">
             <Filter />
-            <Dropdown options={dropDownDate} title="Today" isHeading={false} />
+            <DateRange />
           </span>
         </div>
 

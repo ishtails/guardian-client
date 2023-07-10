@@ -1,4 +1,3 @@
-import Dropdown from "../../components/Dropdown";
 import Navbar from "../../components/Navbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
@@ -17,6 +16,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { boysAvatars, girlsAvatars } from "../../helpers/constants";
 import { useNavigate } from "react-router-dom";
+import DateRange from "../../components/DateRange";
 
 const studentDashboard: React.FC = () => {
   const [exitTime, setExitTime] = useState<string | null>(null);
@@ -90,13 +90,6 @@ const studentDashboard: React.FC = () => {
       });
     });
   }
-
-  const dropDownDate = [
-    { href: "/Today", label: "Today" },
-    { href: "/Yesterday", label: "Yesterday" },
-    { href: "/Past-Week", label: "Past Week" },
-    { href: "/Past-Month", label: "Past Month" },
-  ];
 
   return (
     <div className="h-screen ">
@@ -198,11 +191,7 @@ const studentDashboard: React.FC = () => {
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
-              <Dropdown
-                options={dropDownDate}
-                title="Today"
-                isHeading={false}
-              />
+              <DateRange />
             </span>
             <Table columns={columns} values={values} />
           </div>

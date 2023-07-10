@@ -75,8 +75,8 @@ const securityDashboard: React.FC = () => {
               <h1 className="font-lexend font-bold text-h24 mx-4">
                 {filter?.isOpen ? "Open Entries" : "Closed Entries"}
               </h1>
-              <div className=" px-2 py-1 rounded-lg text-sm font-medium">
-                {moment().format("YYYY-MM-DD")}
+              <div className="px-2 py-1 border rounded-lg text-sm font-medium">
+                Date: {moment().format("YYYY-MM-DD")}
               </div>
             </span>
             <Table columns={columns} values={values} />

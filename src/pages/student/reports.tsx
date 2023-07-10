@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/icons/logo.svg";
-import Dropdown from "../../components/Dropdown";
 import Table from "../../components/Table";
 import { BiHomeAlt2 } from "react-icons/bi";
 import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { useOutingStore, useUserStore } from "../../store/store";
+import DateRange from "../../components/DateRange";
 
 const reports = () => {
   useFetchProfile("/profile");
@@ -40,13 +40,6 @@ const reports = () => {
     });
   }
 
-  const dropDownDate = [
-    { href: "/Today", label: "Today" },
-    { href: "/Yesterday", label: "Yesterday" },
-    { href: "/Past-Week", label: "Past Week" },
-    { href: "/Past-Month", label: "Past Month" },
-  ];
-
   return (
     <div className="flex flex-col space-y-4 px-4 pb-3 relative">
       <nav className="flex flex-row pt-4 items-center justify-between ">
@@ -70,7 +63,7 @@ const reports = () => {
           </p>
         </div>
         <span className="flex space-x-4 items-center">
-          <Dropdown options={dropDownDate} title="Today" isHeading={false} />
+          <DateRange />
         </span>
       </div>
 
