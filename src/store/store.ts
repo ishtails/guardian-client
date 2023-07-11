@@ -27,6 +27,6 @@ export const useOutingStore = create<OutingStore>((set) => ({
   filter: null,
   isLoading: true,
   setOuting: (outing) => set({ outing }),
-  setFilter: (filter: Filter) => set({ filter }),
+  setFilter: (filter: Filter | null) => set({ filter }),
   setIsLoading: (isLoading) => set({isLoading}),
 }));

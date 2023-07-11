@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import dropdown from "../assets/icons/dropdown.svg";
 import dropdown_blue from "../assets/icons/dropdown_blue.svg";
+import { Link } from "react-router-dom";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -40,21 +41,21 @@ const Dropdown = ({ title, isHeading, options }: Props) => {
       >
         <Menu.Items
           className={`absolute ${
-            isHeading ? "right-0 bg-[#FCFFFF]" : "right-0 md:left-0 bg-white"
+            isHeading ? "right-1 bg-[#FCFFFF] md:top-7 top-6" : "right-0 md:left-0 bg-white"
           } z-10 mt-3 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {options.map((option: any) => (
             <Menu.Item key={option.href} as={Fragment}>
               {({ active }) => (
-                <a
-                  href={option.href}
+                <Link
+                  to={option.href}
                   className={classNames(
                     active ? "bg-slate-100 text-slate-900" : "text-slate-700",
                     "block w-full px-4 py-2 text-left text-sm"
                   )}
                 >
                   {option.label}
-                </a>
+                </Link>
               )}
             </Menu.Item>
           ))}

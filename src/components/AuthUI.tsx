@@ -8,7 +8,7 @@ const authUI = (props: {
 }) => {
   return (
     <div className="bg-[#FCFFFF] relative">
-      <div className="md:px-6 md:h-screen flex flex-col relative md:justify-center">
+      <div className="md:px-6 mb-10 md:h-screen flex flex-col relative md:justify-center">
         <img
           src={blur_cyan}
           alt=""
@@ -35,7 +35,7 @@ const authUI = (props: {
           </div>
         </div>
 
-        <footer className="md:hidden mt-auto w-screen bottom-0">
+        <footer className="md:hidden fixed bg-white w-screen bottom-0">
           <hr className="my-2" />
           <div className="flex flex-col justify-center items-center mb-2">
             <img src={logo} className="w-[32px] " />

@@ -3,9 +3,10 @@ import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import skygradient from "../../assets/icons/sky-gradient.svg";
 import lightbulb from "../../assets/icons/lightbulb.svg";
-import profile from "../../assets/icons/profile.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import { FiEdit } from "react-icons/fi";
 import { BsFillHouseFill } from "react-icons/bs";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useOutingStore, useUserStore } from "../../store/store";
 import useFetchProfile from "../../helpers/fetchUserHook";
@@ -17,6 +18,12 @@ import { toast } from "react-hot-toast";
 import { boysAvatars, girlsAvatars } from "../../helpers/constants";
 import { useNavigate } from "react-router-dom";
 import DateRange from "../../components/DateRange";
+import Dropdown from "../../components/Dropdown";
+
+const dropDownMobile = [
+  { href: "/changepass", label: "Change Password" },
+  { href: "/logout", label: "Sign Out" },
+];
 
 const studentDashboard: React.FC = () => {
   const [exitTime, setExitTime] = useState<string | null>(null);
@@ -203,12 +210,13 @@ const studentDashboard: React.FC = () => {
       <div className="md:hidden flex flex-col h-screen justify-between">
         <div>
           <span className="flex px-4 pb-2 flex-row pt-4 items-center justify-between">
-            <Link to={"/student/update"}>
-              <img src={profile} className="" />
-            </Link>
-            <Link to={"/logout"} className="font-bold text-p14 text-[#0C4A6E]">
-              Sign Out
-            </Link>
+            <span className="flex space-x-3 items-center">
+              <Link to={"/student/update"} title="Edit Profile">
+                <FiEdit style={{ fontSize: "1.2em", color: "#0EA5E9" }} />
+              </Link>
+            </span>
+
+            <Dropdown options={dropDownMobile} title="student" isHeading={true} />
           </span>
           <hr />
         </div>

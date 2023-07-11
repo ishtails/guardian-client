@@ -6,7 +6,7 @@ import Filter from "../../components/Filter";
 import React from "react";
 import { useOutingStore } from "../../store/store";
 import useFetchOutings from "../../helpers/fetchOutingHook";
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../../components/Searchbar";
 import DateRange from "../../components/DateRange";
 
 const dropDownNavAdmin = [

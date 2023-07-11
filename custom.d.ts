@@ -50,7 +50,7 @@ type User = {
 type UserStore = {
   user: User | null;
   isLoading: boolean;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
   setIsLoading: (isLoading: boolean) => void;
 };
 
@@ -75,8 +75,8 @@ type OutingStore = {
   outing: Outing | null;
   filter: Filter | null;
   isLoading: boolean;
-  setOuting: (outing: Outing) => void;
-  setFilter: (filter: Filter) => void;
+  setOuting: (outing: Outing | null) => void;
+  setFilter: (filter: Filter | null) => void;
   setIsLoading: (isLoading: boolean) => void;
 };
 

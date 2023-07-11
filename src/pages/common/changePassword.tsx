@@ -6,10 +6,13 @@ import InputField from "../../components/InputField";
 import { useForm, FormProvider } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useOutingStore, useUserStore } from "../../store/store";
 
 const changePasswordForm = () => {
   const methods = useForm();
   const navigate = useNavigate();
+  const { setUser } = useUserStore();
+  const { setOuting } = useOutingStore();
 
   const onSubmit = async (data: any) => {
     let { changepass_current_password, changepass_new_password } = data;
@@ -18,15 +21,13 @@ const changePasswordForm = () => {
       newPassword: changepass_new_password,
     };
     try {
-      const response = await toast.promise(
-        axios.post("/reset-password", requestObj),
-        {
-          loading: "Working...",
-          success: "Successful",
-          error: "Password reset failed",
-        }
-      );
-      console.log(response);
+      await toast.promise(axios.post("/reset-password", requestObj), {
+        loading: "Working...",
+        success: "Successful",
+        error: "Password reset failed",
+      });
+      setUser(null);
+      setOuting(null);
       navigate(`/login`);
     } catch (error: any) {
       console.log(error.response?.data);
@@ -67,7 +68,14 @@ const changePasswordForm = () => {
           label="changepass_Confirm New Password"
           placeholder="Confirm Password"
           isPassword={true}
-          validationRules={{ required: { value: true, message: "Required" } }}
+          validationRules={{
+            required: { value: true, message: "Required" },
+            validate: (val: string) => {
+              if (methods.watch("changepass_new_password") != val) {
+                return "Does not match";
+              }
+            },
+          }}
         />
 
         {/* Submit Button */}

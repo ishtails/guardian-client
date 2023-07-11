@@ -7,16 +7,21 @@ import useFetchOutings from "../../helpers/fetchOutingHook";
 import { LuClipboardCheck } from "react-icons/lu";
 import { useOutingStore } from "../../store/store";
 import moment from "moment";
-import { useEffect } from "react";
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../../components/Searchbar";
 
 const securityDashboard: React.FC = () => {
-  useFetchOutings("/outings", {});
   const { outing, isLoading, filter, setFilter } = useOutingStore();
-  
-  useEffect(() => {
-    setFilter({ ...filter, isOpen: true });
-  }, [isLoading]);
+  if (!filter?.isOpen == null) {
+    useFetchOutings("/outings", { isOpen: true });
+  }
+
+  if (!filter?.isOpen == true) {
+    useFetchOutings("/outings", { isOpen: true });
+  }
+
+  if (!filter?.isOpen == false) {
+    useFetchOutings("/outings", { isOpen: false });
+  }
 
   const columns: TableColumn[] = [
     "Roll No",
@@ -26,7 +31,7 @@ const securityDashboard: React.FC = () => {
     "Out Time",
     "In Time",
     "Reason",
-    `${filter?.isOpen ? "Close Entry" : "Late By"}`,
+    `${filter?.isOpen ? "Late By" : "Close Entry"}`,
   ];
   const values: TableRow[] = [];
 
@@ -57,11 +62,6 @@ const securityDashboard: React.FC = () => {
     });
   }
 
-  const dropDownNavSecurity = [
-    { href: "/changepass", label: "Change Password" },
-    { href: "/logout", label: "Sign Out" },
-  ];
-
   return (
     <div className="bg-[#FCFFFF] h-screen">
       {/* Desktop */}
@@ -73,9 +73,9 @@ const securityDashboard: React.FC = () => {
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between ">
               <h1 className="font-lexend font-bold text-h24 mx-4">
-                {filter?.isOpen ? "Open Entries" : "Closed Entries"}
+                {filter?.isOpen ? "Closed Entries" : "Open Entries"}
               </h1>
-              <div className="px-2 py-1 border rounded-lg text-sm font-medium">
+              <div className="font-lexend px-2 py-1 lg:mr-2 rounded-lg text-sm font-semibold">
                 Date: {moment().format("YYYY-MM-DD")}
               </div>
             </span>
@@ -89,7 +89,10 @@ const securityDashboard: React.FC = () => {
         <nav className="flex flex-row pt-4 items-center justify-between ">
           <SearchBar />
           <Dropdown
-            options={dropDownNavSecurity}
+            options={[
+              { href: "/changepass", label: "Change Password" },
+              { href: "/logout", label: "Sign Out" },
+            ]}
             title="security"
             isHeading={true}
           />
