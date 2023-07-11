@@ -2,16 +2,13 @@ import toast from "react-hot-toast";
 import { useFormStore, useUserStore } from "../store/store";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import useFetchProfile from "../helpers/fetchUserHook";
 
 type Props = {
   label: string;
 };
 
 const InputImage = ({ label }: Props) => {
-  useFetchProfile("/profile");
   const { user } = useUserStore();
-  console.log(user);
 
   const { formValues, setFormField } = useFormStore();
   const {
@@ -29,7 +26,7 @@ const InputImage = ({ label }: Props) => {
         setIsInvalid(true);
         setFormField(fieldName, null);
         return toast.error("Invalid file type", {
-          id:"invalid_type"
+          id: "invalid_type",
         });
       }
 
@@ -37,7 +34,7 @@ const InputImage = ({ label }: Props) => {
         setIsInvalid(true);
         setFormField(fieldName, null);
         return toast.error("File size exceeds 5MB limit", {
-          id:"size_exceed"
+          id: "size_exceed",
         });
       }
 
@@ -51,11 +48,15 @@ const InputImage = ({ label }: Props) => {
       <h1 className="text-[#344054] text-p16 font-medium">{label}</h1>
       <label
         htmlFor={inputId}
-        className={`${
+        className={`border-slate-300 ${
           errors[inputId] || isInvalid ? "border-red-300" : "border-sky-500"
         }
         flex justify-center px-4 transition bg-white border-2  rounded-md appearance-none cursor-pointer hover:border-slate-400 focus:outline-none w-full
-        ${!formValues[inputId] && user?.idCard ? "h-fit boder-solid" : "h-32  border-dashed"}`}
+        ${
+          !formValues[inputId] && user?.idCard
+            ? "h-fit boder-solid"
+            : "h-32 border-dashed"
+        }`}
       >
         {!formValues[inputId] && user?.idCard ? (
           <div className="flex flex-col items-center my-2">
