@@ -2,9 +2,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useOutingStore, useUserStore } from "../store/store";
 
 const LogOut = () => {
   const navigate = useNavigate();
+  const {setUser} = useUserStore();
+  const {setOuting} = useOutingStore();
 
   useEffect(() => {
     try {
@@ -16,6 +19,8 @@ const LogOut = () => {
         })
         .then((response) => {
           console.log(response);
+          setUser(null);
+          setOuting(null);
           navigate("/login");
         })
         .catch((error) => {
