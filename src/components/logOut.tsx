@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useOutingStore, useUserStore } from "../store/store";
 
-const LogOut = () => {
+const Logout = () => {
   const navigate = useNavigate();
   const {setUser, setIsLoading:userLoading} = useUserStore();
   const {setOuting, setIsLoading:outingLoading, setFilter} = useOutingStore();
@@ -24,7 +24,7 @@ const LogOut = () => {
           userLoading(true);
           outingLoading(true);
 
-          navigate("/login");
+          navigate("/");
         })
         .catch((error) => {
           console.log(error);
@@ -39,4 +39,4 @@ const LogOut = () => {
   return <div></div>;
 };
 
-export default LogOut;
+export default Logout;
