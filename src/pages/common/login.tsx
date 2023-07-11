@@ -1,7 +1,7 @@
 import login from "../../assets/illustrations/login.svg";
 import login2 from "../../assets/illustrations/login2.svg";
 import AuthUI from "../../components/AuthUI";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import { useForm, FormProvider } from "react-hook-form";
 import axios from "axios";
@@ -26,17 +26,15 @@ const loginForm = () => {
     };
 
     try {
-      const response = await toast.promise(axios.post("/login", requestObj), {
+      await toast.promise(axios.post("/login", requestObj), {
         loading: "Logging in...",
         success: "Successful",
         error: (error) => error.response?.data || "Server Error",
       });
-      console.log(response);
       setIsLoading(false);
       navigate(`/`);
     } catch (error: any) {
       setIsLoading(false);
-      console.log(error.response);
     }
   };
 
@@ -119,18 +117,15 @@ const loginForm = () => {
 };
 
 const loginScreen = () => {
-  const navigate = useNavigate();
   useFetchProfile('/profile');
   const { user, isLoading } = useUserStore();
-
-  console.log(user)
 
   if(isLoading){
     return(<div>Login Loading...</div>)
   }
 
   if (user?.role) {
-    navigate("/");
+    return <Navigate to={'/'} />
   }
 
   return (
