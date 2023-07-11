@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import LoginScreen from "../pages/common/login";
 import Error404 from "../pages/common/error404";
 import ChangePassword from "../pages/common/changePassword";
 import ForgotPassword_1 from "../pages/common/forgotPassword_1";
@@ -16,17 +15,16 @@ import StudentReason from "../pages/student/reason";
 import SuccessfulExit from "../pages/student/success";
 import FailedExit from "../pages/student/failure";
 import StudentUpdateInfo from "../pages/student/updateInfo";
-import LogOut from "../components/logOut";
+import Logout from "../components/Logout";
 
-import Dashboard from "./HomeRoute";
+import Home from "./HomeRoute";
 
 const mainRouter = () => {
   return (
     <Routes>
       {/* Common */}
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/login" element={<LoginScreen />} />
-      <Route path="/logout" element={<LogOut />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/logout" element={<Logout />} />
       <Route path="/forgotpass" element={<ForgotPassword_1 />} />
       <Route path="/forgotpass_2" element={<ForgotPassword_2 />} />
       <Route path="/forgotpass_3" element={<ForgotPassword_3 />} />

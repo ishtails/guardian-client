@@ -1,8 +1,8 @@
-import { Navigate } from "react-router-dom";
 import useFetchProfile from "../helpers/fetchUserHook";
 import AdminDashboard from "../pages/admin/dashboard";
 import SecurityDashboard from "../pages/security/dashboard";
 import StudentDashboard from "../pages/student/dashboard";
+import LoginScreen from "../pages/common/login";
 
 const Dashboard = () => {
   const { user, isLoading } = useFetchProfile("/profile");
@@ -24,7 +24,7 @@ const Dashboard = () => {
   }
 
   if (!user?.role && !isLoading) {
-    return <Navigate to={"/login"} />;
+    return <LoginScreen />
   }
 };
 
