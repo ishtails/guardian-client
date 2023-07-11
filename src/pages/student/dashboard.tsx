@@ -18,16 +18,6 @@ import DateRange from "../../components/DateRange";
 import Dropdown from "../../components/Dropdown";
 
 const studentDashboard: React.FC = () => {
-  const [exitTime, setExitTime] = useState<string | null>(null);
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    const currentTime = new Date().toISOString();
-    setExitTime(currentTime);
-    localStorage.setItem("exitTime", currentTime);
-    navigate(`/student/success`);
-  };
-
   useFetchOutings("/outings", { isOpen: false });
   const [isModalOpen, setModalOpen] = useState(false);
   const openModal = () => {
@@ -61,9 +51,6 @@ const studentDashboard: React.FC = () => {
 
   const { user } = useUserStore();
   const { outing, isLoading } = useOutingStore();
-
-  useFetchProfile("/profile");
-  useFetchOutings("/outings", { isOpen: false });
 
   const columns: TableColumn[] = ["Out Time", "In Time", "Late By", "Reason"];
   const values: TableRow[] = [];
