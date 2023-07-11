@@ -28,7 +28,7 @@ const changePasswordForm = () => {
       });
       setUser(null);
       setOuting(null);
-      navigate(`/login`);
+      navigate(`/`);
     } catch (error: any) {
       console.log(error.response?.data);
     }
