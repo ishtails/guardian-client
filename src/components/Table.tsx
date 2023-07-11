@@ -15,7 +15,10 @@ const Table: React.FC<TableProps> = ({ columns, values }) => {
     <div className="overflow-x-auto h-[72vh]">
       <CloseEntryModal
         isOpen={isModalOpen}
-        onClose={()=>{setModalOpen(false);}}
+        onClose={() => {
+          setModalOpen(false);
+          window.location.reload();
+        }}
         username={username}
       />
       <table className="w-full text-sm text-left text-slate-500">

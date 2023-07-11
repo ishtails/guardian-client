@@ -14,9 +14,9 @@ import useFetchProfile from "../../helpers/fetchUserHook";
 const updateForm = () => {
   useFetchProfile("/profile");
   const { user } = useUserStore();
-  const methods = useForm();
   const { formValues, setFormField } = useFormStore();
   const [isLoading, setIsLoading] = useState(false);
+  const methods = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {

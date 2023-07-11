@@ -37,12 +37,11 @@ const CloseEntryModal = ({ isOpen, onClose, username }: Props) => {
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
-      const result = await axios.get(`/security/close-entry`, {
+      await axios.get(`/security/close-entry`, {
         params: { username },
       });
 
       setIsLoading(false);
-      console.log(result);
       onClose();
     } catch (error) {
       toast.error("Could not close entry", {
