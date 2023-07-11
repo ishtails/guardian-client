@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { LuClipboardCheck } from "react-icons/lu";
-import { BiHomeAlt2 } from "react-icons/bi";
 import AppLogo from "./Logo";
 import { useOutingStore } from "../store/store";
 import Searchbar from "./SearchBar";
@@ -34,9 +33,6 @@ const Navbar = ({ role }: { role: String }) => {
         </div>
 
         <div className="flex items-center">
-          <Link to={"/"} className="bg-slate-100 p-2 rounded-lg mx-1">
-            <BiHomeAlt2 style={{ color: "#0EA5E9", fontSize: "24px" }} />
-          </Link>
           <Dropdown options={dropDownNavAdmin} title="admin" isHeading={true} />
         </div>
       </div>
