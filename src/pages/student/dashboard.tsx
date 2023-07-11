@@ -6,7 +6,6 @@ import lightbulb from "../../assets/icons/lightbulb.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { BsFillHouseFill } from "react-icons/bs";
-import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useOutingStore, useUserStore } from "../../store/store";
 import useFetchProfile from "../../helpers/fetchUserHook";
@@ -16,7 +15,6 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { boysAvatars, girlsAvatars } from "../../helpers/constants";
-import { useNavigate } from "react-router-dom";
 import DateRange from "../../components/DateRange";
 import Dropdown from "../../components/Dropdown";
 
@@ -26,9 +24,6 @@ const dropDownMobile = [
 ];
 
 const studentDashboard: React.FC = () => {
-  const [exitTime, setExitTime] = useState<string | null>(null);
-  const navigate = useNavigate();
-
   const [isModalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -90,14 +85,7 @@ const studentDashboard: React.FC = () => {
         return 0;
       });
     });
-  };
-
-  // const handleClick = () => {
-  //   const currentTime = exitTime;
-  //   setExitTime(currentTime);
-  //   localStorage.setItem("exitTime", currentTime);
-  //   navigate(`/student/success`);
-  // };
+  }
 
   return (
     <div className="h-screen">
@@ -147,14 +135,7 @@ const studentDashboard: React.FC = () => {
               </div>
 
               <hr className="h-px w-full bg-gray-200 border-0" />
-              {/* <Link
-                to={user?.isOutside ? "/student/success" : "/student/reason"}
-                className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${
-                  user?.isOutside
-                    ? "bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
-                    : "lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200"
-                }`}
-              > */}
+
               {user?.isOutside ? (
                 <Link
                   to="/student/success"
@@ -216,7 +197,11 @@ const studentDashboard: React.FC = () => {
               </Link>
             </span>
 
-            <Dropdown options={dropDownMobile} title="student" isHeading={true} />
+            <Dropdown
+              options={dropDownMobile}
+              title="student"
+              isHeading={true}
+            />
           </span>
           <hr />
         </div>
