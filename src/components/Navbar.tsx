@@ -3,21 +3,7 @@ import Dropdown from "./Dropdown";
 import { LuClipboardCheck } from "react-icons/lu";
 import AppLogo from "./Logo";
 import { useOutingStore } from "../store/store";
-import Searchbar from "./SearchBar";
-
-const dropDownNavStudent = [
-  { href: "/student/update", label: "Update Profile" },
-  { href: "/changepass", label: "Change Password" },
-  { href: "/logout", label: "Sign Out" },
-];
-const dropDownNavSecurity = [
-  { href: "/changepass", label: "Change Password" },
-  { href: "/logout", label: "Sign Out" },
-];
-const dropDownNavAdmin = [
-  { href: "/changepass", label: "Change Password" },
-  { href: "/logout", label: "Sign Out" },
-];
+import Searchbar from "./Searchbar";
 
 const Navbar = ({ role }: { role: String }) => {
   const { filter, setFilter } = useOutingStore();
@@ -33,7 +19,14 @@ const Navbar = ({ role }: { role: String }) => {
         </div>
 
         <div className="flex items-center">
-          <Dropdown options={dropDownNavAdmin} title="admin" isHeading={true} />
+          <Dropdown
+            options={[
+              { href: "/changepass", label: "Change Password" },
+              { href: "/logout", label: "Sign Out" },
+            ]}
+            title="admin"
+            isHeading={true}
+          />
         </div>
       </div>
     );
@@ -70,7 +63,10 @@ const Navbar = ({ role }: { role: String }) => {
           </label>
 
           <Dropdown
-            options={dropDownNavSecurity}
+            options={[
+              { href: "/changepass", label: "Change Password" },
+              { href: "/logout", label: "Sign Out" },
+            ]}
             title="security"
             isHeading={true}
           />
@@ -89,7 +85,11 @@ const Navbar = ({ role }: { role: String }) => {
 
         <div className="flex items-center">
           <Dropdown
-            options={dropDownNavStudent}
+            options={[
+              { href: "/student/update", label: "Update Profile" },
+              { href: "/changepass", label: "Change Password" },
+              { href: "/logout", label: "Sign Out" },
+            ]}
             title="student"
             isHeading={true}
           />
