@@ -5,29 +5,34 @@ import success_illustration from "../../assets/illustrations/success.svg";
 import logo from "../../assets/icons/logo.svg";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { useOutingStore } from "../../store/store";
-import { useStopwatch } from "react-timer-hook";
 import { useEffect, useState } from "react";
-// import moment from "moment";
+import useFetchProfile from "../../helpers/fetchUserHook";
+import moment from "moment";
 
 const success = () => {
-  useFetchOutings("/outings", { isOpen: true });
   const { outing, isLoading } = useOutingStore();
 
-  const [exitTime, setExitTime] = useState<string | null>(() => {
-    const storedExitTime = localStorage.getItem("exitTime");
-    return storedExitTime ? storedExitTime : null;
-  });
+  const [exitTime, setExitTime] = useState<string | null>();
 
-  // const { hours, minutes, seconds } = useStopwatch({
-  //   autoStart: true,
-  // });
+  useFetchProfile("/profile");
+  useFetchOutings("/outings", { isOpen: true });
 
   // Calculate elapsed time
   const calculateElapsedTime = () => {
     if (exitTime) {
+      const out = outing?.[0].outTime;
       const currentTime = new Date();
-      const exitTimestamp = new Date(exitTime);
-      const elapsedTime = currentTime.getTime() - exitTimestamp.getTime();
+      const outFormatted = out.split(" ")[1];
+
+      const exitDate = new Date();
+      const [hours, minutes, seconds] = moment(outFormatted, "HH:mm")
+        .format("HH:mm:ss")
+        .split(":");
+      exitDate.setHours(Number(hours));
+      exitDate.setMinutes(Number(minutes));
+      exitDate.setSeconds(Number(seconds));
+      const elapsedTime = currentTime.getTime() - exitDate.getTime();
+
       return {
         hours: Math.floor(elapsedTime / (1000 * 60 * 60)),
         minutes: Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60)),
@@ -55,11 +60,13 @@ const success = () => {
   }, [exitTime]);
 
   useEffect(() => {
-    const storedExitTime = localStorage.getItem("exitTime");
+    const storedExitTime = moment(outing?.[0].outTime, "YYYY-MM-DD HH:mm")
+      .toDate()
+      .toString();
     if (storedExitTime) {
       setExitTime(storedExitTime);
     }
-  }, []);
+  }, [outing]);
 
   return (
     <div>
@@ -69,10 +76,7 @@ const success = () => {
           {/* Navbar */}
           <nav className="space-y-2">
             <div className="flex pt-4 items-center justify-between ">
-              <Link
-                to={"/"}
-                className="flex items-center space-x-2"
-              >
+              <Link to={"/"} className="flex items-center space-x-2">
                 <img src={goback} className="w-[24px] self-center" />
                 <p className="text-white">Go Back</p>
               </Link>

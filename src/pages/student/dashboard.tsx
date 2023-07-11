@@ -14,7 +14,6 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { boysAvatars, girlsAvatars } from "../../helpers/constants";
-import { useNavigate } from "react-router-dom";
 import DateRange from "../../components/DateRange";
 import Dropdown from "../../components/Dropdown";
 
@@ -63,6 +62,9 @@ const studentDashboard: React.FC = () => {
   const { user } = useUserStore();
   const { outing, isLoading } = useOutingStore();
 
+  useFetchProfile("/profile");
+  useFetchOutings("/outings", { isOpen: false });
+
   const columns: TableColumn[] = ["Out Time", "In Time", "Late By", "Reason"];
   const values: TableRow[] = [];
 
@@ -91,7 +93,7 @@ const studentDashboard: React.FC = () => {
   }
 
   return (
-    <div className="h-screen ">
+    <div className="h-screen">
       <AvatarModal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -136,10 +138,10 @@ const studentDashboard: React.FC = () => {
                   <p>{user?.room ? `${user?.hostel} / ${user?.room}` : "NA"}</p>
                 </span>
               </div>
+
               <hr className="h-px w-full bg-gray-200 border-0" />
               {user?.isOutside ? (
                 <Link
-                  onClick={handleClick}
                   to="/student/success"
                   className="text-white text-p16 py-3 px-10 rounded-full transition-all font-semibold shadow-lg bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
                 >
