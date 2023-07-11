@@ -26,14 +26,22 @@ const success = () => {
   const calculateElapsedTime = () => {
     if (exitTime) {
       const out = outing?.[0].outTime;
-      {moment(out).format("YYYY-MM-DD")}
-      console.log(out);
       const currentTime = new Date();
-      {moment(currentTime).format("YYYY-MM-DD")}
-      console.log(currentTime)
-      const exitTimestamp = new Date(out);
+      // console.log(out);
+      // console.log(currentTime);
+      const outFormatted = out.split(" ")[1];
+      const exitDate = new Date();
+      // exitDate.setFullYear(currentTime.getFullYear()); // Set the same year as the current time
+      // exitDate.setMonth(currentTime.getMonth()); // Set the same month as the current time
+      // exitDate.setDate(currentTime.getDate()); // Set the same day as the current time
+
+      const [hours, minutes, seconds] = outFormatted.split(":");
+      exitDate.setHours(hours);
+      exitDate.setMinutes(minutes);
+      // exitDate.setSeconds(seconds);
+      // const exitTimestamp = new Date(out);
       // console.log(exitTimestamp);
-      const elapsedTime = exitTimestamp.getTime() - currentTime.getTime();
+      const elapsedTime = currentTime.getTime() - exitDate.getTime();
       // console.log(exitTimestamp.getTime());
       // console.log(currentTime.getTime());
       return {
