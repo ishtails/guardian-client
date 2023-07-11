@@ -4,30 +4,38 @@ import bgbluegradient from "../../assets/darkblue-gradient-bg.svg";
 import success_illustration from "../../assets/illustrations/success.svg";
 import logo from "../../assets/icons/logo.svg";
 import useFetchOutings from "../../helpers/fetchOutingHook";
-import { useOutingStore } from "../../store/store";
+import { useOutingStore, useUserStore } from "../../store/store";
 import { useStopwatch } from "react-timer-hook";
 import { useEffect, useState } from "react";
-// import moment from "moment";
+import useFetchProfile from "../../helpers/fetchUserHook";
+import moment from "moment";
 
 const success = () => {
-  useFetchOutings("/outings", { isOpen: true });
   const { outing, isLoading } = useOutingStore();
+  const { user } = useUserStore();
 
   const [exitTime, setExitTime] = useState<string | null>(() => {
     const storedExitTime = localStorage.getItem("exitTime");
     return storedExitTime ? storedExitTime : null;
   });
 
-  // const { hours, minutes, seconds } = useStopwatch({
-  //   autoStart: true,
-  // });
+  useFetchProfile("/profile");
+  useFetchOutings("/outings", { isOpen: false });
 
   // Calculate elapsed time
   const calculateElapsedTime = () => {
     if (exitTime) {
+      const out = outing?.[0].outTime;
+      {moment(out).format("YYYY-MM-DD")}
+      console.log(out);
       const currentTime = new Date();
-      const exitTimestamp = new Date(exitTime);
-      const elapsedTime = currentTime.getTime() - exitTimestamp.getTime();
+      {moment(currentTime).format("YYYY-MM-DD")}
+      console.log(currentTime)
+      const exitTimestamp = new Date(out);
+      // console.log(exitTimestamp);
+      const elapsedTime = exitTimestamp.getTime() - currentTime.getTime();
+      // console.log(exitTimestamp.getTime());
+      // console.log(currentTime.getTime());
       return {
         hours: Math.floor(elapsedTime / (1000 * 60 * 60)),
         minutes: Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60)),
@@ -69,10 +77,7 @@ const success = () => {
           {/* Navbar */}
           <nav className="space-y-2">
             <div className="flex pt-4 items-center justify-between ">
-              <Link
-                to={"/"}
-                className="flex items-center space-x-2"
-              >
+              <Link to={"/"} className="flex items-center space-x-2">
                 <img src={goback} className="w-[24px] self-center" />
                 <p className="text-white">Go Back</p>
               </Link>

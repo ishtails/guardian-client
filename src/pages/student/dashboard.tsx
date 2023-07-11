@@ -22,15 +22,6 @@ const studentDashboard: React.FC = () => {
   const [exitTime, setExitTime] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    const currentTime = new Date().toISOString();
-    setExitTime(currentTime);
-    localStorage.setItem("exitTime", currentTime);
-    navigate(`/student/success`);
-  };
-
-  useFetchProfile("/profile");
-  useFetchOutings("/outings", { isOpen: false });
   const [isModalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -64,6 +55,9 @@ const studentDashboard: React.FC = () => {
   const { user } = useUserStore();
   const { outing, isLoading } = useOutingStore();
 
+  useFetchProfile("/profile");
+  useFetchOutings("/outings", { isOpen: false });
+
   const columns: TableColumn[] = ["Out Time", "In Time", "Late By", "Reason"];
   const values: TableRow[] = [];
 
@@ -89,10 +83,17 @@ const studentDashboard: React.FC = () => {
         return 0;
       });
     });
-  }
+  };
+
+  // const handleClick = () => {
+  //   const currentTime = exitTime;
+  //   setExitTime(currentTime);
+  //   localStorage.setItem("exitTime", currentTime);
+  //   navigate(`/student/success`);
+  // };
 
   return (
-    <div className="h-screen ">
+    <div className="h-screen">
       <AvatarModal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -137,6 +138,7 @@ const studentDashboard: React.FC = () => {
                   <p>{user?.room ? `${user?.hostel} / ${user?.room}` : "NA"}</p>
                 </span>
               </div>
+
               <hr className="h-px w-full bg-gray-200 border-0" />
               {/* <Link
                 to={user?.isOutside ? "/student/success" : "/student/reason"}
@@ -148,7 +150,6 @@ const studentDashboard: React.FC = () => {
               > */}
               {user?.isOutside ? (
                 <Link
-                  onClick={handleClick}
                   to="/student/success"
                   className="text-white text-p16 py-3 px-10 rounded-full transition-all font-semibold shadow-lg bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
                 >
