@@ -4,46 +4,35 @@ import bgbluegradient from "../../assets/darkblue-gradient-bg.svg";
 import success_illustration from "../../assets/illustrations/success.svg";
 import logo from "../../assets/icons/logo.svg";
 import useFetchOutings from "../../helpers/fetchOutingHook";
-import { useOutingStore, useUserStore } from "../../store/store";
-import { useStopwatch } from "react-timer-hook";
+import { useOutingStore } from "../../store/store";
 import { useEffect, useState } from "react";
 import useFetchProfile from "../../helpers/fetchUserHook";
 import moment from "moment";
 
 const success = () => {
   const { outing, isLoading } = useOutingStore();
-  const { user } = useUserStore();
 
-  const [exitTime, setExitTime] = useState<string | null>(() => {
-    const storedExitTime = localStorage.getItem("exitTime");
-    return storedExitTime ? storedExitTime : null;
-  });
+  const [exitTime, setExitTime] = useState<string | null>();
 
   useFetchProfile("/profile");
-  useFetchOutings("/outings", { isOpen: false });
+  useFetchOutings("/outings", { isOpen: true });
 
   // Calculate elapsed time
   const calculateElapsedTime = () => {
     if (exitTime) {
       const out = outing?.[0].outTime;
       const currentTime = new Date();
-      // console.log(out);
-      // console.log(currentTime);
       const outFormatted = out.split(" ")[1];
-      const exitDate = new Date();
-      // exitDate.setFullYear(currentTime.getFullYear()); // Set the same year as the current time
-      // exitDate.setMonth(currentTime.getMonth()); // Set the same month as the current time
-      // exitDate.setDate(currentTime.getDate()); // Set the same day as the current time
 
-      const [hours, minutes, seconds] = outFormatted.split(":");
-      exitDate.setHours(hours);
-      exitDate.setMinutes(minutes);
-      // exitDate.setSeconds(seconds);
-      // const exitTimestamp = new Date(out);
-      // console.log(exitTimestamp);
+      const exitDate = new Date();
+      const [hours, minutes, seconds] = moment(outFormatted, "HH:mm")
+        .format("HH:mm:ss")
+        .split(":");
+      exitDate.setHours(Number(hours));
+      exitDate.setMinutes(Number(minutes));
+      exitDate.setSeconds(Number(seconds));
       const elapsedTime = currentTime.getTime() - exitDate.getTime();
-      // console.log(exitTimestamp.getTime());
-      // console.log(currentTime.getTime());
+
       return {
         hours: Math.floor(elapsedTime / (1000 * 60 * 60)),
         minutes: Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60)),
@@ -71,11 +60,13 @@ const success = () => {
   }, [exitTime]);
 
   useEffect(() => {
-    const storedExitTime = localStorage.getItem("exitTime");
+    const storedExitTime = moment(outing?.[0].outTime, "YYYY-MM-DD HH:mm")
+      .toDate()
+      .toString();
     if (storedExitTime) {
       setExitTime(storedExitTime);
     }
-  }, []);
+  }, [outing]);
 
   return (
     <div>
