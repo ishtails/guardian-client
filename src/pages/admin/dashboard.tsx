@@ -15,8 +15,13 @@ const dropDownNavAdmin = [
 ];
 
 const adminDashboard: React.FC = () => {
-  useFetchOutings("/outings", {});
   const { outing, isLoading, filter, setFilter } = useOutingStore();
+
+  if (filter?.isOpen == true) {
+    useFetchOutings("/outings", { isOpen: true });
+  } else{
+    useFetchOutings("/outings", { isOpen: false });
+  }
 
   const columns: TableColumn[] = [
     "Roll No",

@@ -6,10 +6,8 @@ import lightbulb from "../../assets/icons/lightbulb.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { BsFillHouseFill } from "react-icons/bs";
-import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useOutingStore, useUserStore } from "../../store/store";
-import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import AvatarModal from "../../components/AvatarModal";
 import { useState } from "react";
@@ -19,11 +17,6 @@ import { boysAvatars, girlsAvatars } from "../../helpers/constants";
 import { useNavigate } from "react-router-dom";
 import DateRange from "../../components/DateRange";
 import Dropdown from "../../components/Dropdown";
-
-const dropDownMobile = [
-  { href: "/changepass", label: "Change Password" },
-  { href: "/logout", label: "Sign Out" },
-];
 
 const studentDashboard: React.FC = () => {
   const [exitTime, setExitTime] = useState<string | null>(null);
@@ -36,7 +29,6 @@ const studentDashboard: React.FC = () => {
     navigate(`/student/success`);
   };
 
-  useFetchProfile("/profile");
   useFetchOutings("/outings", { isOpen: false });
   const [isModalOpen, setModalOpen] = useState(false);
   const openModal = () => {
@@ -145,14 +137,6 @@ const studentDashboard: React.FC = () => {
                 </span>
               </div>
               <hr className="h-px w-full bg-gray-200 border-0" />
-              {/* <Link
-                to={user?.isOutside ? "/student/success" : "/student/reason"}
-                className={`text-white text-p16 py-3 px-10 rounded-full  transition-all font-semibold shadow-lg ${
-                  user?.isOutside
-                    ? "bg-amber-500 hover:bg-amber-400 lg:block shadow-gray-200"
-                    : "lg:hidden bg-[#0EA5E9] hover:bg-sky-400 shadow-sky-200"
-                }`}
-              > */}
               {user?.isOutside ? (
                 <Link
                   onClick={handleClick}
@@ -180,7 +164,7 @@ const studentDashboard: React.FC = () => {
               </Link>
             </div>
 
-            <div className="flex justify-center mt-5 bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center">
+            <div className="flex justify-center mt-5 bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 min-w-[19rem] items-center">
               <img src={lightbulb} className="h-[32px]" />
               <p className="hidden lg:block text-amber-dark text-[12px] font-medium">
                 {user?.isOutside
@@ -215,7 +199,14 @@ const studentDashboard: React.FC = () => {
               </Link>
             </span>
 
-            <Dropdown options={dropDownMobile} title="student" isHeading={true} />
+            <Dropdown
+              options={[
+                { href: "/changepass", label: "Change Password" },
+                { href: "/logout", label: "Sign Out" },
+              ]}
+              title="student"
+              isHeading={true}
+            />
           </span>
           <hr />
         </div>
