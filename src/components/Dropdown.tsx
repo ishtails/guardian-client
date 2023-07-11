@@ -41,7 +41,7 @@ const Dropdown = ({ title, isHeading, options }: Props) => {
       >
         <Menu.Items
           className={`absolute ${
-            isHeading ? "right-1 bg-[#FCFFFF] top-6" : "right-0 md:left-0 bg-white"
+            isHeading ? "right-1 bg-[#FCFFFF] md:top-7 top-6" : "right-0 md:left-0 bg-white"
           } z-10 mt-3 w-44 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {options.map((option: any) => (

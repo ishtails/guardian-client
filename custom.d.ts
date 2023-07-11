@@ -76,7 +76,7 @@ type OutingStore = {
   filter: Filter | null;
   isLoading: boolean;
   setOuting: (outing: Outing | null) => void;
-  setFilter: (filter: Filter) => void;
+  setFilter: (filter: Filter | null) => void;
   setIsLoading: (isLoading: boolean) => void;
 };
 
