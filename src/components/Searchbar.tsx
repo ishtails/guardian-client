@@ -7,9 +7,18 @@ import { FiSearch } from "react-icons/fi";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [debounced, setDebounced] = useState(searchTerm);
   const [suggestions, setSuggestions] = useState<searchObj[]>([]);
   const searchInputRef = useRef<HTMLDivElement>(null);
   const { filter, setFilter } = useOutingStore();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearchTerm(debounced);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [debounced]);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -17,7 +26,7 @@ const SearchBar = () => {
         searchInputRef.current &&
         !searchInputRef.current.contains(event.target as Node)
       ) {
-        setSearchTerm("");
+        setDebounced("");
         setSuggestions([]);
       }
     };
@@ -29,21 +38,20 @@ const SearchBar = () => {
     };
   }, []);
 
-  // Function to handle input change
-  const handleInputChange = async (e: any) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-
-    if (value) {
-      const response = await axios.get("/search", {
-        params: {
-          key: searchTerm,
-        },
-      });
-
-      setSuggestions(response.data);
+  // Fetch Data
+  useEffect(() => {
+    if (searchTerm) {
+      axios
+        .get("/search", {
+          params: {
+            key: searchTerm,
+          },
+        })
+        .then((response) => setSuggestions(response.data));
+    } else {
+      setSuggestions([]);
     }
-  };
+  }, [searchTerm]);
 
   return (
     <div className="relative">
@@ -56,9 +64,9 @@ const SearchBar = () => {
           name="search"
           type="text"
           placeholder={filter?.username || "Search..."}
-          value={searchTerm}
+          value={debounced}
           className="px-4 py-2 focus:outline-none max-w-[12rem]"
-          onChange={handleInputChange}
+          onChange={(e) => setDebounced(e.target.value)}
           autoComplete="off"
         />
         <button
