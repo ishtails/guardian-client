@@ -43,7 +43,7 @@ const adminDashboard: React.FC = () => {
         "Roll No": unit.username,
         Hostel: unit.hostel,
         Room: unit.room,
-        "Out Time": moment(unit.outTime, "YYYY-MM-DD HH:mm:ss").format('YYYY-MM-DD HH:mm'),
+        "Out Time": moment(unit.outTime, "DD-MM-YYYY HH:mm:ss").format('DD-MM-YYYY HH:mm'),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,

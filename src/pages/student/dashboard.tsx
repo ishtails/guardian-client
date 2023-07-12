@@ -59,7 +59,7 @@ const studentDashboard: React.FC = () => {
   if (!isLoading) {
     outing?.map((unit) => {
       const newObj = {
-        "Out Time": moment(unit.outTime, "YYYY-MM-DD HH:mm:ss").format('YYYY-MM-DD HH:mm'),
+        "Out Time": moment(unit.outTime, "DD-MM-YYYY HH:mm:ss").format('DD-MM-YYYY HH:mm'),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
