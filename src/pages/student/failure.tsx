@@ -15,7 +15,7 @@ const reason = () => {
           <nav className="space-y-2">
             <div className="flex pt-4 items-center justify-between ">
               <Link
-                to={"/student/home"}
+                to={"/"}
                 className="flex items-center space-x-2"
               >
                 <img src={goback} className="w-[24px] self-center" />
@@ -42,7 +42,7 @@ const reason = () => {
             </div>
 
             <Link
-              to={"/student/home"}
+              to={"/"}
               className="text-white text-p16 mt-5 bg-yellow py-3 px-10 rounded-full hover:bg-amber-300 transition-all font-semibold shadow-lg"
             >
               Try Again
@@ -61,7 +61,7 @@ const reason = () => {
           Switch to a mobile device to view this page
         </h1>
         <Link
-          to={"/student/home"}
+          to={"/"}
           className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500"
         >
           Go back

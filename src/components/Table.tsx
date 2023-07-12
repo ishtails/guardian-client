@@ -1,19 +1,6 @@
-import axios from "axios";
-import React from "react";
-import { AiFillCheckCircle } from "react-icons/ai";
-
-type TableColumn =
-  | "Date"
-  | "Roll No"
-  | "Name"
-  | "Hostel"
-  | "Room"
-  | "Out Time"
-  | "In Time"
-  | "Reason"
-  | "Status";
-
-type TableRow = Record<TableColumn, string>;
+import React, { useState } from "react";
+import Close from "../assets/icons/close-entry.svg";
+import CloseEntryModal from "./CloseEntryModal";
 
 interface TableProps {
   columns: TableColumn[];
@@ -21,8 +8,19 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ columns, values }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [username, setUsername] = useState("");
+
   return (
     <div className="overflow-x-auto h-[72vh]">
+      <CloseEntryModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setModalOpen(false);
+          window.location.reload();
+        }}
+        username={username}
+      />
       <table className="w-full text-sm text-left text-slate-500">
         <thead className="text-xs text-slate-700 uppercase border-b-2">
           <tr>
@@ -42,24 +40,16 @@ const Table: React.FC<TableProps> = ({ columns, values }) => {
                   key={column}
                   className="px-6 py-4 whitespace-nowrap"
                 >
-                  {column === "Status" ? (
-                    <div className="flex items-center">
-                      <button
-                        className=""
-                        onClick={async () => {
-                          try {
-                            await axios.get(
-                              `/security/close-entry/${row[column]}`
-                            );
-                            window.location.reload();
-                          } catch (error) {
-                            console.log(error);
-                          }
-                        }}
-                      >
-                        <AiFillCheckCircle style={{ color: "#0ea5e9", fontSize: "1.6em" }}/>
-                      </button>
-                    </div>
+                  {column === "Close Entry" ? (
+                    <button
+                      className="w-full max-w-[5.2rem] flex justify-center"
+                      onClick={() => {
+                        setUsername(row[column]);
+                        setModalOpen(true);
+                      }}
+                    >
+                      <img src={Close} className="w-[1.6rem]" />
+                    </button>
                   ) : (
                     row[column]
                   )}

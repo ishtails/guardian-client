@@ -1,39 +1,116 @@
-import React from 'react';
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 
-const Modal = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
+const Modal = ({ isOpen, onClose, avatars, onSubmit }) => {
+  const [selectedAvatar, setSelectedAvatar] = useState<Avatar | null>();
+
+  const handleAvatarSelection = (avatar: Avatar) => {
+    setSelectedAvatar(avatar);
+  };
+
+  const handleSubmit = () => {
+    onSubmit(selectedAvatar);
+    setSelectedAvatar(null);
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto">
-      <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-      </div>
-      <div className="relative bg-white p-6 mx-4 md:mx-auto rounded shadow max-w-lg">
-        {/* Modal content */}
-        <h2 className="text-xl mb-4">Modal Title</h2>
-        <p>Modal body text goes here.</p>
-
-        {/* Close button */}
-        <button
-          className="absolute top-0 right-0 mt-4 mr-4 text-gray-600 hover:text-gray-800"
-          onClick={onClose}
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+    <Transition.Root show={isOpen} as={Fragment}>
+      <Dialog
+        as="div"
+        className="fixed inset-0 z-50 overflow-y-auto"
+        onClose={onClose}
+      >
+        <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
-    </div>
+            <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+          </Transition.Child>
+
+          {/* Modal content */}
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden w-[90%] shadow-xl transform transition-all sm:my-24 lg:sm:my-12 sm:align-middle sm:max-w-[90%] lg:max-w-[75%] xl:max-w-[60%] sm:w-full">
+              <div className="px-4 py-5 sm:px-6">
+                <div className="flex justify-between">
+                  <h1 className="font-bold font-lexend text-slate-800">Choose your avatar</h1>
+                  <button
+                    type="button"
+                    className="text-gray-500 hover:text-gray-700 focus:outline-none"
+                    onClick={onClose}
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div className="px-4">
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
+                  {avatars.map((avatar: any) => (
+                    <button
+                      key={avatar.url}
+                      className={`relative rounded-full focus:outline-none ${
+                        selectedAvatar?.url === avatar.url
+                          ? "ring-2 ring-sky-600"
+                          : ""
+                      }`}
+                      onClick={() => handleAvatarSelection(avatar)}
+                    >
+                      <img
+                        src={avatar.url}
+                        alt={avatar.details}
+                        className="w-full border-4 border-slate-100 h-auto rounded-full"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="px-4 py-3 mt-2 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button
+                  type="button"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-sky-500 text-base font-medium text-white hover:bg-sky-400 transition focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={handleSubmit}
+                  disabled={!selectedAvatar}
+                >
+                  Select
+                </button>
+                <button
+                  type="button"
+                  className="mt-2 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-100 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm transition"
+                  onClick={onClose}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </Transition.Child>
+        </div>
+      </Dialog>
+    </Transition.Root>
   );
 };
 

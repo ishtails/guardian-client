@@ -24,17 +24,18 @@ const loginForm = () => {
     };
 
     try {
-      const response = await toast.promise(axios.post("/login", requestObj), {
-        loading: 'Logging in...',
-        success: 'Successful',
-        error: (error) => (error.response?.data || "Server Error"),
+      toast.loading("Authenticating...", {
+        style: {
+          minWidth: "180px",
+        },
+        id: "login_loader",
       });
-      console.log(response)
+      await axios.post("/login", requestObj);
+      toast.dismiss("login_loader");
       setIsLoading(false);
-      navigate(`/${response.data.role}/home`);
+      navigate(0);
     } catch (error: any) {
       setIsLoading(false);
-      console.log(error.response);
     }
   };
 
@@ -98,7 +99,10 @@ const loginForm = () => {
 
         {/* Submit */}
         <div className="flex flex-col items-center space-y-3">
-          <button disabled={isLoading} className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold disabled:bg-slate-300">
+          <button
+            disabled={isLoading}
+            className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold disabled:bg-slate-300"
+          >
             Sign In
           </button>
           <Link

@@ -4,11 +4,7 @@ import filterIcon from "./../assets/icons/filter.svg";
 import { useOutingStore } from "../store/store";
 
 const Filter = () => {
-  const { filter, setFilter, isLoading } = useOutingStore();
-
-  useEffect(() => {
-    setFilter({ ...filter, isOpen: false });
-  }, [isLoading]);
+  const { filter, setFilter } = useOutingStore();
 
   const handleGenderFilter = (e: any) => {
     const { name, checked } = e.target;

@@ -34,7 +34,9 @@ const InputField = ({
           {...register(inputId, validationRules)}
           type={!isPassword ? "text" : isPasswordVisible ? "text" : "password"}
           placeholder={placeholder}
-          className={`border rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50 ${errors[inputId] ? 'border-red-300':''}`}
+          className={`border rounded-lg border-[#D0D5DD] text-[#667085] text-h16 p-2 w-full focus:outline-sky-300 focus:bg-slate-50 hover:bg-slate-50 transition ${
+            errors[inputId] ? "border-red-300" : ""
+          }`}
         />
         <div
           className={`${
@@ -82,7 +84,9 @@ const InputField = ({
           )}
         </div>
         {errors[inputId] && (
-          <span className="text-red-500 text-p14">{errors[inputId].message}</span>
+          <span className="text-red-500 text-p14">
+            {errors[inputId].message}
+          </span>
         )}
       </div>
     </div>

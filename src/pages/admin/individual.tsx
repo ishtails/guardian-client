@@ -12,9 +12,6 @@ import { BiHomeAlt2 } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 
-type TableColumn = any;
-type TableRow = any;
-
 const individual: React.FC = () => {
   const columns: TableColumn[] = ["Date", "Out Time", "In Time", "Reason"];
   const values: TableRow[] = [
@@ -87,7 +84,7 @@ const individual: React.FC = () => {
           <SearchBar />
           <span className="flex items-center">
             <Link
-              to={"/admin/home"}
+              to={"/"}
             >
               <BiHomeAlt2 style={{ color: "#0EA5E9", fontSize: "24px" }} />
             </Link>

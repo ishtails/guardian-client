@@ -2,16 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useOutingStore } from "../store/store";
 
-type Filters = {
-  startDate?: string;
-  endDate?: string;
-  isOpen?: boolean;
-  username?: string;
-  reason?: string;
-  isLate?: boolean;
-};
-
-const useFetchOutings = (query: string, filt: Filters) => {
+const useFetchOutings = (query: string, filt: Filter) => {
   const { outing, setOuting, isLoading, setIsLoading, filter } = useOutingStore();
   useEffect(() => {
     if (!query) {

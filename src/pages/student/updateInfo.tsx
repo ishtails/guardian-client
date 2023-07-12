@@ -13,10 +13,10 @@ import useFetchProfile from "../../helpers/fetchUserHook";
 
 const updateForm = () => {
   useFetchProfile("/profile");
-  const methods = useForm();
   const { user } = useUserStore();
-  const { formValues } = useFormStore();
+  const { formValues, setFormField } = useFormStore();
   const [isLoading, setIsLoading] = useState(false);
+  const methods = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
@@ -47,6 +47,17 @@ const updateForm = () => {
 
     if (update_hostel) {
       formData.append("hostel", update_hostel.toUpperCase());
+
+      let gender = "";
+      if (update_hostel.toUpperCase() === "GH") {
+        gender = "female";
+      }
+      if (["BH1", "BH2", "BH3", "IVH"].includes(update_hostel.toUpperCase())) {
+        gender = "male";
+      }
+      if (gender) {
+        formData.append("gender", gender);
+      }
     }
 
     if (update_room) {
@@ -72,7 +83,7 @@ const updateForm = () => {
     }
 
     try {
-      const response = await toast.promise(
+      await toast.promise(
         axios.patch("/update-profile", formData),
         {
           loading: "Updating...",
@@ -80,9 +91,10 @@ const updateForm = () => {
           error: (error) => error.response?.data || "Server Error",
         }
       );
-      console.log(response);
+
+      setFormField("update_identity_card", null)
       setIsLoading(false);
-      navigate("/student/home");
+      navigate("/");
     } catch (error) {
       setIsLoading(false);
       console.log(error);
@@ -154,22 +166,24 @@ const updateForm = () => {
         <InputImage label="update_Identity Card" />
 
         {/* Submit Button */}
-        <div className="pt-1">
-          <button
-            disabled={isLoading}
-            className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold disabled:bg-slate-300"
-          >
-            Submit
-          </button>
-        </div>
+        <div className="flex flex-col justify-center">
+          <div className="pt-1">
+            <button
+              disabled={isLoading}
+              className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition-all font-semibold disabled:bg-slate-300"
+            >
+              Submit
+            </button>
+          </div>
 
-        {/* Footer */}
-        <Link
-          to="/student/home"
-          className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 self-center"
-        >
-          Back to Home
-        </Link>
+          {/* Footer */}
+          <Link
+            to="/"
+            className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 mt-2 self-center"
+          >
+            Back to Home
+          </Link>
+        </div>
       </form>
     </FormProvider>
   );

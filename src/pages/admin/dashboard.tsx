@@ -6,10 +6,9 @@ import Filter from "../../components/Filter";
 import React from "react";
 import { useOutingStore } from "../../store/store";
 import useFetchOutings from "../../helpers/fetchOutingHook";
-import SearchBar from "../../components/SearchBar";
-
-type TableColumn = any;
-type TableRow = any;
+import SearchBar from "../../components/Searchbar";
+import DateRange from "../../components/DateRange";
+import moment from "moment";
 
 const dropDownNavAdmin = [
   { href: "/changepass", label: "Change Password" },
@@ -17,8 +16,13 @@ const dropDownNavAdmin = [
 ];
 
 const adminDashboard: React.FC = () => {
-  useFetchOutings("/outings", {});
   const { outing, isLoading, filter, setFilter } = useOutingStore();
+
+  if (filter?.isOpen == true) {
+    useFetchOutings("/outings", { isOpen: true });
+  } else{
+    useFetchOutings("/outings", { isOpen: false });
+  }
 
   const columns: TableColumn[] = [
     "Roll No",
@@ -39,31 +43,24 @@ const adminDashboard: React.FC = () => {
         "Roll No": unit.username,
         Hostel: unit.hostel,
         Room: unit.room,
-        "Out Time": unit.outTime,
+        "Out Time": moment(unit.outTime, "YYYY-MM-DD HH:mm:ss").format('YYYY-MM-DD HH:mm'),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
       };
       values.push(newObj);
       values.sort((a, b) => {
-        if (a["In Time"] > b["In Time"]) {
+        if (a["Out Time"] > b["Out Time"]) {
           return -1;
         }
-  
-        if (a["In Time"] < b["In Time"]) {
+
+        if (a["Out Time"] < b["Out Time"]) {
           return 1;
         }
         return 0;
       });
     });
   }
-
-  const dropDownDate = [
-    { href: "/Today", label: "Today" },
-    { href: "/Yesterday", label: "Yesterday" },
-    { href: "/Past-Week", label: "Past Week" },
-    { href: "/Past-Month", label: "Past Month" },
-  ];
 
   const handleGenderFilter = (e: any) => {
     const { name, checked } = e.target;
@@ -159,7 +156,7 @@ const adminDashboard: React.FC = () => {
           <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
-              <Dropdown options={dropDownDate} title="Date" isHeading={false} />
+              <DateRange />
             </span>
             <Table columns={columns} values={values} />
           </div>
@@ -179,7 +176,7 @@ const adminDashboard: React.FC = () => {
           <h1 className="font-lexend text-p18 font-bold">Overview</h1>
           <span className="flex space-x-4 items-center">
             <Filter />
-            <Dropdown options={dropDownDate} title="Today" isHeading={false} />
+            <DateRange />
           </span>
         </div>
 
