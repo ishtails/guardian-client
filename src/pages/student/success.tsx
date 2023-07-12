@@ -6,15 +6,12 @@ import logo from "../../assets/icons/logo.svg";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { useOutingStore } from "../../store/store";
 import { useEffect, useState } from "react";
-import useFetchProfile from "../../helpers/fetchUserHook";
 import moment from "moment";
 
 const success = () => {
   const { outing, isLoading } = useOutingStore();
-
   const [exitTime, setExitTime] = useState<string | null>();
 
-  useFetchProfile("/profile");
   useFetchOutings("/outings", { isOpen: true });
 
   // Calculate elapsed time
@@ -22,10 +19,10 @@ const success = () => {
     if (exitTime) {
       const out = outing?.[0].outTime;
       const currentTime = new Date();
-      const outFormatted = out.split(" ")[1];
+      const outFormatted = out?.split(" ")[1];
 
       const exitDate = new Date();
-      const [hours, minutes, seconds] = moment(outFormatted, "HH:mm")
+      const [hours, minutes, seconds] = moment(outFormatted, "HH:mm:ss")
         .format("HH:mm:ss")
         .split(":");
       exitDate.setHours(Number(hours));

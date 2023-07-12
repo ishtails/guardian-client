@@ -23,8 +23,6 @@ const reason = () => {
       latitude: location?.latitude,
     };
 
-    console.log(requestObj)
-
     try {
       const response = await toast.promise(axios.post("/student/exit-request", requestObj), {
         loading: 'Verifying...',

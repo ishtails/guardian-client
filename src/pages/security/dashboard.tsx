@@ -42,7 +42,7 @@ const securityDashboard: React.FC = () => {
         "Roll No": unit.username,
         Hostel: unit.hostel,
         Room: unit.room,
-        "Out Time": unit.outTime,
+        "Out Time": moment(unit.outTime, "YYYY-MM-DD HH:mm:ss").format('YYYY-MM-DD HH:mm'),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
@@ -76,7 +76,7 @@ const securityDashboard: React.FC = () => {
                 {filter?.isOpen ? "Closed Entries" : "Open Entries"}
               </h1>
               <div className="font-lexend px-2 py-1 lg:mr-2 rounded-lg text-sm font-semibold">
-                Date: {moment().format("YYYY-MM-DD")}
+                {moment().format("dddd: YYYY-MM-DD")}
               </div>
             </span>
             <Table columns={columns} values={values} />
