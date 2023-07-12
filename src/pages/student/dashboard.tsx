@@ -16,6 +16,7 @@ import { toast } from "react-hot-toast";
 import { boysAvatars, girlsAvatars } from "../../helpers/constants";
 import DateRange from "../../components/DateRange";
 import Dropdown from "../../components/Dropdown";
+import moment from "moment";
 
 const studentDashboard: React.FC = () => {
   useFetchOutings("/outings", { isOpen: false });
@@ -58,7 +59,7 @@ const studentDashboard: React.FC = () => {
   if (!isLoading) {
     outing?.map((unit) => {
       const newObj = {
-        "Out Time": unit.outTime,
+        "Out Time": moment(unit.outTime, "YYYY-MM-DD HH:mm:ss").format('YYYY-MM-DD HH:mm'),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,

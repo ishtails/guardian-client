@@ -8,6 +8,7 @@ import { useOutingStore } from "../../store/store";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import SearchBar from "../../components/Searchbar";
 import DateRange from "../../components/DateRange";
+import moment from "moment";
 
 const dropDownNavAdmin = [
   { href: "/changepass", label: "Change Password" },
@@ -42,7 +43,7 @@ const adminDashboard: React.FC = () => {
         "Roll No": unit.username,
         Hostel: unit.hostel,
         Room: unit.room,
-        "Out Time": unit.outTime,
+        "Out Time": moment(unit.outTime, "YYYY-MM-DD HH:mm:ss").format('YYYY-MM-DD HH:mm'),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
