@@ -12,7 +12,7 @@ const Table: React.FC<TableProps> = ({ columns, values }) => {
   const [username, setUsername] = useState("");
 
   return (
-    <div className="overflow-x-auto h-[72vh]">
+    <div className="overflow-x-auto h-[72vh] border-b-[1px]">
       <CloseEntryModal
         isOpen={isModalOpen}
         onClose={() => {

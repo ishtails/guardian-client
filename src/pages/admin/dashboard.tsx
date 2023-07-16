@@ -3,12 +3,13 @@ import Navbar from "../../components/Navbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import Filter from "../../components/Filter";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useOutingStore } from "../../store/store";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import SearchBar from "../../components/Searchbar";
 import DateRange from "../../components/DateRange";
 import moment from "moment";
+import { GoTriangleRight, GoTriangleLeft } from "react-icons/go";
 
 const dropDownNavAdmin = [
   { href: "/changepass", label: "Change Password" },
@@ -16,11 +17,12 @@ const dropDownNavAdmin = [
 ];
 
 const adminDashboard: React.FC = () => {
+  const [page, setPage] = useState(1);
   const { outing, isLoading, filter, setFilter } = useOutingStore();
 
   if (filter?.isOpen == true) {
     useFetchOutings("/outings", { isOpen: true });
-  } else{
+  } else {
     useFetchOutings("/outings", { isOpen: false });
   }
 
@@ -43,7 +45,9 @@ const adminDashboard: React.FC = () => {
         "Roll No": unit.username,
         Hostel: unit.hostel,
         Room: unit.room,
-        "Out Time": moment(unit.outTime, "DD-MM-YYYY HH:mm:ss").format('DD-MM-YYYY HH:mm'),
+        "Out Time": moment(unit.outTime, "DD-MM-YYYY HH:mm:ss").format(
+          "DD-MM-YYYY HH:mm"
+        ),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
@@ -61,6 +65,8 @@ const adminDashboard: React.FC = () => {
       });
     });
   }
+
+  console.log(page);
 
   const handleGenderFilter = (e: any) => {
     const { name, checked } = e.target;
@@ -153,12 +159,37 @@ const adminDashboard: React.FC = () => {
             </form>
           </div>
 
-          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
+          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5 h-[82vh]">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
               <DateRange />
             </span>
             <Table columns={columns} values={values} />
+            {/* <hr className="border-[1.2px]" /> */}
+            <div className="flex items-center space-x-4 self-center">
+              <button
+                onClick={() => {
+                  if (page > 1) {
+                    setPage((prev) => prev - 1);
+                    setFilter({ ...filter, page:page-1 });
+                  }
+                }}
+              >
+                <GoTriangleLeft
+                  style={{ fontSize: "1.5rem", color: "#0EA5E9" }}
+                />
+              </button>
+              <button
+                onClick={() => {
+                  setPage((prev) => prev + 1);
+                  setFilter({ ...filter, page:page+1 });
+                }}
+              >
+                <GoTriangleRight
+                  style={{ fontSize: "1.5rem", color: "#0EA5E9" }}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>

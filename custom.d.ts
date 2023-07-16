@@ -88,6 +88,7 @@ type Filter = {
   reason?: string | null;
   isLate?: true | null;
   gender?: "male" | "female" | null;
+  page?: number | null;
 };
 
 type searchObj = {
