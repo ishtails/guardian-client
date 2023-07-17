@@ -17,6 +17,7 @@ import { boysAvatars, girlsAvatars } from "../../helpers/constants";
 import DateRange from "../../components/DateRange";
 import Dropdown from "../../components/Dropdown";
 import moment from "moment";
+import Pagination from "../../components/Pagination";
 
 const studentDashboard: React.FC = () => {
   useFetchOutings("/outings", { isOpen: false });
@@ -169,12 +170,13 @@ const studentDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
+          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5 h-[82vh]">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
               <DateRange />
             </span>
             <Table columns={columns} values={values} />
+            <Pagination />
           </div>
         </div>
       </div>
