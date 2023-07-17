@@ -24,13 +24,16 @@ const reason = () => {
     };
 
     try {
-      const response = await toast.promise(axios.post("/student/exit-request", requestObj), {
-        loading: 'Verifying...',
-        success: 'Successful',
-        error: (error) => (error.response.data || "Failed"),
-      });
+      const response = await toast.promise(
+        axios.post("/student/exit-request", requestObj),
+        {
+          loading: "Verifying...",
+          success: "Successful",
+          error: (error) => error.response.data || "Failed",
+        }
+      );
 
-      console.log(response)
+      console.log(response);
       navigate(`/student/success`);
     } catch (error: any) {
       console.log(error.response);
@@ -39,16 +42,16 @@ const reason = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className="relative flex flex-col lg:hidden overflow-x-clip h-screen" onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        className="relative flex flex-col lg:hidden overflow-x-clip h-screen"
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
         <img src={bgbluegradient} className="absolute -z-10 scale-[300%]" />
         <div className="flex flex-col space-y-4 px-4 pb-3">
           {/* Navbar */}
           <nav className="space-y-2">
             <div className="flex pt-4 items-center justify-between ">
-              <Link
-                to={"/"}
-                className="flex items-center space-x-2"
-              >
+              <Link to={"/"} className="flex items-center space-x-2">
                 <img src={goback} className="w-[24px] self-center" />
                 <p className="text-white">Go Back</p>
               </Link>
@@ -71,7 +74,10 @@ const reason = () => {
                 }}
               />
 
-              <button type="submit" className="text-white text-p16 bg-[#0EA5E9] py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg">
+              <button
+                type="submit"
+                className="text-white text-p16 bg-[#0EA5E9] py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg"
+              >
                 Confirm Exit
               </button>
             </div>
@@ -85,8 +91,15 @@ const reason = () => {
         </div>
       </form>
       <div className="hidden xl:flex flex-col items-center justify-center h-screen">
-          <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">Switch to a mobile device to view this page</h1>
-          <Link to={'/'} className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500">Go back</Link>
+        <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">
+          Switch to a mobile device or resize your window to view this page
+        </h1>
+        <Link
+          to={"/"}
+          className="font-medium text-p14 mt-5 underline underline-offset-2 transition hover:scale-110 text-sky-500"
+        >
+          Go back
+        </Link>
       </div>
     </FormProvider>
   );
