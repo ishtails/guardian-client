@@ -114,7 +114,7 @@ const success = () => {
 
       <div className="hidden xl:flex flex-col items-center justify-center h-screen">
         <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">
-          Switch to a mobile device to view this page
+          Switch to a mobile device or resize your window to view this page
         </h1>
         <Link
           to={"/"}
