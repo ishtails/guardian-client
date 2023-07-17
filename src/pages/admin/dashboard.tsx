@@ -3,13 +3,13 @@ import Navbar from "../../components/Navbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
 import Filter from "../../components/Filter";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useOutingStore } from "../../store/store";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import SearchBar from "../../components/Searchbar";
 import DateRange from "../../components/DateRange";
 import moment from "moment";
-import { GoTriangleRight, GoTriangleLeft } from "react-icons/go";
+import Pagination from "../../components/Pagination";
 
 const dropDownNavAdmin = [
   { href: "/changepass", label: "Change Password" },
@@ -17,7 +17,6 @@ const dropDownNavAdmin = [
 ];
 
 const adminDashboard: React.FC = () => {
-  const [page, setPage] = useState(1);
   const { outing, isLoading, filter, setFilter } = useOutingStore();
 
   if (filter?.isOpen == true) {
@@ -65,8 +64,6 @@ const adminDashboard: React.FC = () => {
       });
     });
   }
-
-  console.log(page);
 
   const handleGenderFilter = (e: any) => {
     const { name, checked } = e.target;
@@ -165,31 +162,7 @@ const adminDashboard: React.FC = () => {
               <DateRange />
             </span>
             <Table columns={columns} values={values} />
-            {/* <hr className="border-[1.2px]" /> */}
-            <div className="flex items-center space-x-4 self-center">
-              <button
-                onClick={() => {
-                  if (page > 1) {
-                    setPage((prev) => prev - 1);
-                    setFilter({ ...filter, page:page-1 });
-                  }
-                }}
-              >
-                <GoTriangleLeft
-                  style={{ fontSize: "1.5rem", color: "#0EA5E9" }}
-                />
-              </button>
-              <button
-                onClick={() => {
-                  setPage((prev) => prev + 1);
-                  setFilter({ ...filter, page:page+1 });
-                }}
-              >
-                <GoTriangleRight
-                  style={{ fontSize: "1.5rem", color: "#0EA5E9" }}
-                />
-              </button>
-            </div>
+            <Pagination />
           </div>
         </div>
       </div>
@@ -211,8 +184,9 @@ const adminDashboard: React.FC = () => {
           </span>
         </div>
 
-        <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
+        <div className="shadow-lg flex flex-col bg-white border border-slate-200 px-4 py-2 rounded-lg">
           <Table columns={columns} values={values} />
+          <Pagination />
         </div>
 
         <hr />
