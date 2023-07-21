@@ -15,7 +15,7 @@ const DateRange = () => {
   const [selectedRange, setSelectedRange] = useState({
     selection: {
       startDate: new Date(),
-      endDate: null,
+      endDate: undefined,
       key: "selection",
     },
   });
