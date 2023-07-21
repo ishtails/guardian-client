@@ -24,7 +24,7 @@ const registerForm = () => {
       const response = await toast.promise(axios.post("/register-student", requestObj), {
         loading: 'Registering...',
         success: 'Successful',
-        error: (error) => ("error"),
+        error: () => ("error"),
       });
       console.log(response)
       // setIsLoading(false);
