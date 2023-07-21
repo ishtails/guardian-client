@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import filterIcon from "./../assets/icons/filter.svg";
 import { useOutingStore } from "../store/store";
