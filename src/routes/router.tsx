@@ -7,7 +7,6 @@ import ForgotPassword_3 from "../pages/common/forgotPassword_3";
 import Register_1 from "../pages/student/register_1";
 import Register_2 from "../pages/student/register_2";
 import Register_3 from "../pages/student/register_3";
-import IndividualProfile from "../pages/admin/individual";
 import ClosedEntries from "../pages/security/closedEntries";
 import Support from "../pages/common/support";
 import StudentReport from "../pages/student/reports";
@@ -30,9 +29,6 @@ const mainRouter = () => {
       <Route path="/forgotpass_3" element={<ForgotPassword_3 />} />
       <Route path="/changepass" element={<ChangePassword />} />
       <Route path="/help" element={<Support />} />
-
-      {/* Admin Routes */}
-      <Route path="/profile/:username" element={<IndividualProfile />} />
 
       {/* Security Routes */}
       <Route path="/security/closed" element={<ClosedEntries />} />
