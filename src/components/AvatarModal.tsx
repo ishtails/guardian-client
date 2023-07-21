@@ -5,7 +5,7 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   avatars: Avatar[];
-  onSubmit: (selectedAvatar: Avatar | null) => void;
+  onSubmit: any;
 };
 
 const Modal = ({ isOpen, onClose, avatars, onSubmit }: Props) => {
