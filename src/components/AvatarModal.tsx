@@ -1,7 +1,14 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-const Modal = ({ isOpen, onClose, avatars, onSubmit }) => {
+type Props = {
+  isOpen: boolean;
+  onClose: () => void;
+  avatars: Avatar[];
+  onSubmit: (selectedAvatar: Avatar | null) => void;
+};
+
+const Modal = ({ isOpen, onClose, avatars, onSubmit }: Props) => {
   const [selectedAvatar, setSelectedAvatar] = useState<Avatar | null>();
 
   const handleAvatarSelection = (avatar: Avatar) => {
@@ -9,8 +16,10 @@ const Modal = ({ isOpen, onClose, avatars, onSubmit }) => {
   };
 
   const handleSubmit = () => {
-    onSubmit(selectedAvatar);
-    setSelectedAvatar(null);
+    if (selectedAvatar) {
+      onSubmit(selectedAvatar);
+      setSelectedAvatar(null);
+    }
   };
 
   return (
@@ -46,7 +55,9 @@ const Modal = ({ isOpen, onClose, avatars, onSubmit }) => {
             <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden w-[90%] shadow-xl transform transition-all sm:my-24 lg:sm:my-12 sm:align-middle sm:max-w-[90%] lg:max-w-[75%] xl:max-w-[60%] sm:w-full">
               <div className="px-4 py-5 sm:px-6">
                 <div className="flex justify-between">
-                  <h1 className="font-bold font-lexend text-slate-800">Choose your avatar</h1>
+                  <h1 className="font-bold font-lexend text-slate-800">
+                    Choose your avatar
+                  </h1>
                   <button
                     type="button"
                     className="text-gray-500 hover:text-gray-700 focus:outline-none"
