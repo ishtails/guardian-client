@@ -24,7 +24,7 @@ const registerForm = () => {
       const response = await toast.promise(axios.post("/verify-otp", requestObj), {
         loading: 'Checking...',
         success: 'Verified',
-        error: (error) => ("Failed"),
+        error: () => ("Failed"),
       });
       console.log(response)
       // setIsLoading(false);
