@@ -1,7 +1,7 @@
 # Guardian - A Gate Security Management System
 Guardian is a comprehensive Gate Security WebApp designed to digitize and optimize the management of student entry and exit processes at a gated location.
 The purpose of this web application is to provide a system for managing student main gate entry/exit records on campus. With its user-friendly interface 
-and efficient functionalities, Guardian ensures a seamless experience for students, and various monitoring capabilities for the administrators.
+and efficient functionalities, Guardian ensures a seamless experience for students, and various monitoring capabilities for the administrators...
 
 ## Links
 Documentation: [Click Here](https://docs.google.com/document/d/1icATDE41zBhdGM5qlPNgBdHJe0I8uJxtTujov9Cpqn4/edit?usp=sharing)<br/>
