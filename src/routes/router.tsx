@@ -14,7 +14,7 @@ import StudentReason from "../pages/student/reason";
 import SuccessfulExit from "../pages/student/success";
 import FailedExit from "../pages/student/failure";
 import StudentUpdateInfo from "../pages/student/updateInfo";
-import Logout from "../components/Logout";
+import Logout from "../components/LogoutComp";
 
 import Home from "./HomeRoute";
 
