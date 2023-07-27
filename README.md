@@ -8,7 +8,7 @@ Documentation: [Click Here](https://docs.google.com/document/d/1icATDE41zBhdGM5q
 UI Design (Figma): [Click Here](https://www.figma.com/file/k5eDd6Edq2NL3xGf4do5Ki/Guardian?type=design&node-id=0%3A1&t=Js4hdwCZioEZo3dU-1)<br/>
 
 # Setting up locally
-To setup the application locally, head to the main repo & follow instructions in readme: [Main Repo](https://github.com/ishtails/Guardian-Backend)
+To setup the application locally, head to the main repo & follow instructions in readme: [Main Repo](https://github.com/ishtails/Guardian)
 
 ## Contributing
 
