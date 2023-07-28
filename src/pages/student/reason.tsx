@@ -24,7 +24,7 @@ const reason = () => {
     };
 
     try {
-      const response = await toast.promise(
+      await toast.promise(
         axios.post("/student/exit-request", requestObj),
         {
           loading: "Verifying...",
@@ -33,7 +33,6 @@ const reason = () => {
         }
       );
 
-      console.log(response);
       navigate(`/student/success`);
     } catch (error: any) {
       console.log(error.response);
