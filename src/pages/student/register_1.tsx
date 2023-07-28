@@ -26,7 +26,7 @@ const registerForm = () => {
       toast.dismiss("check_email");
 
       if (!result.data) {
-        const response = await toast.promise(
+        await toast.promise(
           axios.post("/send-otp", requestObj),
           {
             loading: "Sending OTP...",
@@ -34,7 +34,6 @@ const registerForm = () => {
             error: (error) => error.response.data || "Failed",
           }
         );
-        console.log(response);
         navigate(`/register/otp`);
         return;
       }
@@ -44,7 +43,9 @@ const registerForm = () => {
         duration:2000
       });
     } catch (error: any) {
-      console.log(error.response);
+      toast.dismiss("check_email");
+      toast.error(error.response.status == 422 ? "Invalid email" : error.response.data)
+      console.log(error);
     }
   };
 

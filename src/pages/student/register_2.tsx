@@ -10,10 +10,8 @@ import { toast } from "react-hot-toast";
 const registerForm = () => {
   const methods = useForm();
   const navigate = useNavigate();
-  // const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: any) => {
-    // setIsLoading(true);
     let { register_verify_otp } = data;
 
     const requestObj = {
@@ -21,16 +19,13 @@ const registerForm = () => {
     };
 
     try {
-      const response = await toast.promise(axios.post("/verify-otp", requestObj), {
+      await toast.promise(axios.post("/verify-otp", requestObj), {
         loading: 'Checking...',
         success: 'Verified',
         error: (error) => (error.response.data || "Failed"),
       });
-      console.log(response)
-      // setIsLoading(false);
       navigate(`/register/pass`);
     } catch (error: any) {
-      // setIsLoading(false);
       console.log(error.response);
     }
   };

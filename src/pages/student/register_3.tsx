@@ -10,10 +10,8 @@ import { toast } from "react-hot-toast";
 const registerForm = () => {
   const methods = useForm();
   const navigate = useNavigate();
-  // const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: any) => {
-    // setIsLoading(true);
     let { register_password } = data;
 
     const requestObj = {
@@ -21,12 +19,11 @@ const registerForm = () => {
     };
 
     try {
-      const response = await toast.promise(axios.post("/register-student", requestObj), {
+      await toast.promise(axios.post("/register-student", requestObj), {
         loading: 'Registering...',
         success: 'Successful',
-        error: (error) => (error.response.data || "Failed"),
+        error: (error)=>(error.response.status == 422 ? "Atleast 1 alphabet, 1 digit and minimum 8 characters are required" : error.response.data),
       });
-      console.log(response)
       navigate(`/`);
     } catch (error: any) {
       console.log(error.response);
