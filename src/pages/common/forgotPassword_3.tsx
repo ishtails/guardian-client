@@ -19,14 +19,14 @@ const forgotPassForm_1 = () => {
     };
 
     try {
-      await toast.promise(
-        axios.post("/reset-password", requestObj),
-        {
-          loading: "Loading...",
-          success: "Successful",
-          error: (error)=>(error.response.status == 422 ? "Atleast 1 alphabet, 1 digit and minimum 8 characters are required" : error.response.data),
-        }
-      );
+      await toast.promise(axios.post("/reset-password", requestObj), {
+        loading: "Loading...",
+        success: "Successful",
+        error: (error) =>
+          error.response.status == 422
+            ? "Atleast 1 alphabet, 1 digit and minimum 8 characters are required"
+            : error.response.data,
+      });
       navigate(`/`);
     } catch (error: any) {
       console.log(error.response);
@@ -54,7 +54,13 @@ const forgotPassForm_1 = () => {
           label="forgotpass3_New Password"
           placeholder="New Password"
           isPassword={true}
-          validationRules={{ required: { value: true, message: "Required" } }}
+          validationRules={{
+            required: { value: true, message: "Required" },
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*[0-9])[a-zA-Z0-9@$!%*#?&]{8,}$/,
+              message: "1 alphabet, 1 digit and minimum 8 characters required",
+            },
+          }}
         />
         <InputField
           label="forgotpass3_Confirm New Password"
