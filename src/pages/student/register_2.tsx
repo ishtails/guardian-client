@@ -24,7 +24,7 @@ const registerForm = () => {
         success: 'Verified',
         error: (error) => (error.response.data || "Failed"),
       });
-      navigate(`/register/pass`);
+      navigate(`/register/password`);
     } catch (error: any) {
       console.log(error.response);
     }

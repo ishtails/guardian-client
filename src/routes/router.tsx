@@ -36,7 +36,7 @@ const mainRouter = () => {
       {/* Student Routes */}
       <Route path="/register/email" element={<Register_1/>} />
       <Route path="/register/otp" element={<Register_2/>} />
-      <Route path="/register/pass" element={<Register_3/>} />
+      <Route path="/register/password" element={<Register_3/>} />
 
       <Route path="/student/report" element={<StudentReport />} />
       <Route path="/student/reason" element={<StudentReason />} />
