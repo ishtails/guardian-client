@@ -10,31 +10,25 @@ import { toast } from "react-hot-toast";
 const forgotPassForm_1 = () => {
   const methods = useForm();
   const navigate = useNavigate();
-  // const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: any) => {
-    // setIsLoading(true);
     let { forgotpass3_new_password } = data;
 
     const requestObj = {
       newPassword: forgotpass3_new_password,
     };
-    console.log(requestObj);
 
     try {
-      const response = await toast.promise(
+      await toast.promise(
         axios.post("/reset-password", requestObj),
         {
           loading: "Loading...",
           success: "Successful",
-          error: "Something went wrong",
+          error: (error)=>(error.response.status == 422 ? "Atleast 1 alphabet, 1 digit and minimum 8 characters are required" : error.response.data),
         }
       );
-      console.log(response);
-      // setIsLoading(false);
       navigate(`/`);
     } catch (error: any) {
-      // setIsLoading(false);
       console.log(error.response);
     }
   };

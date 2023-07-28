@@ -48,6 +48,8 @@ const forgotPassForm_1 = () => {
         duration:2000
       });
     } catch (error: any) {
+      toast.dismiss("check_email");
+      toast.error(error.response.status == 422 ? "Invalid email" : error.response.data)
       console.log(error);
     }
   };

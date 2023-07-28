@@ -22,7 +22,7 @@ const forgotPassForm_1 = () => {
     };
 
     try {
-      const response = await toast.promise(
+      await toast.promise(
         axios.post("/verify-otp", requestObj),
         {
           loading: "Verifying OTP...",
@@ -30,7 +30,6 @@ const forgotPassForm_1 = () => {
           error: (error) => error.response?.data || "Server Error",
         }
       );
-      console.log(response);
       setIsLoading(false);
       navigate(`/forgotpassword/reset`);
     } catch (error: any) {
