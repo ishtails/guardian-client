@@ -48,7 +48,7 @@ const registerForm = () => {
         id: "login_error",
         duration: 2000,
       })
-      console.log(error);
+      console.log(error.response);
     }
   };
 

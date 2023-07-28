@@ -86,7 +86,8 @@ const updateForm = () => {
       await toast.promise(axios.patch("/update-profile", formData), {
         loading: "Updating...",
         success: "Updated Successfully",
-        error: (error) => error.response?.data || "Server Error",
+        error: (error) =>
+          error.response.status === 500 ? "Server Error" : error.response.data,
       });
 
       setFormField("update_identity_card", null);
@@ -122,7 +123,7 @@ const updateForm = () => {
           validationRules={{
             required: { value: !user?.name, message: "Required" },
             pattern: {
-              value: /^[A-Za-z]+$/,
+              value: /^[A-Za-z\s]+$/,
               message: "Only alphabets are allowed",
             },
           }}

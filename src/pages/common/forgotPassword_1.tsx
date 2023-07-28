@@ -53,7 +53,7 @@ const forgotPassForm_1 = () => {
         id: "login_error",
         duration: 2000,
       })
-      console.log(error);
+      console.log(error.response);
     }
   };
 

@@ -24,13 +24,16 @@ const changePasswordForm = () => {
       await toast.promise(axios.post("/reset-password", requestObj), {
         loading: "Working...",
         success: "Successful",
-        error: "Password reset failed",
+        error: (error) =>
+          error.response.status === 422
+            ? "Invalid password"
+            : error.response.data,
       });
       setUser(null);
       setOuting(null);
       navigate(`/`);
     } catch (error: any) {
-      console.log(error.response?.data);
+      console.log(error.response);
     }
   };
 
@@ -62,7 +65,13 @@ const changePasswordForm = () => {
           label="changepass_New Password"
           placeholder="New Password"
           isPassword={true}
-          validationRules={{ required: { value: true, message: "Required" } }}
+          validationRules={{
+            required: { value: true, message: "Required" },
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*[0-9])[a-zA-Z0-9@$!%*#?&]{8,}$/,
+              message: "1 alphabet, 1 digit and minimum 8 characters required",
+            },
+          }}
         />
         <InputField
           label="changepass_Confirm New Password"
