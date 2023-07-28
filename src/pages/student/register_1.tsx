@@ -44,7 +44,10 @@ const registerForm = () => {
       });
     } catch (error: any) {
       toast.dismiss("check_email");
-      toast.error(error.response.status == 422 ? "Invalid email" : error.response.data)
+      toast.error(error.response.status == 422 ? "Invalid email" : error.response.data, {
+        id: "login_error",
+        duration: 2000,
+      })
       console.log(error);
     }
   };

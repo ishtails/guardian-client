@@ -36,7 +36,10 @@ const loginForm = () => {
       navigate(0);
     } catch (error: any) {
       toast.dismiss("login_loader");
-      toast.error(error.response.data)
+      toast.error(error.response.data, {
+        id: "login_error",
+        duration: 2000,
+      });
       setIsLoading(false);
     }
   };
