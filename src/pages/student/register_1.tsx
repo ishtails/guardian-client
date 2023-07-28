@@ -32,7 +32,7 @@ const registerForm = () => {
           {
             loading: "Sending OTP...",
             success: "Successful",
-            error: () => "Failed",
+            error: (error) => error.response.data || "Failed",
           }
         );
         console.log(response);
@@ -82,7 +82,13 @@ const registerForm = () => {
             to="/"
             className="text-[#0EA5E9] text-p14 transition font-medium hover:text-sky-700"
           >
-            Already registered? Login
+            Back to Login
+          </Link>
+          <Link
+            to="/register/otp"
+            className="text-[#0EA5E9] text-p14 transition font-medium hover:text-sky-700"
+          >
+            Already have an OTP?
           </Link>
         </div>
       </form>

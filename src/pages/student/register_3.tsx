@@ -24,13 +24,11 @@ const registerForm = () => {
       const response = await toast.promise(axios.post("/register-student", requestObj), {
         loading: 'Registering...',
         success: 'Successful',
-        error: () => ("error"),
+        error: (error) => (error.response.data || "Failed"),
       });
       console.log(response)
-      // setIsLoading(false);
-      navigate(`/login`);
+      navigate(`/`);
     } catch (error: any) {
-      // setIsLoading(false);
       console.log(error.response);
     }
   };
