@@ -36,7 +36,10 @@ const loginForm = () => {
       navigate(0);
     } catch (error: any) {
       toast.dismiss("login_loader");
-      toast.error(error.response.data)
+      toast.error(error.response.data, {
+        id: "login_error",
+        duration: 2000,
+      });
       setIsLoading(false);
     }
   };
@@ -91,7 +94,7 @@ const loginForm = () => {
             </label>
 
             <Link
-              to="/forgotpass"
+              to="/forgotpassword/email"
               className="text-[#0EA5E9] transition font-medium hover:text-sky-700 text-p14"
             >
               Forgot Password?

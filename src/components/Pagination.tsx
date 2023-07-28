@@ -6,7 +6,6 @@ type Props = {};
 
 const Pagination = ({}: Props) => {
   const { outing, filter, setFilter } = useOutingStore();
-  console.log(outing);
 
   const [page, setPage] = useState(1);
   return (

@@ -19,9 +19,14 @@ const forgotPassForm_1 = () => {
     };
 
     try {
-      const response = await toast.promise(
-        axios.post("/send-otp", requestObj),
-        {
+      toast.loading("Checking Email...", {
+        id: "check_email",
+      });
+      const result = await axios.post("/is-registered", requestObj);
+      toast.dismiss("check_email");
+
+      if (result.data) {
+        await toast.promise(axios.post("/send-otp", requestObj), {
           loading: "Sending OTP...",
           success: "Successful",
           error: (error) => {
@@ -33,11 +38,21 @@ const forgotPassForm_1 = () => {
               return "Server Error";
             }
           },
-        }
-      );
-      console.log(response);
-      navigate(`/forgotpass_2`);
+        });
+        navigate(`/forgotpassword/otp`);
+        return;
+      }
+
+      return toast.error("Not registered", {
+        id:"email_DNE",
+        duration:2000
+      });
     } catch (error: any) {
+      toast.dismiss("check_email");
+      toast.error(error.response.status == 422 ? "Invalid email" : error.response.data, {
+        id: "login_error",
+        duration: 2000,
+      })
       console.log(error);
     }
   };
@@ -69,15 +84,21 @@ const forgotPassForm_1 = () => {
         />
 
         {/* Submit */}
-        <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-col items-center">
           <button className="text-white text-h16 bg-[#0EA5E9] w-full p-2 rounded-lg hover:bg-sky-400 transition font-semibold">
             Continue
           </button>
           <Link
             to="/"
-            className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 text-p14"
+            className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 text-p14 mt-2"
           >
             Back to Login
+          </Link>
+          <Link
+            to="/forgotpassword/otp"
+            className="text-[#0EA5E9] text-p14 transition font-medium hover:text-sky-700 mt-1"
+          >
+            Already have an OTP?
           </Link>
         </div>
       </form>

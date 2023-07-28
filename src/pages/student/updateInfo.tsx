@@ -83,16 +83,13 @@ const updateForm = () => {
     }
 
     try {
-      await toast.promise(
-        axios.patch("/update-profile", formData),
-        {
-          loading: "Updating...",
-          success: "Updated Successfully",
-          error: (error) => error.response?.data || "Server Error",
-        }
-      );
+      await toast.promise(axios.patch("/update-profile", formData), {
+        loading: "Updating...",
+        success: "Updated Successfully",
+        error: (error) => error.response?.data || "Server Error",
+      });
 
-      setFormField("update_identity_card", null)
+      setFormField("update_identity_card", null);
       setIsLoading(false);
       navigate("/");
     } catch (error) {
@@ -124,6 +121,10 @@ const updateForm = () => {
           isPassword={false}
           validationRules={{
             required: { value: !user?.name, message: "Required" },
+            pattern: {
+              value: /^[A-Za-z]+$/,
+              message: "Only alphabets are allowed",
+            },
           }}
         />
         <InputField

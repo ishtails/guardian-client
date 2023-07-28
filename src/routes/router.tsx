@@ -24,9 +24,9 @@ const mainRouter = () => {
       {/* Common */}
       <Route path="/" element={<Home />} />
       <Route path="/logout" element={<Logout />} />
-      <Route path="/forgotpass" element={<ForgotPassword_1 />} />
-      <Route path="/forgotpass_2" element={<ForgotPassword_2 />} />
-      <Route path="/forgotpass_3" element={<ForgotPassword_3 />} />
+      <Route path="/forgotpassword/email" element={<ForgotPassword_1 />} />
+      <Route path="/forgotpassword/otp" element={<ForgotPassword_2 />} />
+      <Route path="/forgotpassword/reset" element={<ForgotPassword_3 />} />
       <Route path="/changepass" element={<ChangePassword />} />
       <Route path="/help" element={<Support />} />
 
@@ -36,7 +36,7 @@ const mainRouter = () => {
       {/* Student Routes */}
       <Route path="/register/email" element={<Register_1/>} />
       <Route path="/register/otp" element={<Register_2/>} />
-      <Route path="/register/pass" element={<Register_3/>} />
+      <Route path="/register/password" element={<Register_3/>} />
 
       <Route path="/student/report" element={<StudentReport />} />
       <Route path="/student/reason" element={<StudentReason />} />
