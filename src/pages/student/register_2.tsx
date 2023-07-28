@@ -65,10 +65,10 @@ const registerForm = () => {
         Register
       </button>
       <Link
-        to="/"
+        to="/register/email"
         className="text-[#0EA5E9] text-p14 transition font-medium hover:text-sky-700"
       >
-        Already registered? Login
+        Resend OTP
       </Link>
     </div>
     </form>
