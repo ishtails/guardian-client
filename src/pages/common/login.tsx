@@ -91,7 +91,7 @@ const loginForm = () => {
             </label>
 
             <Link
-              to="/forgotpass"
+              to="/forgotpassword/email"
               className="text-[#0EA5E9] transition font-medium hover:text-sky-700 text-p14"
             >
               Forgot Password?
