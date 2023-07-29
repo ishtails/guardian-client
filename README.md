@@ -5,7 +5,7 @@ and efficient functionalities, Guardian ensures a seamless experience for studen
 
 ## Links
 Paper: [Click Here](https://drive.google.com/file/d/1KRv_YBNtan94x9XF6fUw3y1G5wY68zJP/view?usp=sharing)<br/>
-UI Design (Figma): [Click Here](https://www.figma.com/file/k5eDd6Edq2NL3xGf4do5Ki/Guardian?type=design&node-id=0%3A1&t=Js4hdwCZioEZo3dU-1)
+UI Design (Figma): [Click Here](https://www.figma.com/file/k5eDd6Edq2NL3xGf4do5Ki/Guardian?type=design&node-id=0%3A1&t=Js4hdwCZioEZo3dU-1)<br/>
 Backend Repo: [Click Here](https://github.com/ishtails/guardian-server)
 
 # Setting up locally
