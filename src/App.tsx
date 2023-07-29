@@ -3,7 +3,7 @@ import MainRouter from "./routes/router";
 import { Toaster } from "react-hot-toast";
 
 if(import.meta.env.PROD){
-  axios.defaults.baseURL = "https://guardian-fdtn.onrender.com/api";
+  axios.defaults.baseURL = "https://guardian-server.onrender.com";
 } else {
   axios.defaults.baseURL = "http://localhost:8000/api";
 }
