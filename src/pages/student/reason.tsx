@@ -18,10 +18,14 @@ const reason = () => {
   const [isLocating, setIsLocating] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLocating(false);
-    }, 5000);
-  }, []);
+    if (!location) {
+      setIsLocating(true);
+    } else {
+      setTimeout(() => {
+        setIsLocating(false);
+      }, 5000);
+    }
+  }, [location]);
 
   const onSubmit = async (data: any) => {
     let { reason_reason } = data;
@@ -97,13 +101,13 @@ const reason = () => {
           </div>
 
           <div
-              className={`flex justify-center bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center self-center w-[80%]`}
-            >
-              <img src={lightbulb} className="h-[32px]" />
-              <p className="text-amber-dark text-[12px] font-medium">
-                Having trouble with location? Refresh and try again...
-              </p>
-            </div>
+            className={`flex justify-center bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center self-center w-[80%]`}
+          >
+            <img src={lightbulb} className="h-[32px]" />
+            <p className="text-amber-dark text-[12px] font-medium">
+              Having trouble with location? Refresh and try again...
+            </p>
+          </div>
 
           {/* Footer */}
           <div className="z-10 bg-white flex flex-col space-y-2 fixed w-screen bottom-0 left-0">
@@ -112,7 +116,7 @@ const reason = () => {
           </div>
         </div>
       </form>
-      
+
       <div className="hidden lg:flex flex-col items-center justify-center h-screen">
         <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">
           Switch to a mobile device or resize your window to view this page
