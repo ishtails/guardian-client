@@ -83,8 +83,9 @@ const loginForm = () => {
               htmlFor="login_remember_me"
             >
               <input
-                className="w-[16px] cursor-pointer"
+                className="w-[16px] cursor-pointer accent-sky-600"
                 type="checkbox"
+                defaultChecked
                 id="login_remember_me"
                 {...methods.register("login_remember_me")}
               />
