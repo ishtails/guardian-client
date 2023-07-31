@@ -3,7 +3,7 @@ import MainRouter from "./routes/router";
 import { Toaster } from "react-hot-toast";
 
 if(import.meta.env.PROD){
-  axios.defaults.baseURL = "https://guardian-server.onrender.com/api";
+  axios.defaults.baseURL = "https://api.guardianiiitm.ninja/api";
 } else {
   axios.defaults.baseURL = "http://localhost:8000/api";
 }
