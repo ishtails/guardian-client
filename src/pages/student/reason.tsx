@@ -8,11 +8,20 @@ import { FormProvider, useForm } from "react-hook-form";
 import { getLocation } from "../../helpers/helpers";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import lightbulb from "../../assets/icons/lightbulb.svg";
 
 const reason = () => {
   const methods = useForm();
   const location = getLocation();
   const navigate = useNavigate();
+  const [isLocating, setIsLocating] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLocating(false);
+    }, 5000);
+  }, []);
 
   const onSubmit = async (data: any) => {
     let { reason_reason } = data;
@@ -24,14 +33,11 @@ const reason = () => {
     };
 
     try {
-      await toast.promise(
-        axios.post("/student/exit-request", requestObj),
-        {
-          loading: "Verifying...",
-          success: "Successful",
-          error: (error) => error.response.data || "Failed",
-        }
-      );
+      await toast.promise(axios.post("/student/exit-request", requestObj), {
+        loading: "Verifying...",
+        success: "Successful",
+        error: (error) => error.response.data || "Failed",
+      });
 
       navigate(`/student/success`);
     } catch (error: any) {
@@ -75,12 +81,29 @@ const reason = () => {
 
               <button
                 type="submit"
-                className="text-white text-p16 bg-[#0EA5E9] py-3 px-10 rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg"
+                disabled={isLocating || !location}
+                className="text-white text-p16 bg-[#0EA5E9] py-3 flex justify-center rounded-full hover:bg-sky-400 transition-all font-semibold shadow-lg disabled:bg-slate-400 w-40"
               >
-                Confirm Exit
+                {location && isLocating ? (
+                  <div className="flex space-x-2">
+                    <div className="animate-spin w-5 h-5 border-b-2 border-white rounded-full"></div>
+                    <p>Locating...</p>
+                  </div>
+                ) : (
+                  "Confirm Exit"
+                )}
               </button>
             </div>
           </div>
+
+          <div
+              className={`flex justify-center bg-amber-50 rounded-xl shadow-card-shadow px-5 py-4 space-x-4 items-center self-center w-[80%]`}
+            >
+              <img src={lightbulb} className="h-[32px]" />
+              <p className="text-amber-dark text-[12px] font-medium">
+                Having trouble with location? Refresh and try again...
+              </p>
+            </div>
 
           {/* Footer */}
           <div className="z-10 bg-white flex flex-col space-y-2 fixed w-screen bottom-0 left-0">
@@ -89,7 +112,8 @@ const reason = () => {
           </div>
         </div>
       </form>
-      <div className="hidden xl:flex flex-col items-center justify-center h-screen">
+      
+      <div className="hidden lg:flex flex-col items-center justify-center h-screen">
         <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">
           Switch to a mobile device or resize your window to view this page
         </h1>
