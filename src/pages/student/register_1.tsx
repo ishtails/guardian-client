@@ -71,7 +71,7 @@ const registerForm = () => {
         {/* Input Fields */}
         <InputField
           label="register_Institute Email"
-          placeholder="Enter your email"
+          placeholder="e.g. bcs_2021035@iiitm.ac.in"
           isPassword={false}
           validationRules={{ required: { value: true, message: "Required" } }}
         />

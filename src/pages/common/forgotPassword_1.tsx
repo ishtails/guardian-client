@@ -76,7 +76,7 @@ const forgotPassForm_1 = () => {
         {/* Input Fields */}
         <InputField
           label="forgotpass_Email"
-          placeholder="example@iiitm.ac.in"
+          placeholder="e.g. bcs_2021035@iiitm.ac.in"
           isPassword={false}
           validationRules={{
             required: { value: true, message: "Required" },

@@ -63,7 +63,7 @@ const loginForm = () => {
         {/* Input Fields */}
         <InputField
           label="login_Username"
-          placeholder="Username or Institute email"
+          placeholder="e.g. bcs_2021035"
           isPassword={false}
           validationRules={{ required: { value: true, message: "Required" } }}
         />
