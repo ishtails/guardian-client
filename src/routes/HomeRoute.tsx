@@ -9,8 +9,13 @@ const Dashboard = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-sky-500">
+      <div className="h-screen w-screen flex items-center justify-center">
+        <div
+          style={{ width: `100px`, height: `100px` }}
+          className="animate-spin">
+          <div className="h-full w-full border-4 border-t-sky-500
+       border-b-sky-500 rounded-[50%]">
+          </div>
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import goback from "../../assets/icons/back-button.svg";
 import bgyellowgradient from "../../assets/darkyellow-gradient-bg.svg";
-import failure_illustration from "../../assets/illustrations/failed.svg";
+import failure_illustration from "../../assets/illustrations/failed.png";
 import logo from "../../assets/icons/logo.svg";
 import exclaimation from "../../assets/icons/exclaimation.svg";
 

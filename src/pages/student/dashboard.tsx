@@ -1,7 +1,7 @@
 import Navbar from "../../components/Navbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
-import skygradient from "../../assets/icons/sky-gradient.svg";
+import skygradient from "../../assets/icons/sky-gradient.png";
 import lightbulb from "../../assets/icons/lightbulb.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
