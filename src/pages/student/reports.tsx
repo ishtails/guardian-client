@@ -6,6 +6,7 @@ import useFetchProfile from "../../helpers/fetchUserHook";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import { useOutingStore, useUserStore } from "../../store/store";
 import DateRange from "../../components/DateRange";
+import Pagination from "../../components/Pagination";
 
 const reports = () => {
   useFetchProfile("/profile");
@@ -67,8 +68,9 @@ const reports = () => {
         </span>
       </div>
 
-      <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
+      <div className="shadow-lg flex flex-col bg-white border border-slate-200 px-4 py-2 rounded-lg">
         <Table columns={columns} values={values} />
+        <Pagination />
       </div>
 
       <hr />

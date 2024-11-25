@@ -8,7 +8,17 @@ const Dashboard = () => {
   const { user, isLoading } = useFetchProfile("/profile");
 
   if (isLoading) {
-    return <div>Home Loading...</div>;
+    return (
+      <div className="h-screen w-screen flex items-center justify-center">
+        <div
+          style={{ width: `100px`, height: `100px` }}
+          className="animate-spin">
+          <div className="h-full w-full border-4 border-t-sky-500
+       border-b-sky-500 rounded-[50%]">
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (user?.role === "admin") {
@@ -24,7 +34,7 @@ const Dashboard = () => {
   }
 
   if (!user?.role && !isLoading) {
-    return <LoginScreen />
+    return <LoginScreen />;
   }
 };
 

@@ -8,6 +8,7 @@ import { LuClipboardCheck } from "react-icons/lu";
 import { useOutingStore } from "../../store/store";
 import moment from "moment";
 import SearchBar from "../../components/Searchbar";
+import Pagination from "../../components/Pagination";
 
 const securityDashboard: React.FC = () => {
   const { outing, isLoading, filter, setFilter } = useOutingStore();
@@ -42,7 +43,9 @@ const securityDashboard: React.FC = () => {
         "Roll No": unit.username,
         Hostel: unit.hostel,
         Room: unit.room,
-        "Out Time": unit.outTime,
+        "Out Time": moment(unit.outTime, "DD-MM-YYYY HH:mm:ss").format(
+          "DD-MM-YYYY HH:mm"
+        ),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
@@ -70,16 +73,17 @@ const securityDashboard: React.FC = () => {
           <Navbar role="security" />
         </nav>
         <div className="flex space-x-6">
-          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
+          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5 h-[82vh]">
             <span className="flex items-center justify-between ">
               <h1 className="font-lexend font-bold text-h24 mx-4">
                 {filter?.isOpen ? "Closed Entries" : "Open Entries"}
               </h1>
               <div className="font-lexend px-2 py-1 lg:mr-2 rounded-lg text-sm font-semibold">
-                Date: {moment().format("YYYY-MM-DD")}
+                {moment().format("dddd: YYYY-MM-DD")}
               </div>
             </span>
             <Table columns={columns} values={values} />
+            <Pagination />
           </div>
         </div>
       </div>
@@ -102,7 +106,7 @@ const securityDashboard: React.FC = () => {
 
         <div className="flex flex-row justify-between items-center">
           <h1 className="font-lexend text-p18 font-bold">
-            {filter?.isOpen ? "Open Entries" : "Closed Entries"}
+            {!filter?.isOpen ? "Open Entries" : "Closed Entries"}
           </h1>
           <label
             htmlFor="toggleOpen"
@@ -122,8 +126,9 @@ const securityDashboard: React.FC = () => {
           />
         </div>
 
-        <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
+        <div className="flex flex-col shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
           <Table columns={columns} values={values} />
+          <Pagination />
         </div>
 
         <hr />

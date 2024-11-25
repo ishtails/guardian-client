@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import goback from "../../assets/icons/back-button.svg";
 import bgyellowgradient from "../../assets/darkyellow-gradient-bg.svg";
-import failure_illustration from "../../assets/illustrations/failed.svg";
+import failure_illustration from "../../assets/illustrations/failed.png";
 import logo from "../../assets/icons/logo.svg";
 import exclaimation from "../../assets/icons/exclaimation.svg";
 
@@ -14,10 +14,7 @@ const reason = () => {
           {/* Navbar */}
           <nav className="space-y-2">
             <div className="flex pt-4 items-center justify-between ">
-              <Link
-                to={"/"}
-                className="flex items-center space-x-2"
-              >
+              <Link to={"/"} className="flex items-center space-x-2">
                 <img src={goback} className="w-[24px] self-center" />
                 <p className="text-white">Go Back</p>
               </Link>
@@ -58,7 +55,7 @@ const reason = () => {
       </div>
       <div className="hidden xl:flex flex-col items-center justify-center h-screen">
         <h1 className="font-bold text-sky-500 p-10 text-p20 shadow-card-shadow rounded-full border">
-          Switch to a mobile device to view this page
+          Switch to a mobile device or resize your window to view this page
         </h1>
         <Link
           to={"/"}

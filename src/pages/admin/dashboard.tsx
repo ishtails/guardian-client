@@ -8,6 +8,8 @@ import { useOutingStore } from "../../store/store";
 import useFetchOutings from "../../helpers/fetchOutingHook";
 import SearchBar from "../../components/Searchbar";
 import DateRange from "../../components/DateRange";
+import moment from "moment";
+import Pagination from "../../components/Pagination";
 
 const dropDownNavAdmin = [
   { href: "/changepass", label: "Change Password" },
@@ -19,7 +21,7 @@ const adminDashboard: React.FC = () => {
 
   if (filter?.isOpen == true) {
     useFetchOutings("/outings", { isOpen: true });
-  } else{
+  } else {
     useFetchOutings("/outings", { isOpen: false });
   }
 
@@ -42,7 +44,9 @@ const adminDashboard: React.FC = () => {
         "Roll No": unit.username,
         Hostel: unit.hostel,
         Room: unit.room,
-        "Out Time": unit.outTime,
+        "Out Time": moment(unit.outTime, "DD-MM-YYYY HH:mm:ss").format(
+          "DD-MM-YYYY HH:mm"
+        ),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
@@ -152,12 +156,13 @@ const adminDashboard: React.FC = () => {
             </form>
           </div>
 
-          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
+          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5 h-[82vh]">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
               <DateRange />
             </span>
             <Table columns={columns} values={values} />
+            <Pagination />
           </div>
         </div>
       </div>
@@ -179,8 +184,9 @@ const adminDashboard: React.FC = () => {
           </span>
         </div>
 
-        <div className="shadow-lg bg-white border border-slate-200 px-4 py-2 rounded-lg">
+        <div className="shadow-lg flex flex-col bg-white border border-slate-200 px-4 py-2 rounded-lg">
           <Table columns={columns} values={values} />
+          <Pagination />
         </div>
 
         <hr />

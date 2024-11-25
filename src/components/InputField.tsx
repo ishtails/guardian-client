@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { FieldError } from "react-hook-form";
 
 type Props = {
   label: string;
@@ -83,9 +84,9 @@ const InputField = ({
             </svg>
           )}
         </div>
-        {errors[inputId] && (
+        {errors[inputId]?.message && (
           <span className="text-red-500 text-p14">
-            {errors[inputId].message}
+            {(errors[inputId] as FieldError).message}
           </span>
         )}
       </div>

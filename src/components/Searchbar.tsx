@@ -9,7 +9,7 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [debounced, setDebounced] = useState(searchTerm);
   const [suggestions, setSuggestions] = useState<searchObj[]>([]);
-  const searchInputRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLUListElement>(null);
   const { filter, setFilter } = useOutingStore();
 
   useEffect(() => {

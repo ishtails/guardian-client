@@ -7,7 +7,6 @@ import ForgotPassword_3 from "../pages/common/forgotPassword_3";
 import Register_1 from "../pages/student/register_1";
 import Register_2 from "../pages/student/register_2";
 import Register_3 from "../pages/student/register_3";
-import IndividualProfile from "../pages/admin/individual";
 import ClosedEntries from "../pages/security/closedEntries";
 import Support from "../pages/common/support";
 import StudentReport from "../pages/student/reports";
@@ -15,7 +14,7 @@ import StudentReason from "../pages/student/reason";
 import SuccessfulExit from "../pages/student/success";
 import FailedExit from "../pages/student/failure";
 import StudentUpdateInfo from "../pages/student/updateInfo";
-import Logout from "../components/Logout";
+import Logout from "../components/LogoutComp";
 
 import Home from "./HomeRoute";
 
@@ -25,14 +24,11 @@ const mainRouter = () => {
       {/* Common */}
       <Route path="/" element={<Home />} />
       <Route path="/logout" element={<Logout />} />
-      <Route path="/forgotpass" element={<ForgotPassword_1 />} />
-      <Route path="/forgotpass_2" element={<ForgotPassword_2 />} />
-      <Route path="/forgotpass_3" element={<ForgotPassword_3 />} />
+      <Route path="/forgotpassword/email" element={<ForgotPassword_1 />} />
+      <Route path="/forgotpassword/otp" element={<ForgotPassword_2 />} />
+      <Route path="/forgotpassword/reset" element={<ForgotPassword_3 />} />
       <Route path="/changepass" element={<ChangePassword />} />
       <Route path="/help" element={<Support />} />
-
-      {/* Admin Routes */}
-      <Route path="/profile/:username" element={<IndividualProfile />} />
 
       {/* Security Routes */}
       <Route path="/security/closed" element={<ClosedEntries />} />
@@ -40,7 +36,7 @@ const mainRouter = () => {
       {/* Student Routes */}
       <Route path="/register/email" element={<Register_1/>} />
       <Route path="/register/otp" element={<Register_2/>} />
-      <Route path="/register/pass" element={<Register_3/>} />
+      <Route path="/register/password" element={<Register_3/>} />
 
       <Route path="/student/report" element={<StudentReport />} />
       <Route path="/student/reason" element={<StudentReason />} />

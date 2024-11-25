@@ -7,8 +7,10 @@ export const getLocation = () => {
     const { coords, isGeolocationAvailable, isGeolocationEnabled } =
       useGeolocated({
         positionOptions: {
-          enableHighAccuracy: false,
+          enableHighAccuracy: true,
         },
+        watchPosition: true,
+        watchLocationPermissionChange: true,
       });
 
     if (!isGeolocationAvailable) {
@@ -27,7 +29,7 @@ export const getLocation = () => {
     }
 
     if (coords) {
-      return { latitude: coords.latitude, longitude: coords.longitude };
+      return { latitude: coords.latitude, longitude: coords.longitude, accuracy: coords.accuracy };
     }
   } catch (error) {
     console.log(error);

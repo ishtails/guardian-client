@@ -10,31 +10,25 @@ import { toast } from "react-hot-toast";
 const forgotPassForm_1 = () => {
   const methods = useForm();
   const navigate = useNavigate();
-  // const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: any) => {
-    // setIsLoading(true);
     let { forgotpass3_new_password } = data;
 
     const requestObj = {
       newPassword: forgotpass3_new_password,
     };
-    console.log(requestObj);
 
     try {
-      const response = await toast.promise(
-        axios.post("/reset-password", requestObj),
-        {
-          loading: "Loading...",
-          success: "Successful",
-          error: "Something went wrong",
-        }
-      );
-      console.log(response);
-      // setIsLoading(false);
+      await toast.promise(axios.post("/reset-password", requestObj), {
+        loading: "Loading...",
+        success: "Successful",
+        error: (error) =>
+          error.response.status == 422
+            ? "Atleast 1 alphabet, 1 digit and minimum 8 characters are required"
+            : error.response.data,
+      });
       navigate(`/`);
     } catch (error: any) {
-      // setIsLoading(false);
       console.log(error.response);
     }
   };
@@ -60,7 +54,13 @@ const forgotPassForm_1 = () => {
           label="forgotpass3_New Password"
           placeholder="New Password"
           isPassword={true}
-          validationRules={{ required: { value: true, message: "Required" } }}
+          validationRules={{
+            required: { value: true, message: "Required" },
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*[0-9])[a-zA-Z0-9@$!%*#?&]{8,}$/,
+              message: "1 alphabet, 1 digit and minimum 8 characters required",
+            },
+          }}
         />
         <InputField
           label="forgotpass3_Confirm New Password"

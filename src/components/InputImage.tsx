@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { useFormStore, useUserStore } from "../store/store";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { FieldError } from "react-hook-form";
 
 type Props = {
   label: string;
@@ -112,7 +113,7 @@ const InputImage = ({ label }: Props) => {
         onChange={(e) => handleInputChange(inputId, e.target.files?.[0])}
       />
       {errors[inputId] && (
-        <span className="text-red-500 text-p14">{errors[inputId].message}</span>
+        <span className="text-red-500 text-p14">{(errors[inputId] as FieldError).message}</span>
       )}
     </div>
   );

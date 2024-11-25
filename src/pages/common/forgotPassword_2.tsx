@@ -22,7 +22,7 @@ const forgotPassForm_1 = () => {
     };
 
     try {
-      const response = await toast.promise(
+      await toast.promise(
         axios.post("/verify-otp", requestObj),
         {
           loading: "Verifying OTP...",
@@ -30,9 +30,8 @@ const forgotPassForm_1 = () => {
           error: (error) => error.response?.data || "Server Error",
         }
       );
-      console.log(response);
       setIsLoading(false);
-      navigate(`/forgotpass_3`);
+      navigate(`/forgotpassword/reset`);
     } catch (error: any) {
       setIsLoading(false);
 
@@ -40,7 +39,7 @@ const forgotPassForm_1 = () => {
         error.response.data === "OTP expired" ||
         error.response.data === "Not generated"
       ) {
-        return navigate("/forgotpass_1");
+        return navigate("/forgotpassword/email");
       }
 
       if (error.response.data === "Already logged in") {
@@ -82,7 +81,7 @@ const forgotPassForm_1 = () => {
             Submit
           </button>
           <Link
-            to="/forgotpass"
+            to="/forgotpassword/email"
             className="text-[#0EA5E9] font-medium hover:text-sky-600 transition hover:underline underline-offset-1 mt-2 -mb-1"
           >
             Resend OTP

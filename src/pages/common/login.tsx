@@ -35,6 +35,11 @@ const loginForm = () => {
       setIsLoading(false);
       navigate(0);
     } catch (error: any) {
+      toast.dismiss("login_loader");
+      toast.error(error.response.data, {
+        id: "login_error",
+        duration: 2000,
+      });
       setIsLoading(false);
     }
   };
@@ -58,7 +63,7 @@ const loginForm = () => {
         {/* Input Fields */}
         <InputField
           label="login_Username"
-          placeholder="Username or Institute email"
+          placeholder="e.g. bcs_2021035"
           isPassword={false}
           validationRules={{ required: { value: true, message: "Required" } }}
         />
@@ -78,8 +83,9 @@ const loginForm = () => {
               htmlFor="login_remember_me"
             >
               <input
-                className="w-[16px] cursor-pointer"
+                className="w-[16px] cursor-pointer accent-sky-600"
                 type="checkbox"
+                defaultChecked
                 id="login_remember_me"
                 {...methods.register("login_remember_me")}
               />
@@ -89,7 +95,7 @@ const loginForm = () => {
             </label>
 
             <Link
-              to="/forgotpass"
+              to="/forgotpassword/email"
               className="text-[#0EA5E9] transition font-medium hover:text-sky-700 text-p14"
             >
               Forgot Password?

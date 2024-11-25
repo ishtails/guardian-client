@@ -8,7 +8,7 @@ import { LuClipboardCheck } from "react-icons/lu";
 import { useOutingStore } from "../../store/store";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../../components/Searchbar";
 
 const dropDownNavSecurity = [
   { href: "/changepass", label: "Change Password" },

@@ -1,7 +1,7 @@
 import Navbar from "../../components/Navbar";
 import Table from "../../components/Table";
 import logo from "../../assets/icons/logo.svg";
-import skygradient from "../../assets/icons/sky-gradient.svg";
+import skygradient from "../../assets/icons/sky-gradient.png";
 import lightbulb from "../../assets/icons/lightbulb.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -16,6 +16,8 @@ import { toast } from "react-hot-toast";
 import { boysAvatars, girlsAvatars } from "../../helpers/constants";
 import DateRange from "../../components/DateRange";
 import Dropdown from "../../components/Dropdown";
+import moment from "moment";
+import Pagination from "../../components/Pagination";
 
 const studentDashboard: React.FC = () => {
   useFetchOutings("/outings", { isOpen: false });
@@ -58,7 +60,7 @@ const studentDashboard: React.FC = () => {
   if (!isLoading) {
     outing?.map((unit) => {
       const newObj = {
-        "Out Time": unit.outTime,
+        "Out Time": moment(unit.outTime, "DD-MM-YYYY HH:mm:ss").format('DD-MM-YYYY HH:mm'),
         "In Time": unit.inTime,
         "Late By": unit.lateBy,
         Reason: unit.reason,
@@ -168,12 +170,13 @@ const studentDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5">
+          <div className="overflow-auto mb-5 flex flex-col bg-white rounded-xl shadow-card-shadow w-full space-y-4 p-5 h-[82vh]">
             <span className="flex items-center justify-between">
               <h1 className="font-lexend font-bold text-h24 mx-4">Overview</h1>
               <DateRange />
             </span>
             <Table columns={columns} values={values} />
+            <Pagination />
           </div>
         </div>
       </div>

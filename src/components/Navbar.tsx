@@ -5,7 +5,7 @@ import AppLogo from "./Logo";
 import { useOutingStore } from "../store/store";
 import Searchbar from "./Searchbar";
 
-const Navbar = ({ role }: { role: String }) => {
+const Navbar = ({ role }: { role: string }) => {
   const { filter, setFilter } = useOutingStore();
 
   if (role === "admin")
