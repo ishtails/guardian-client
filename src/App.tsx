@@ -8,7 +8,6 @@ if(import.meta.env.PROD){
   axios.defaults.baseURL = "http://localhost:8000/api";
 }
 
-axios.defaults.baseURL = "/";
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
